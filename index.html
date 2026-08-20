@@ -598,7 +598,6 @@ function renderMesi(){
       '<div class="top-actions"><div class="filters">'+
         '<div class="field"><label>Filtra categoria</label><select id="filterCat">'+catOptions+'</select></div>'+
         '<div class="field"><label>Cerca</label><input type="text" id="filterSearch" value="'+expenseFilter.search+'" placeholder="es. Cena da Anna..."></div>'+
-      '</div><button class="btn" id="btnAddExpense">+ Aggiungi spesa</button></div>'+
       '<div class="muted" style="margin-bottom:10px;">'+vis.length+' spese \u2022 Totale: '+fmt(totVis)+'</div>'+
       '<div style="overflow-x:auto;"><table class="expenses-table card-table"><thead><tr><th>Data</th><th>Categoria</th><th>Descrizione</th><th>Importo</th><th></th></tr></thead><tbody id="expensesBody">'+expRows+'</tbody></table></div>'+
     '</div>';
@@ -620,11 +619,6 @@ function renderMesi(){
     m.speseViaggi = Number(document.getElementById('f_viaggi').value)||0;
     m.speseExtra = Number(document.getElementById('f_speseextra').value)||0;
     saveData(); toast('Configurazione salvata'); renderMesi();
-  });
-  document.getElementById('btnAddExpense').addEventListener('click', function(){
-    var today = new Date().toISOString().slice(0,10);
-    m.expenses.push({id:nextExpenseId(), data:today, categoria:DATA.categories[0], descrizione:'', importo:0});
-    saveData(); renderMesi();
   });
   document.getElementById('filterCat').addEventListener('change', function(e){ expenseFilter.categoria = e.target.value; renderMesi(); });
   var searchTimer = null;

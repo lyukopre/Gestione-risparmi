@@ -206,22 +206,40 @@ function saveData(countAsChange = true) {
 
   if (!countAsChange) return;
 
-  const count = Number(localStorage.getItem(CHANGE_COUNT_KEY) || 0) + 1;
-  localStorage.setItem(CHANGE_COUNT_KEY, count);
+  let count = Number(
+    localStorage.getItem('risparmi_app_change_count') || 0
+  );
 
-  if (count % BACKUP_REMINDER_STEP === 0) {
-    setTimeout(() => {
-      const shouldExport = confirm(
-        `Hai effettuato ${count} modifiche dall'ultimo backup. ` +
-        'Vuoi esportare ora un backup JSON?'
-      );
+  count += 1;
+  localStorage.setItem('risparmi_app_change_count', String(count));
 
-      if (shouldExport) {
-        exportJsonBackup();
-        localStorage.setItem(CHANGE_COUNT_KEY, '0');
-      }
-    }, 300);
+  if (count >= 10) {
+    showBackupReminder();
   }
+}
+let backupReminderOpen = false;
+
+function showBackupReminder() {
+  if (backupReminderOpen) return;
+
+  backupReminderOpen = true;
+
+  setTimeout(function() {
+    const shouldExport = confirm(
+      'Hai effettuato almeno 10 modifiche dall’ultimo backup. ' +
+      'Vuoi esportare ora un backup JSON?'
+    );
+
+    backupReminderOpen = false;
+
+    if (shouldExport) {
+      exportJsonBackup();
+      localStorage.setItem('risparmi_app_change_count', '0');
+    } else {
+      // Rimanda il promemoria senza farlo riapparire a ogni modifica.
+      localStorage.setItem('risparmi_app_change_count', '9');
+    }
+  }, 100);
 }
 function exportJsonBackup() {
   const blob = new Blob(

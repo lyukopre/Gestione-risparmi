@@ -208,75 +208,30 @@ const CHANGE_COUNT_KEY = 'risparmi_app_change_count';
 const BACKUP_REMINDER_STEP = 10;
 
 function registerUserChange() {
-  const count = Number(
+  let count = Number(
     localStorage.getItem(CHANGE_COUNT_KEY) || 0
-  ) + 1;
+  );
 
+  count += 1;
   localStorage.setItem(CHANGE_COUNT_KEY, String(count));
 
-  if (count >= BACKUP_REMINDER_STEP) {
-    setTimeout(() => {
-      const shouldExport = confirm(
-        'Hai effettuato 10 modifiche dall’ultimo backup. ' +
-        'Vuoi esportare ora un backup JSON?'
-      );
+  if (count < BACKUP_REMINDER_STEP) return;
 
-      if (shouldExport) {
-        exportJsonBackup();
-      }
-
-      // Riparte da zero sia con OK che con Annulla.
-      localStorage.setItem(CHANGE_COUNT_KEY, '0');
-    }, 200);
-  }
-}
-
-function exportJsonBackup() {
-  const json = JSON.stringify(DATA, null, 2);
-  const fileName =
-    `backup_gestione_risparmi_${new Date()
-      .toISOString()
-      .slice(0, 10)}.json`;
-
-  const blob = new Blob([json], {
-    type: 'application/json'
-  });
-
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-
-  link.href = url;
-  link.download = fileName;
-
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-
-  URL.revokeObjectURL(url);
-  toast('Backup JSON esportato');
-}
-localStorage.removeItem('risparmi_app_change_count');
-function showBackupReminder() {
-  if (backupReminderOpen) return;
-
-  backupReminderOpen = true;
-
-  setTimeout(function() {
+  setTimeout(async () => {
     const shouldExport = confirm(
-      'Hai effettuato almeno 10 modifiche dall’ultimo backup. ' +
+      'Hai effettuato 10 modifiche dall’ultimo backup. ' +
       'Vuoi esportare ora un backup JSON?'
     );
 
-    backupReminderOpen = false;
-
     if (shouldExport) {
-      exportJsonBackup();
-      localStorage.setItem('risparmi_app_change_count', '0');
-    } else {
-      // Rimanda il promemoria senza farlo riapparire a ogni modifica.
-      localStorage.setItem('risparmi_app_change_count', '9');
+      try {
+        await exportJsonBackup();
+      } catch (error) {
+        console.error('Esportazione annullata o non riuscita:', error);
+      }
     }
-  }, 100);
+    localStorage.setItem(CHANGE_COUNT_KEY, '0');
+  }, 200);
 }
 async function exportJsonBackup() {
   const json = JSON.stringify(DATA, null, 2);
@@ -1019,6 +974,7 @@ function renderAll(){
   if(at==='investimenti') renderInvestimenti();
   if(at==='impostazioni') renderImpostazioni();
 }
+localStorage.removeItem('risparmi_app_change_count');
 loadData();
 applyTheme();
 renderYearSelector();

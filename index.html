@@ -983,6 +983,7 @@ function renderAll(){
   if(at==='impostazioni') renderImpostazioni();
 }
 loadData();
+  localStorage.setItem('risparmi_app_change_count', '0');
 applyTheme();
 renderYearSelector();
 renderAll();

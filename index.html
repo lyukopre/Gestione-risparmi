@@ -241,20 +241,31 @@ function showBackupReminder() {
     }
   }, 100);
 }
-function exportJsonBackup() {
-  const blob = new Blob(
-    [JSON.stringify(DATA, null, 2)],
+async function exportJsonBackup() {
+  const json = JSON.stringify(DATA, null, 2);
+  const file = new File(
+    [json],
+    'backup_gestione_risparmi.json',
     { type: 'application/json' }
   );
 
+  if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+    await navigator.share({
+      title: 'Backup Gestione Risparmi',
+      text: 'Backup JSON dell’app',
+      files: [file]
+    });
+
+    toast('Backup pronto da salvare');
+    return;
+  }
+
+  const blob = new Blob([json], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
 
   link.href = url;
-  link.download = `backup_gestione_risparmi_${new Date()
-    .toISOString()
-    .slice(0, 10)}.json`;
-
+  link.download = 'backup_gestione_risparmi.json';
   document.body.appendChild(link);
   link.click();
   link.remove();

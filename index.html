@@ -157,6 +157,7 @@ const SEED = {"currentYear": 2026, "categories": ["Spesa", "Trasporti", "Ristora
 const STORAGE_KEY = 'risparmi_app_v2';
 const CHANGE_COUNT_KEY = 'risparmi_app_change_count';
 const BACKUP_REMINDER_STEP = 10;
+  localStorage.setItem(CHANGE_COUNT_KEY, '0');
 const MONTH_NAMES = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
 let DATA = null, currentMonthIndex = 0, charts = {}, expenseFilter = {categoria:'', search:''};
 
@@ -983,7 +984,6 @@ function renderAll(){
   if(at==='impostazioni') renderImpostazioni();
 }
 loadData();
-  localStorage.setItem('risparmi_app_change_count', '0');
 applyTheme();
 renderYearSelector();
 renderAll();

@@ -2,990 +2,187 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Gestione Risparmi</title>
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Risparmi">
-<meta name="theme-color" content="#4f6df5">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gestione Risparmi 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <style>
-:root{--bg:#f5f6fa;--card:#ffffff;--text:#1f2430;--muted:#6b7280;--accent:#4f6df5;--green:#1f9d55;--red:#e0463e;--border:#e6e8ee;--radius:14px;--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px);--shadow:0 1px 3px rgba(0,0,0,.08)}
-*{box-sizing:border-box}
-html,body{-webkit-text-size-adjust:100%}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .25s,color .25s}
-header{background:var(--card);border-bottom:1px solid var(--border);padding:calc(12px + var(--sat)) 20px 12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:10;transition:all .25s}
-header h1{font-size:17px;margin:0;font-weight:700}
-.header-left{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.year-switch{display:flex;align-items:center;gap:6px}
-.year-switch select{width:auto;min-width:90px;padding:6px 8px;min-height:36px;font-size:14px}
-.year-switch button{padding:6px 10px;min-height:36px;font-size:16px}
-nav{display:flex;gap:6px;flex-wrap:wrap}
-nav button{background:none;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-size:14px;color:var(--muted);font-weight:600;min-height:40px;transition:all .2s}
-nav button.active{background:var(--accent);color:#fff}
-main{padding:18px;max-width:1180px;margin:0 auto;padding-bottom:calc(90px + var(--sab))}
-.card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:18px;transition:all .25s}
-.card h2{margin:0 0 14px;font-size:16px;font-weight:700}
-.grid{display:grid;gap:14px}
-.grid.cols-4{grid-template-columns:repeat(4,1fr)}
-.grid.cols-2{grid-template-columns:repeat(2,1fr)}
-@media(max-width:820px){.grid.cols-4,.grid.cols-2{grid-template-columns:1fr}}
-@media(max-width:480px){main{padding:12px;padding-bottom:calc(90px + var(--sab))}}
-.stat{background:var(--bg);border-radius:12px;padding:14px 16px;transition:all .25s}
-.stat .label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
-.stat .value{font-size:20px;font-weight:700;margin-top:4px;word-break:break-word}
-.pos{color:var(--green)}.neg{color:var(--red)}
-label{font-size:12px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px}
-input,select{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:8px;font-size:16px;background:var(--card);color:var(--text);min-height:44px;transition:all .2s}
-input:focus,select:focus{outline:2px solid var(--accent);outline-offset:-1px}
-.field{margin-bottom:10px}
-.input-affix{position:relative;display:flex;align-items:center}
-.input-affix .affix{position:absolute;left:12px;color:var(--muted);font-weight:600;font-size:15px;pointer-events:none}
-.input-affix input{padding-left:28px}
-.input-affix.suffix .affix{left:auto;right:12px}
-.input-affix.suffix input{padding-left:12px;padding-right:28px}
-table{width:100%;border-collapse:collapse;font-size:14px}
-th{text-align:left;color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.02em;padding:8px 10px;border-bottom:1px solid var(--border)}
-td{padding:8px 10px;border-bottom:1px solid var(--border)}
-.btn{background:var(--accent);color:#fff;border:none;padding:11px 18px;border-radius:10px;font-weight:600;cursor:pointer;font-size:14px;min-height:44px;transition:all .2s}
-.btn:hover{filter:brightness(0.9)}
-.btn.secondary{background:var(--border);color:var(--text)}
-.btn.danger{background:#fdecea;color:var(--red)}
-.btn.icon{padding:8px 10px;font-size:13px;min-height:40px;min-width:40px}
-.btn.small{padding:6px 12px;font-size:13px;min-height:36px}
-.row-actions{display:flex;gap:6px}
-.month-tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;-webkit-overflow-scrolling:touch}
-.month-tabs button{white-space:nowrap;background:var(--card);border:1px solid var(--border);padding:9px 16px;border-radius:20px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);min-height:40px;transition:all .2s}
+:root{--accent:#4f6df5;--bg:#f5f6fa;--card:#ffffff;--text:#1f2430;--border:#e6e8ee;--green:#1f9d55;--red:#e0463e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+header{background:var(--card);padding:16px 20px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.header-content{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+h1{font-size:1.25rem;font-weight:700}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+nav button{padding:8px 14px;border:1px solid var(--border);background:var(--card);border-radius:8px;cursor:pointer;font-weight:500;transition:all .2s}
+nav button:hover{background:var(--bg)}
+nav button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+main{max-width:1200px;margin:24px auto;padding:0 20px}
+.grid{display:grid;gap:16px}
+.cols-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.cols-3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.cols-4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:var(--card);border-radius:12px;padding:20px;border:1px solid var(--border)}
+.card h2{font-size:1.1rem;margin-bottom:12px;font-weight:600}
+.stat{background:var(--bg);border-radius:10px;padding:16px;text-align:center}
+.stat .label{font-size:.85rem;color:#666;margin-bottom:6px}
+.stat .value{font-size:1.5rem;font-weight:700;color:var(--accent)}
+.pos{color:var(--green)}
+.neg{color:var(--red)}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;text-align:left;border-bottom:1px solid var(--border)}
+th{font-weight:600;font-size:.9rem;color:#666}
+.input-affix{display:flex;align-items:center;gap:4px;border:1px solid var(--border);border-radius:8px;padding:8px 12px;background:var(--card)}
+.input-affix input{border:none;outline:none;flex:1;font-size:1rem;background:transparent}
+.input-affix .affix{color:#666;font-weight:600}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:.9rem;margin-bottom:6px;font-weight:500}
+.btn{padding:10px 16px;border:none;border-radius:8px;cursor:pointer;font-weight:600;transition:all .2s}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.secondary{background:var(--bg);color:var(--text)}
+.btn.danger{background:var(--red);color:#fff}
+.btn:hover{opacity:.9}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:1000}
+.overlay.show{display:flex}
+.overlay-content{background:var(--card);border-radius:16px;padding:24px;max-width:500px;width:90%;max-height:90vh;overflow-y:auto}
+.fab{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;font-size:1.5rem;box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:99}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1f2430;color:#fff;padding:12px 20px;border-radius:8px;z-index:1001;opacity:0;transition:opacity .3s}
+.toast.show{opacity:1}
+.progress-bar{height:12px;background:var(--bg);border-radius:6px;overflow:hidden}
+.progress-bar .fill{height:100%;transition:width .3s}
+.badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:.8rem;font-weight:600}
+.badge.ok{background:rgba(31,157,85,.15);color:var(--green)}
+.badge.over{background:rgba(224,70,62,.15);color:var(--red)}
+select,input[type="text"],input[type="number"],input[type="date"]{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:1rem}
+.theme-presets{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.preset-swatch{width:40px;height:40px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:border-color .2s}
+.preset-swatch:hover{border-color:var(--accent)}
+.month-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.month-tabs button{padding:8px 12px;border:1px solid var(--border);background:var(--card);border-radius:8px;cursor:pointer;font-size:.9rem}
 .month-tabs button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-.month-tabs button.completed{border-color:var(--green);color:var(--green)}
-.badge{padding:3px 8px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
-.badge.ok{background:#e6f7ec;color:var(--green)}
-.badge.over{background:#fdecea;color:var(--red)}
-.top-actions{display:flex;justify-content:space-between;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:flex-end}
-.filters{display:flex;gap:10px;flex-wrap:wrap;flex:1}
-.filters .field{margin-bottom:0;min-width:140px;flex:1}
-canvas{max-height:300px}
-.chart-wrap{position:relative;height:280px}
-.muted{color:var(--muted);font-size:13px}
-input[type=number]{text-align:right}
-input[type=color]{padding:2px;height:44px;cursor:pointer}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:20px;padding-bottom:calc(90px + var(--sab))}
-#toast{position:fixed;bottom:calc(80px + var(--sab));right:20px;background:#1f2430;color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:100;display:flex;align-items:center;gap:10px}
-#toast.show{opacity:1}
-#toast .undo-btn{background:rgba(255,255,255,.2);border:none;color:#fff;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
-.theme-presets{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-.preset-swatch{width:44px;height:44px;border-radius:10px;cursor:pointer;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;font-weight:700;transition:all .2s}
-.preset-swatch:hover{border-color:var(--accent);transform:scale(1.05)}
-.fab{position:fixed;bottom:24px;right:20px;width:56px;height:56px;border-radius:50%;background:var(--accent);color:#fff;font-size:28px;border:none;box-shadow:0 4px 12px rgba(0,0,0,.25);z-index:30;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s}
-.fab:hover{transform:scale(1.08);box-shadow:0 6px 16px rgba(0,0,0,.3)}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:60;padding:20px;backdrop-filter:blur(2px)}
-.modal-overlay.show{display:flex}
-.modal-box{background:var(--card);border-radius:16px;padding:22px;max-width:380px;width:100%;box-shadow:0 10px 30px rgba(0,0,0,.2)}
-.modal-box h3{margin:0 0 14px;font-size:17px;font-weight:700}
-.progress-bar{background:var(--bg);border-radius:8px;height:10px;overflow:hidden;margin-top:6px}
-.progress-bar .fill{height:100%;background:var(--accent);transition:width .3s}
-.mobile-tabbar{display:none}
-@media(max-width:680px){
-  header nav{display:none}
-  header{padding:calc(12px + var(--sat)) 16px 12px;justify-content:center}
-  header h1{font-size:15px}
-  .header-left{width:100%;justify-content:space-between}
-  .mobile-tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--card);border-top:1px solid var(--border);padding:6px 4px calc(6px + var(--sab));justify-content:space-around}
-  .mobile-tabbar button{flex:1;background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;font-size:11px;font-weight:600;color:var(--muted);border-radius:10px;transition:all .2s}
-  .mobile-tabbar button .ico{font-size:19px}
-  .mobile-tabbar button.active{color:var(--accent)}
-  .fab{bottom:calc(78px + var(--sab) + 10px)}
-  table.card-table thead{display:none}
-  table.card-table,table.card-table tbody,table.card-table tr,table.card-table td{display:block;width:100%}
-  table.card-table tr{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;padding:8px 10px;background:var(--bg);transition:all .2s}
-  table.card-table td{border:none;padding:6px 2px;display:flex;justify-content:space-between;align-items:center;gap:8px}
-  table.card-table td[data-label]::before{content:attr(data-label);color:var(--muted);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;flex:0 0 auto}
-  table.card-table td > *{flex:1;text-align:right}
-}
+.month-tabs button.completed::after{content:' ✓';color:#fff}
+.filters{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.chart-wrap{height:280px}
+.muted{color:#888;font-size:.9rem}
+.row-actions{display:flex;gap:4px}
+.icon-btn{padding:6px 10px;border:none;background:var(--bg);border-radius:6px;cursor:pointer;font-size:.9rem}
+.icon-btn:hover{background:var(--accent);color:#fff}
+.top-actions{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:12px}
+input[type="color"]{width:60px;height:40px;border:1px solid var(--border);border-radius:6px;cursor:pointer}
 </style>
 </head>
 <body>
 <header>
-  <div class="header-left">
-    <h1>Gestione Risparmi</h1>
-    <div class="year-switch">
-      <select id="yearSelector"></select>
-      <button class="btn secondary icon" id="btnAddYear" title="Aggiungi anno">+</button>
-    </div>
-  </div>
-  <nav id="mainNav">
-    <button data-tab="dashboard" class="active">Dashboard</button>
-    <button data-tab="mesi">Mesi</button>
-    <button data-tab="investimenti">Investimenti</button>
-    <button data-tab="impostazioni">Impostazioni</button>
-  </nav>
+<div class="header-content">
+<h1>💰 Gestione Risparmi 2026</h1>
+<nav id="mainNav">
+<button data-tab="dashboard" class="active">📊 Dashboard</button>
+<button data-tab="mesi">🗓️ Mesi</button>
+<button data-tab="investimenti">📈 Investimenti</button>
+<button data-tab="impostazioni">⚙️ Impostazioni</button>
+</nav>
+</div>
 </header>
 <main>
-  <section id="tab-dashboard"></section>
-  <section id="tab-mesi" style="display:none"></section>
-  <section id="tab-investimenti" style="display:none"></section>
-  <section id="tab-impostazioni" style="display:none"></section>
+<section id="tab-dashboard"></section>
+<section id="tab-mesi" style="display:none"></section>
+<section id="tab-investimenti" style="display:none"></section>
+<section id="tab-impostazioni" style="display:none"></section>
 </main>
-<footer>Dati salvati nel browser. Usa Impostazioni per backup.</footer>
-<nav class="mobile-tabbar" id="mobileNav">
-  <button data-tab="dashboard" class="active"><span class="ico">&#128202;</span>Dashboard</button>
-  <button data-tab="mesi"><span class="ico">&#128197;</span>Mesi</button>
-  <button data-tab="investimenti"><span class="ico">&#128200;</span>Investimenti</button>
-  <button data-tab="impostazioni"><span class="ico">&#9881;</span>Impostazioni</button>
-</nav>
-<div id="toast"><span id="toastMsg"></span><button class="undo-btn" id="toastUndo">Annulla</button></div>
-
 <button class="fab" id="fabQuickAdd" title="Aggiungi spesa rapida">+</button>
-<div class="modal-overlay" id="quickAddOverlay">
-  <div class="modal-box">
-    <h3>Aggiungi spesa rapida</h3>
-    <div class="field"><label>Data</label><div style="display:flex;gap:8px;"><input type="date" id="qa_data" style="flex:1"><button class="btn small" id="btnToday">Oggi</button></div></div>
-    <div class="field"><label>Categoria</label><select id="qa_cat"></select></div>
-    <div class="field"><label>Descrizione</label><input type="text" id="qa_desc" placeholder="es. Cena da Anna"></div>
-    <div class="field"><label>Importo</label><div class="input-affix"><span class="affix">&euro;</span><input type="number" step="0.01" id="qa_imp" value="0"></div></div>
-    <div style="display:flex;gap:10px;margin-top:14px;">
-      <button class="btn secondary" id="qa_cancel" style="flex:1;">Annulla</button>
-      <button class="btn" id="qa_save" style="flex:1;">Salva</button>
-    </div>
-  </div>
+<div class="overlay" id="quickAddOverlay">
+<div class="overlay-content">
+<h2 style="margin-bottom:16px">Aggiungi spesa rapida</h2>
+<div class="field">
+<label>Data</label>
+<input type="date" id="qadata">
 </div>
-
+<div class="field">
+<label>Categoria</label>
+<select id="qacat"></select>
+</div>
+<div class="field">
+<label>Descrizione</label>
+<input type="text" id="qadesc" placeholder="es. Cena da Anna">
+</div>
+<div class="field">
+<label>Importo</label>
+<div class="input-affix"><span class="affix">€</span><input type="number" step="0.01" id="qaimp" value="0"></div>
+</div>
+<div style="display:flex;gap:12px;margin-top:20px">
+<button class="btn secondary" id="qacancel" style="flex:1">Annulla</button>
+<button class="btn primary" id="qasave" style="flex:1">Salva</button>
+</div>
+</div>
+</div>
+<div class="toast" id="toast"><span id="toastMsg"></span></div>
 <script>
-const STORAGE_KEY = 'risparmi_app_v2';
-const CHANGE_COUNT_KEY = 'risparmi_app_change_count';
-const BACKUP_REMINDER_STEP = 10;
-// localStorage.setItem(CHANGE_COUNT_KEY, '0'); // <- RIMOVI o commenta questa riga
-const MONTH_NAMES = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
-let DATA = null, currentMonthIndex = 0, charts = {}, expenseFilter = {categoria:'', search:''};
+const MONTHNAMES=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+const STORAGEKEY='risparmiappv2';
+const SEED={years:{2026:{months:MONTHNAMES.map(n=>({name:n,stipendio:0,entrateExtra:0,risparmioPercent:20,fisse:{auto:305,telefono:8.95,abbonamenti:46,speseViaggi:0,speseExtra:0},expenses:[]}))},investimenti:{totalePrecedente:1900,perAnno:{2026:{Gennaio:100,Febbraio:100,Marzo:100,Aprile:100,Maggio:100,Giugno:100,Luglio:100,Agosto:0,Settembre:0,Ottobre:0,Novembre:0,Dicembre:0}}},risparmiStorico:{},settings:{theme:'light',accent:'#4f6df5',bg:'#f5f6fa',card:'#ffffff',text:'#1f2430',autoDark:false},categories:['Spesa','Trasporti','Ristoranti','Shopping','Salute','Intrattenimento','Uscite serali','Altro','Viaggi']};
+let DATA=null,currentMonthIndex=0,charts={},expenseFilter={categoria:null,search:''};
+const THEMEPRESETS={chiaro:{accent:'#4f6df5',bg:'#f5f6fa',card:'#ffffff',text:'#1f2430'},scuro:{accent:'#6d8bff',bg:'#141821',card:'#1f2430',text:'#eef1f8'},verde:{accent:'#1f9d55',bg:'#f2f8f4',card:'#ffffff',text:'#1c2b22'},ambra:{accent:'#e08a1e',bg:'#fbf6ee',card:'#ffffff',text:'#2b2013'},violetto:{accent:'#9d6dff',bg:'#181423',card:'#241d33',text:'#f0edf8'}};
 
-const THEME_PRESETS = {
-  chiaro:  {theme:'light', accent:'#4f6df5', bg:'#f5f6fa', card:'#ffffff', text:'#1f2430'},
-  scuro:   {theme:'dark',  accent:'#6d8bff', bg:'#141821', card:'#1f2430', text:'#eef1f8'},
-  verde:   {theme:'light', accent:'#1f9d55', bg:'#f2f8f4', card:'#ffffff', text:'#1c2b22'},
-  ambra:   {theme:'light', accent:'#e08a1e', bg:'#fbf6ee', card:'#ffffff', text:'#2b2013'},
-  violetto:{theme:'dark',  accent:'#9d6dff', bg:'#181423', card:'#241d33', text:'#f0edf8'}
-};
-
-function emptyMonths(tFisse, tPerc){
-  if(tFisse===undefined) tFisse=null;
-  if(tPerc===undefined) tPerc=null;
-  return MONTH_NAMES.map(function(n){
-    return {name:n,stipendio:0,entrateExtra:0,risparmioPercent:(tPerc!=null?tPerc:20),fisse:(tFisse?Object.assign({},tFisse):{auto:0,telefono:0,abbonamenti:0}),speseViaggi:0,speseExtra:0,expenses:[]};
-  });
-}
-function emptyPerAnno(){var o={};MONTH_NAMES.forEach(function(n){o[n]=0;});return o;}
-
-function loadData(){
-  var raw = localStorage.getItem(STORAGE_KEY);
-  if(raw){
-    try{ DATA = JSON.parse(raw); migrate(); return; }catch(e){}
-  }
-  DATA = JSON.parse(JSON.stringify(SEED));
-  saveData(false);
-}
-function migrate(){
-  if(!DATA.years){
-    var y = 2026;
-    DATA.years = {}; DATA.years[y] = {months: DATA.months || []};
-    DATA.currentYear = y;
-    var inv = DATA.investimenti || {};
-    DATA.investimenti = {totalePrecedente: inv.totaleObiettivo || 0, perAnno:{}};
-    DATA.investimenti.perAnno[y] = inv.valori || emptyPerAnno();
-    delete DATA.months;
-  }
-  if(!DATA.settings) DATA.settings = JSON.parse(JSON.stringify(SEED.settings));
-  if(!DATA.investimenti.perAnno) DATA.investimenti.perAnno = {};
-  if(!DATA.investimenti.perAnno[DATA.currentYear]) DATA.investimenti.perAnno[DATA.currentYear] = emptyPerAnno();
-  if(!DATA.risparmiStorico) DATA.risparmiStorico = {};
-  saveData(false);
-}
-function saveData(countAsChange = true) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(DATA));
-
-  if (!countAsChange) return;
-
-  let count = Number(
-    localStorage.getItem('risparmi_app_change_count') || 0
-  );
-
-  count += 1;
-  localStorage.setItem('risparmi_app_change_count', String(count));
-
-  if (count >= 10) {
-    showBackupReminder();
-  }
-}
-let backupReminderOpen = false;
-
-function showBackupReminder() {
-  if (backupReminderOpen) return;
-
-  backupReminderOpen = true;
-
-  setTimeout(function() {
-    const shouldExport = confirm(
-      'Hai effettuato almeno 10 modifiche dall’ultimo backup. ' +
-      'Vuoi esportare ora un backup JSON?'
-    );
-
-    backupReminderOpen = false;
-
-    if (shouldExport) {
-      exportJsonBackup();
-      localStorage.setItem('risparmi_app_change_count', '0');
-    } else {
-      // Rimanda il promemoria senza farlo riapparire a ogni modifica.
-      localStorage.setItem('risparmi_app_change_count', '0');
-    }
-  }, 100);
-}
-async function exportJsonBackup() {
-  const json = JSON.stringify(DATA, null, 2);
-  const file = new File(
-    [json],
-    'backup_gestione_risparmi.json',
-    { type: 'application/json' }
-  );
-
-  if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-    await navigator.share({
-      title: 'Backup Gestione Risparmi',
-      text: 'Backup JSON dell’app',
-      files: [file]
-    });
-
-    toast('Backup pronto da salvare');
-    return;
-  }
-
-  const blob = new Blob([json], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-
-  link.href = url;
-  link.download = 'backup_gestione_risparmi.json';
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
-
-  toast('Backup JSON esportato');
-}
-function getYearData(){
-  if(!DATA.years[DATA.currentYear]) DATA.years[DATA.currentYear] = {months: emptyMonths()};
-  return DATA.years[DATA.currentYear];
-}
-function getYearsList(){ return Object.keys(DATA.years).map(Number).sort(function(a,b){return a-b;}); }
-function addNewYear(){
-  var years = getYearsList();
-  var newYear = years.length ? Math.max.apply(null, years) + 1 : (new Date()).getFullYear();
-  if(DATA.years[newYear]){
-    toast('Anno gia presente');
-    DATA.currentYear = newYear; renderYearSelector(); renderAll(); return;
-  }
-  var lastYear = years.length ? Math.max.apply(null, years) : null;
-  var tFisse = null, tPerc = null;
-  if(lastYear){
-    var dec = DATA.years[lastYear].months[11];
-    tFisse = dec.fisse; tPerc = dec.risparmioPercent;
-  }
-  DATA.years[newYear] = {months: emptyMonths(tFisse, tPerc)};
-  DATA.investimenti.perAnno[newYear] = emptyPerAnno();
-  DATA.currentYear = newYear;
-  saveData(); renderYearSelector(); currentMonthIndex = 0; renderAll();
-  toast('Anno ' + newYear + ' creato');
-}
-function renderYearSelector(){
-  var sel = document.getElementById('yearSelector');
-  var years = getYearsList();
-  sel.innerHTML = years.map(function(y){
-    return '<option value="'+y+'" '+(y===DATA.currentYear?'selected':'')+'>'+y+'</option>';
-  }).join('');
-}
-function applyTheme(){
-  var s = DATA.settings || SEED.settings;
-  var r = document.documentElement.style;
-  r.setProperty('--accent', s.accent);
-  r.setProperty('--bg', s.bg);
-  r.setProperty('--card', s.card);
-  r.setProperty('--text', s.text);
-  r.setProperty('--border', s.theme==='dark' ? 'rgba(255,255,255,.12)' : '#e6e8ee');
-  var m = document.querySelector('meta[name="theme-color"]');
-  if(m) m.setAttribute('content', s.accent);
-  if(s.autoDark){
-    var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var preset = isDark ? THEME_PRESETS.scuro : THEME_PRESETS.chiaro;
-    Object.assign(s, preset); saveData(); applyTheme();
-  }
-}
-var undoTimeout = null;
-function toast(msg, undoFn){
-  var t = document.getElementById('toast');
-  var msgEl = document.getElementById('toastMsg');
-  msgEl.textContent = msg;
-  var undoBtn = document.getElementById('toastUndo');
-  if(undoFn){
-    undoBtn.style.display = 'inline-block';
-    undoBtn.onclick = function(){ clearTimeout(undoTimeout); undoFn(); t.classList.remove('show'); };
-  } else {
-    undoBtn.style.display = 'none';
-  }
-  t.classList.add('show');
-  if(undoFn){
-    undoTimeout = setTimeout(function(){ t.classList.remove('show'); }, 5000);
-  } else {
-    setTimeout(function(){ t.classList.remove('show'); }, 2500);
-  }
-}
-function fmt(n){
-  n = Number(n) || 0;
-  return n.toLocaleString('it-IT', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' \u20ac';
-}
-function euroField(id, val, step){
-  return '<div class="input-affix"><span class="affix">\u20ac</span><input type="number" step="'+(step||'0.01')+'" id="'+id+'" value="'+val+'"></div>';
-}
-function percentField(id, val){
-  return '<div class="input-affix suffix"><span class="affix">%</span><input type="number" step="1" id="'+id+'" value="'+val+'"></div>';
-}
-function nextExpenseId(){
-  var max = 0;
-  Object.values(DATA.years).forEach(function(y){
-    y.months.forEach(function(m){
-      m.expenses.forEach(function(e){ if(e.id > max) max = e.id; });
-    });
-  });
-  return max + 1;
-}
-
-function computeMonth(m){
-  var te = (Number(m.stipendio)||0) + (Number(m.entrateExtra)||0);
-  var ris = te * (Number(m.risparmioPercent)||0) / 100;
-  var tf = (Number(m.fisse.auto)||0) + (Number(m.fisse.telefono)||0) + (Number(m.fisse.abbonamenti)||0);
-  var bv = te - ris - tf;
-  var sv = m.expenses.reduce(function(s,e){ return s + (Number(e.importo)||0); }, 0);
-  var vi = Number(m.speseViaggi)||0;
-  var ex = Number(m.speseExtra)||0;
-  var rr = ris + bv - sv - vi - ex;
-  return {totaleEntrate:te, risparmi:ris, totaleFisse:tf, budgetVariabili:bv, speseVariabili:sv, viaggi:vi, extra:ex, risparmioReale:rr};
-}
-function categoryBreakdown(m){
-  var map = {};
-  DATA.categories.forEach(function(c){ map[c] = {tot:0, n:0}; });
-  m.expenses.forEach(function(e){
-    if(!map[e.categoria]) map[e.categoria] = {tot:0, n:0};
-    map[e.categoria].tot += Number(e.importo)||0;
-    map[e.categoria].n += 1;
-  });
-  return map;
-}
-function isoWeek(ds){
-  var d = new Date(ds+'T00:00:00');
-  var t = new Date(d.valueOf());
-  var dn = (d.getDay()+6)%7;
-  t.setDate(t.getDate()-dn+3);
-  var ft = new Date(t.getFullYear(),0,4);
-  var diff = (t-ft)/86400000;
-  return 1+Math.round(diff/7);
-}
-function weeklyControl(m, comp){
-  var wks = {};
-  m.expenses.forEach(function(e){
-    if(!e.data) return;
-    var w = isoWeek(e.data);
-    wks[w] = (wks[w]||0) + (Number(e.importo)||0);
-  });
-  var wns = Object.keys(wks).map(Number).sort(function(a,b){return a-b;});
-  var n = wns.length || 1;
-  var bpw = comp.budgetVariabili / n;
-  return wns.map(function(w){
-    var sp = wks[w];
-    return {settimana:w, budget:bpw, speso:sp, rimanente:bpw-sp};
-  });
-}
-function filteredExpenses(m){
-  return m.expenses.filter(function(e){
-    if(expenseFilter.categoria && e.categoria !== expenseFilter.categoria) return false;
-    if(expenseFilter.search){
-      var q = expenseFilter.search.toLowerCase();
-      if(!(e.descrizione||'').toLowerCase().includes(q)) return false;
-    }
-    return true;
-  });
-}
-
-function switchTab(tabName){
-  document.querySelectorAll('#mainNav button,#mobileNav button').forEach(function(b){
-    b.classList.toggle('active', b.dataset.tab===tabName);
-  });
-  ['dashboard','mesi','investimenti','impostazioni'].forEach(function(t){
-    document.getElementById('tab-'+t).style.display = (t===tabName) ? 'block' : 'none';
-  });
-  renderAll();
-  window.scrollTo({top:0, behavior:'instant'});
-}
-document.getElementById('mainNav').addEventListener('click', function(e){
-  var btn = e.target.closest('button[data-tab]'); if(!btn) return; switchTab(btn.dataset.tab);
-});
-document.getElementById('mobileNav').addEventListener('click', function(e){
-  var btn = e.target.closest('button[data-tab]'); if(!btn) return; switchTab(btn.dataset.tab);
-});
-document.getElementById('yearSelector').addEventListener('change', function(e){
-  DATA.currentYear = Number(e.target.value);
-  if(!DATA.investimenti.perAnno[DATA.currentYear]) DATA.investimenti.perAnno[DATA.currentYear] = emptyPerAnno();
-  currentMonthIndex = 0; saveData(); renderAll();
-});
-document.getElementById('btnAddYear').addEventListener('click', addNewYear);
-
-function openQuickAdd(){
-  var sel = document.getElementById('qa_cat');
-  sel.innerHTML = DATA.categories.map(function(c){ return '<option value="'+c+'">'+c+'</option>'; }).join('');
-  document.getElementById('qa_data').value = new Date().toISOString().slice(0,10);
-  document.getElementById('qa_desc').value = '';
-  document.getElementById('qa_imp').value = 0;
-  document.getElementById('quickAddOverlay').classList.add('show');
-  setTimeout(function(){ document.getElementById('qa_desc').focus(); }, 50);
-}
-function closeQuickAdd(){ document.getElementById('quickAddOverlay').classList.remove('show'); }
-document.getElementById('fabQuickAdd').addEventListener('click', openQuickAdd);
-document.getElementById('qa_cancel').addEventListener('click', closeQuickAdd);
-document.getElementById('quickAddOverlay').addEventListener('click', function(e){
-  if(e.target.id==='quickAddOverlay') closeQuickAdd();
-});
-document.getElementById('btnToday').addEventListener('click', function(){
-  document.getElementById('qa_data').value = new Date().toISOString().slice(0,10);
-});
-document.getElementById('qa_save').addEventListener('click', function(){
-  var dataStr = document.getElementById('qa_data').value || new Date().toISOString().slice(0,10);
-  var cat = document.getElementById('qa_cat').value;
-  var desc = document.getElementById('qa_desc').value;
-  var imp = Number(document.getElementById('qa_imp').value) || 0;
-  var dateObj = new Date(dataStr+'T00:00:00');
-  var monthIdx = dateObj.getMonth();
-  var yd = getYearData();
-  var m = yd.months[monthIdx];
-  var newExp = {id:nextExpenseId(), data:dataStr, categoria:cat, descrizione:desc, importo:imp};
-  m.expenses.push(newExp);
-  saveData(); closeQuickAdd();
-  toast('Spesa aggiunta a '+m.name+' '+DATA.currentYear, function(){
-    m.expenses = m.expenses.filter(function(e){ return e.id !== newExp.id; });
-    saveData(); renderAll();
-  });
-  currentMonthIndex = monthIdx;
-  renderAll();
-});
-
-function risparmiStoricoCard(){
-  var rs = DATA.risparmiStorico;
-  var years = Object.keys(rs).map(Number).sort(function(a,b){return a-b;});
-  var totale = years.reduce(function(s,y){ return s + (Number(rs[y])||0); }, 0);
-  var rows = years.map(function(y){
-    return '<tr><td data-label="Anno">'+y+'</td><td data-label="Risparmio"><div class="input-affix"><span class="affix">\u20ac</span><input type="number" step="0.01" class="rs-val" data-year="'+y+'" value="'+rs[y]+'"></div></td><td data-label=""><button class="btn danger icon btnDelRs" data-year="'+y+'">\u2715</button></td></tr>';
-  }).join('') || '<tr><td colspan="3" class="muted">Nessun anno storico inserito</td></tr>';
-  return '<div class="card"><h2>Anni precedenti (risparmi storici)</h2>'+
-    '<p class="muted">Inserisci qui il risparmio totale di anni non tracciati in dettaglio nell\'app, per avere il quadro completo del tuo risparmio nel tempo.</p>'+
-    '<table class="card-table"><thead><tr><th>Anno</th><th>Risparmio</th><th></th></tr></thead><tbody>'+rows+'</tbody></table>'+
-    '<div class="top-actions" style="margin-top:12px;"><button class="btn secondary" id="btnAddRsYear">+ Aggiungi anno storico</button>'+
-    '<div class="stat" style="max-width:220px;"><div class="label">Totale storico</div><div class="value">'+fmt(totale)+'</div></div></div></div>';
-}
-function bindRisparmiStoricoEvents(){
-  var btn = document.getElementById('btnAddRsYear');
-  if(btn) btn.addEventListener('click', function(){
-    var yearStr = prompt('Inserisci l\'anno da aggiungere (es. 2024):');
-    if(!yearStr) return;
-    var year = parseInt(yearStr, 10);
-    if(!year || DATA.risparmiStorico[year] != null){ toast('Anno non valido o gia presente'); return; }
-    DATA.risparmiStorico[year] = 0;
-    saveData(); renderDashboard();
-  });
-  document.querySelectorAll('.rs-val').forEach(function(inp){
-    inp.addEventListener('input', function(e){
-      DATA.risparmiStorico[e.target.dataset.year] = Number(e.target.value) || 0;
-      saveData();
-    });
-    inp.addEventListener('change', renderDashboard);
-  });
-  document.querySelectorAll('.btnDelRs').forEach(function(b){
-    b.addEventListener('click', function(){
-      if(confirm('Eliminare l\'anno storico '+b.dataset.year+'?')){
-        delete DATA.risparmiStorico[b.dataset.year];
-        saveData(); renderDashboard();
-      }
-    });
-  });
-}
-
-function renderDashboard(){
-  var el = document.getElementById('tab-dashboard');
-  var yd = getYearData();
-  var tE=0, tR=0, tS=0, tRR=0, cum=0;
-  var monthly = yd.months.map(function(m){
-    var c = computeMonth(m);
-    tE += c.totaleEntrate; tR += c.risparmi; tS += c.speseVariabili + c.viaggi + c.extra;
-    tRR += c.risparmioReale; cum += c.risparmioReale;
-    return {name:m.name, c:c, cum:cum};
-  });
-  var catTot = {};
-  DATA.categories.forEach(function(c){ catTot[c] = 0; });
-  yd.months.forEach(function(m){
-    m.expenses.forEach(function(e){ catTot[e.categoria] = (catTot[e.categoria]||0) + (Number(e.importo)||0); });
-  });
-  var rows = monthly.map(function(x){
-    return '<tr><td>'+x.name+'</td><td>'+fmt(x.c.totaleEntrate)+'</td><td>'+fmt(x.c.speseVariabili+x.c.viaggi+x.c.extra)+'</td>'+
-      '<td class="'+(x.c.risparmioReale>=0?'pos':'neg')+'">'+fmt(x.c.risparmioReale)+'</td>'+
-      '<td class="'+(x.cum>=0?'pos':'neg')+'">'+fmt(x.cum)+'</td></tr>';
-  }).join('');
-  el.innerHTML =
-    '<div class="grid cols-4">'+
-      '<div class="stat"><div class="label">Entrate Totali '+DATA.currentYear+'</div><div class="value">'+fmt(tE)+'</div></div>'+
-      '<div class="stat"><div class="label">Risparmi Pianificati</div><div class="value">'+fmt(tR)+'</div></div>'+
-      '<div class="stat"><div class="label">Spese Totali</div><div class="value">'+fmt(tS)+'</div></div>'+
-      '<div class="stat"><div class="label">Risparmio Reale</div><div class="value '+(tRR>=0?'pos':'neg')+'">'+fmt(tRR)+'</div></div>'+
-    '</div>'+
-    '<div class="grid cols-2">'+
-      '<div class="card"><h2>Entrate vs Spese</h2><div class="chart-wrap"><canvas id="chartBar"></canvas></div></div>'+
-      '<div class="card"><h2>Risparmio reale</h2><div class="chart-wrap"><canvas id="chartLine"></canvas></div></div>'+
-    '</div>'+
-    '<div class="grid cols-2">'+
-      '<div class="card"><h2>Risparmio cumulato</h2><div class="chart-wrap"><canvas id="chartCum"></canvas></div></div>'+
-      '<div class="card"><h2>Spese per categoria</h2><div class="chart-wrap"><canvas id="chartPie"></canvas></div></div>'+
-    '</div>'+
-    '<div class="card"><h2>Riepilogo '+DATA.currentYear+'</h2><div style="max-height:320px;overflow:auto;"><table><thead><tr><th>Mese</th><th>Entrate</th><th>Spese</th><th>Risp. Reale</th><th>Cumulato</th></tr></thead><tbody>'+rows+'</tbody></table></div></div>'+
-    risparmiStoricoCard();
-  var labels = monthly.map(function(x){ return x.name.slice(0,3); });
-  destroyCharts();
-  var accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#4f6df5';
-  charts.bar = new Chart(document.getElementById('chartBar'), {
-    type:'bar',
-    data:{labels:labels, datasets:[
-      {label:'Entrate', data:monthly.map(function(x){return x.c.totaleEntrate;}), backgroundColor:accentColor},
-      {label:'Spese', data:monthly.map(function(x){return x.c.speseVariabili+x.c.viaggi+x.c.extra+x.c.totaleFisse;}), backgroundColor:'#e0463e'}
-    ]},
-    options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}, tooltip:{callbacks:{label:function(ctx){return ctx.dataset.label+': '+fmt(ctx.raw);}}}}}
-  });
-  charts.line = new Chart(document.getElementById('chartLine'), {
-    type:'line',
-    data:{labels:labels, datasets:[{label:'Risparmio reale', data:monthly.map(function(x){return x.c.risparmioReale;}), borderColor:'#1f9d55', backgroundColor:'rgba(31,157,85,.1)', fill:true, tension:.3}]},
-    options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}, tooltip:{callbacks:{label:function(ctx){return 'Risparmio: '+fmt(ctx.raw);}}}}}
-  });
-  charts.cum = new Chart(document.getElementById('chartCum'), {
-    type:'line',
-    data:{labels:labels, datasets:[{label:'Cumulato', data:monthly.map(function(x){return x.cum;}), borderColor:'#f5a623', backgroundColor:'rgba(245,166,35,.15)', fill:true, tension:.3}]},
-    options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}, tooltip:{callbacks:{label:function(ctx){return 'Cumulato: '+fmt(ctx.raw);}}}}}
-  });
-  var cl = Object.keys(catTot).filter(function(k){ return catTot[k] > 0; });
-  var totCat = cl.reduce(function(s,k){ return s+catTot[k]; }, 0);
-  charts.pie = new Chart(document.getElementById('chartPie'), {
-    type:'doughnut',
-    data:{labels:cl, datasets:[{data:cl.map(function(k){return catTot[k];}), backgroundColor:['#4f6df5','#e0463e','#f5a623','#1f9d55','#8e44ad','#16a3b6','#e67e22','#7f8c8d','#c0392b']}]},
-    options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}, tooltip:{callbacks:{label:function(ctx){return ctx.label+': '+fmt(ctx.raw)+' ('+((ctx.raw/totCat)*100).toFixed(1)+'%)';}}}}}
-  });
-  bindRisparmiStoricoEvents();
-}
-function destroyCharts(){
-  Object.values(charts).forEach(function(c){ if(c) c.destroy(); });
-  charts = {};
-}
-
-function expenseRow(e){
-  var opts = DATA.categories.map(function(c){ return '<option value="'+c+'" '+(c===e.categoria?'selected':'')+'>'+c+'</option>'; }).join('');
-  var descEsc = (e.descrizione||'').replace(/"/g,'&quot;');
-  return '<tr data-id="'+e.id+'">'+
-    '<td data-label="Data"><input type="date" class="e-data" value="'+(e.data||'')+'"></td>'+
-    '<td data-label="Categoria"><select class="e-cat">'+opts+'</select></td>'+
-    '<td data-label="Descrizione"><input type="text" class="e-desc" value="'+descEsc+'" placeholder="es. Cena da Anna"></td>'+
-    '<td data-label="Importo"><div class="input-affix"><span class="affix">\u20ac</span><input type="number" step="0.01" class="e-imp" value="'+e.importo+'"></div></td>'+
-    '<td data-label=""><div class="row-actions"><button class="btn secondary icon btnDupExp" title="Duplica">\u29c9</button><button class="btn danger icon btnDelExp" title="Elimina">\u2715</button></div></td>'+
-  '</tr>';
-}
-
-function renderMesi(){
-  var el = document.getElementById('tab-mesi');
-  var yd = getYearData();
-  var m = yd.months[currentMonthIndex];
-  var comp = computeMonth(m);
-  var catB = categoryBreakdown(m);
-  var weekly = weeklyControl(m, comp);
-  var vis = filteredExpenses(m).sort(function(a,b){ return new Date(b.data) - new Date(a.data); });
-  var budgetPerc = comp.budgetVariabili > 0 ? (comp.speseVariabili/comp.budgetVariabili)*100 : 0;
-
-  var tabsHtml = yd.months.map(function(mm, i){
-    var mc = computeMonth(mm);
-    var isComp = mc.risparmioReale >= 0 && mc.speseVariabili <= mc.budgetVariabili;
-    return '<button data-mi="'+i+'" class="'+(i===currentMonthIndex?'active':'')+(isComp?' completed':'')+'">'+mm.name+(isComp?' \u2713':'')+'</button>';
-  }).join('');
-
-  var catRows = Object.keys(catB).map(function(c){
-    return '<tr><td>'+c+'</td><td>'+fmt(catB[c].tot)+'</td><td>'+catB[c].n+'</td></tr>';
-  }).join('');
-
-  var weekRows = weekly.map(function(w){
-    return '<tr><td>'+w.settimana+'</td><td>'+fmt(w.budget)+'</td><td>'+fmt(w.speso)+'</td>'+
-      '<td class="'+(w.rimanente>=0?'pos':'neg')+'">'+fmt(w.rimanente)+'</td>'+
-      '<td>'+(w.rimanente>=0?'<span class="badge ok">OK</span>':'<span class="badge over">Superato</span>')+'</td></tr>';
-  }).join('') || '<tr><td colspan="5" class="muted">Nessuna spesa</td></tr>';
-
-  var catOptions = '<option value="">Tutte</option>' + DATA.categories.map(function(c){
-    return '<option value="'+c+'" '+(expenseFilter.categoria===c?'selected':'')+'>'+c+'</option>';
-  }).join('');
-
-  var expRows = vis.map(expenseRow).join('') || '<tr><td colspan="5" class="muted">Nessuna spesa</td></tr>';
-  var totVis = vis.reduce(function(s,e){ return s+(Number(e.importo)||0); }, 0);
-
-  el.innerHTML =
-    '<div class="month-tabs">'+tabsHtml+'</div>'+
-    '<div class="grid cols-2">'+
-      '<div class="card"><h2>Configurazione '+m.name+' '+DATA.currentYear+'</h2>'+
-        '<div class="grid cols-2">'+
-          '<div class="field"><label>Stipendio</label>'+euroField('f_stipendio', m.stipendio)+'</div>'+
-          '<div class="field"><label>Entrate extra</label>'+euroField('f_extra', m.entrateExtra)+'</div>'+
-          '<div class="field"><label>Risparmio %</label>'+percentField('f_percent', m.risparmioPercent)+'</div>'+
-          '<div class="field"><label>Auto</label>'+euroField('f_auto', m.fisse.auto)+'</div>'+
-          '<div class="field"><label>Telefono</label>'+euroField('f_tel', m.fisse.telefono)+'</div>'+
-          '<div class="field"><label>Abbonamenti</label>'+euroField('f_abb', m.fisse.abbonamenti)+'</div>'+
-          '<div class="field"><label>Spese viaggi</label>'+euroField('f_viaggi', m.speseViaggi)+'</div>'+
-          '<div class="field"><label>Spese extra</label>'+euroField('f_speseextra', m.speseExtra)+'</div>'+
-        '</div><button class="btn" id="btnSaveConfig">Salva configurazione</button>'+
-      '</div>'+
-      '<div class="card"><h2>Riepilogo calcolato</h2>'+
-        '<div class="grid cols-2">'+
-          '<div class="stat"><div class="label">Totale Entrate</div><div class="value">'+fmt(comp.totaleEntrate)+'</div></div>'+
-          '<div class="stat"><div class="label">Risparmi</div><div class="value">'+fmt(comp.risparmi)+'</div></div>'+
-          '<div class="stat"><div class="label">Spese Fisse</div><div class="value">'+fmt(comp.totaleFisse)+'</div></div>'+
-          '<div class="stat"><div class="label">Budget Variabili</div><div class="value">'+fmt(comp.budgetVariabili)+'</div></div>'+
-          '<div class="stat"><div class="label">Spese Variabili</div><div class="value">'+fmt(comp.speseVariabili)+'</div></div>'+
-          '<div class="stat"><div class="label">Risparmio Reale</div><div class="value '+(comp.risparmioReale>=0?'pos':'neg')+'">'+fmt(comp.risparmioReale)+'</div></div>'+
-        '</div>'+
-        '<div class="field" style="margin-top:14px;"><label>Utilizzo budget variabili</label>'+
-          '<div class="progress-bar"><div class="fill" style="width:'+Math.min(budgetPerc,100).toFixed(1)+'%;background:'+(budgetPerc>90?'var(--red)':budgetPerc>70?'var(--accent)':'var(--green)')+'"></div></div>'+
-          '<div class="muted" style="margin-top:4px;">'+fmt(comp.speseVariabili)+' di '+fmt(comp.budgetVariabili)+' ('+budgetPerc.toFixed(1)+'%)</div>'+
-        '</div>'+
-      '</div>'+
-    '</div>'+
-    '<div class="grid cols-2">'+
-      '<div class="card"><h2>Analisi categorie</h2><table><thead><tr><th>Categoria</th><th>Speso</th><th>N</th></tr></thead><tbody>'+catRows+'</tbody></table></div>'+
-      '<div class="card"><h2>Controllo settimanale</h2><table><thead><tr><th>Sett.</th><th>Budget</th><th>Speso</th><th>Rimanente</th><th>Status</th></tr></thead><tbody>'+weekRows+'</tbody></table></div>'+
-    '</div>'+
-    '<div class="card"><h2>Registro spese '+m.name+' '+DATA.currentYear+'</h2>'+
-      '<div class="top-actions"><div class="filters">'+
-        '<div class="field"><label>Filtra categoria</label><select id="filterCat">'+catOptions+'</select></div>'+
-        '<div class="field"><label>Cerca</label><input type="text" id="filterSearch" value="'+expenseFilter.search+'" placeholder="es. Cena da Anna..."></div>'+
-      '<div class="muted" style="margin-bottom:10px;">'+vis.length+' spese \u2022 Totale: '+fmt(totVis)+'</div>'+
-      '<div style="overflow-x:auto;"><table class="expenses-table card-table"><thead><tr><th>Data</th><th>Categoria</th><th>Descrizione</th><th>Importo</th><th></th></tr></thead><tbody id="expensesBody">'+expRows+'</tbody></table></div>'+
-    '</div>';
-
-  document.querySelectorAll('.month-tabs button').forEach(function(b){
-    b.addEventListener('click', function(){
-      currentMonthIndex = Number(b.dataset.mi);
-      expenseFilter = {categoria:'', search:''};
-      renderMesi();
-    });
-  });
-  document.getElementById('btnSaveConfig').addEventListener('click', function(){
-    m.stipendio = Number(document.getElementById('f_stipendio').value)||0;
-    m.entrateExtra = Number(document.getElementById('f_extra').value)||0;
-    m.risparmioPercent = Number(document.getElementById('f_percent').value)||0;
-    m.fisse.auto = Number(document.getElementById('f_auto').value)||0;
-    m.fisse.telefono = Number(document.getElementById('f_tel').value)||0;
-    m.fisse.abbonamenti = Number(document.getElementById('f_abb').value)||0;
-    m.speseViaggi = Number(document.getElementById('f_viaggi').value)||0;
-    m.speseExtra = Number(document.getElementById('f_speseextra').value)||0;
-    saveData(); toast('Configurazione salvata'); renderMesi();
-  });
-  document.getElementById('filterCat').addEventListener('change', function(e){ expenseFilter.categoria = e.target.value; renderMesi(); });
-  var searchTimer = null;
-
-document.getElementById('filterSearch').addEventListener('input', function(e) {
-  var input = e.target;
-  var value = input.value;
-
-  clearTimeout(searchTimer);
-
-  searchTimer = setTimeout(function() {
-    expenseFilter.search = value;
-    renderMesi();
-
-    var newInput = document.getElementById('filterSearch');
-    if (newInput) {
-      newInput.focus();
-      newInput.setSelectionRange(value.length, value.length);
-    }
-  }, 500);
-});
-  document.getElementById('expensesBody').addEventListener('input', function(e){
-    var tr = e.target.closest('tr'); if(!tr) return;
-    var id = Number(tr.dataset.id);
-    var exp = m.expenses.find(function(x){ return x.id===id; });
-    if(!exp) return;
-    if(e.target.classList.contains('e-data')) exp.data = e.target.value;
-    if(e.target.classList.contains('e-cat')) exp.categoria = e.target.value;
-    if(e.target.classList.contains('e-desc')) exp.descrizione = e.target.value;
-    if(e.target.classList.contains('e-imp')) exp.importo = Number(e.target.value)||0;
-    saveData(); renderMesi();
-  });
-  document.getElementById('expensesBody').addEventListener('change', function(e){
-    if(e.target.classList.contains('e-imp') || e.target.classList.contains('e-cat')) renderMesi();
-  });
-  document.getElementById('expensesBody').addEventListener('click', function(e){
-    var delBtn = e.target.closest('.btnDelExp');
-    var dupBtn = e.target.closest('.btnDupExp');
-    if(delBtn){
-      var tr = delBtn.closest('tr');
-      var id = Number(tr.dataset.id);
-      var exp = m.expenses.find(function(x){ return x.id===id; });
-      if(!exp) return;
-      m.expenses = m.expenses.filter(function(x){ return x.id!==id; });
-      saveData();
-      toast('Spesa eliminata', function(){ m.expenses.push(exp); saveData(); renderMesi(); });
-      renderMesi();
-    }
-    if(dupBtn){
-      var tr2 = dupBtn.closest('tr');
-      var id2 = Number(tr2.dataset.id);
-      var orig = m.expenses.find(function(x){ return x.id===id2; });
-      if(!orig) return;
-      var copy = Object.assign({}, orig, {id:nextExpenseId(), data:new Date().toISOString().slice(0,10)});
-      m.expenses.push(copy);
-      saveData(); toast('Spesa duplicata'); renderMesi();
-    }
-  });
-}
-
-function renderInvestimenti(){
-  var el = document.getElementById('tab-investimenti');
-  var inv = DATA.investimenti;
-  if(!inv.perAnno[DATA.currentYear]) inv.perAnno[DATA.currentYear] = emptyPerAnno();
-  var av = inv.perAnno[DATA.currentYear];
-  var tAC = MONTH_NAMES.reduce(function(s,mn){ return s+(Number(av[mn])||0); }, 0);
-  var tAA = Object.entries(inv.perAnno).filter(function(entry){ return Number(entry[0]) !== DATA.currentYear; })
-    .reduce(function(s,entry){ return s + MONTH_NAMES.reduce(function(s2,mn){ return s2+(Number(entry[1][mn])||0); }, 0); }, 0);
-  var tC = (Number(inv.totalePrecedente)||0) + tAA + tAC;
-  var rows = MONTH_NAMES.map(function(mn){
-    return '<tr><td data-label="Mese">'+mn+'</td><td data-label="Importo"><div class="input-affix"><span class="affix">\u20ac</span><input type="number" step="0.01" class="inv-val" data-mn="'+mn+'" value="'+(av[mn]||0)+'"></div></td></tr>';
-  }).join('');
-  el.innerHTML =
-    '<div class="card"><h2>Totale investimenti anni precedenti</h2>'+
-      '<p class="muted">Importo cumulato investito prima del tracciamento mensile (modificabile).</p>'+
-      '<div class="grid cols-2"><div class="field"><label>Totale anni precedenti</label>'+euroField('inv_precedente', inv.totalePrecedente)+'</div>'+
-      '<div class="stat"><div class="label">Totale complessivo</div><div class="value">'+fmt(tC)+'</div></div></div></div>'+
-    '<div class="card"><h2>Investimenti mensili '+DATA.currentYear+'</h2>'+
-      '<table class="card-table"><thead><tr><th>Mese</th><th>Importo</th></tr></thead><tbody>'+rows+'</tbody></table>'+
-      '<div class="stat" style="margin-top:14px;max-width:260px;"><div class="label">Totale '+DATA.currentYear+'</div><div class="value">'+fmt(tAC)+'</div></div></div>';
-  document.getElementById('inv_precedente').addEventListener('input', function(e){ inv.totalePrecedente = Number(e.target.value)||0; saveData(); });
-  document.getElementById('inv_precedente').addEventListener('change', renderInvestimenti);
-  document.querySelectorAll('.inv-val').forEach(function(inp){
-    inp.addEventListener('input', function(e){ av[e.target.dataset.mn] = Number(e.target.value)||0; saveData(); });
-    inp.addEventListener('change', renderInvestimenti);
-  });
-}
-
-function renderCatList(){
-  var el = document.getElementById('catList');
-  el.innerHTML = DATA.categories.map(function(c){
-    return '<span class="badge ok" style="margin:3px;display:inline-flex;align-items:center;gap:6px;">'+c+' <button data-cat="'+c+'" class="btnDelCat" style="border:none;background:none;color:var(--red);cursor:pointer;font-weight:700;">\u2715</button></span>';
-  }).join('');
-  el.querySelectorAll('.btnDelCat').forEach(function(b){
-    b.addEventListener('click', function(){
-      DATA.categories = DATA.categories.filter(function(c){ return c!==b.dataset.cat; });
-      saveData(); renderCatList();
-    });
-  });
-}
-
-function renderImpostazioni(){
-  var el = document.getElementById('tab-impostazioni');
-  var s = DATA.settings;
-  var presetsHtml = Object.entries(THEME_PRESETS).map(function(entry){
-    var name = entry[0], p = entry[1];
-    return '<div class="preset-swatch" data-preset="'+name+'" title="'+name+'" style="background:'+p.accent+';">'+name[0].toUpperCase()+'</div>';
-  }).join('');
-  el.innerHTML =
-    '<div class="card"><h2>Tema e colori</h2>'+
-      '<div class="grid cols-4">'+
-        '<div class="field"><label>Colore principale</label><input type="color" id="col_accent" value="'+s.accent+'"></div>'+
-        '<div class="field"><label>Colore sfondo</label><input type="color" id="col_bg" value="'+s.bg+'"></div>'+
-        '<div class="field"><label>Colore card</label><input type="color" id="col_card" value="'+s.card+'"></div>'+
-        '<div class="field"><label>Colore testo</label><input type="color" id="col_text" value="'+s.text+'"></div>'+
-      '</div>'+
-      '<div class="field" style="margin-top:10px;"><label><input type="checkbox" id="chkAutoDark" '+(s.autoDark?'checked':'')+'> Rileva tema scuro da sistema</label></div>'+
-      '<p class="muted">Temi predefiniti:</p><div class="theme-presets">'+presetsHtml+'</div>'+
-      '<div style="margin-top:14px;"><button class="btn secondary" id="btnResetTheme">Ripristina colori predefiniti</button></div>'+
-    '</div>'+
-    '<div class="card"><h2>Categorie di spesa</h2><div id="catList" style="margin-bottom:12px;"></div>'+
-      '<div style="display:flex;gap:8px;"><input type="text" id="newCatInput" placeholder="Nuova categoria"><button class="btn" id="btnAddCat">Aggiungi</button></div></div>'+
-    '<div class="card"><h2>Anni gestiti</h2><div class="muted" style="margin-bottom:10px;">'+getYearsList().join(', ')+'</div>'+
-      '<button class="btn secondary" id="btnAddYear2">+ Aggiungi anno</button></div>'+
-    '<div class="card"><h2>Dati e backup</h2><div style="display:flex;gap:10px;flex-wrap:wrap;">'+
-      '<button class="btn" id="btnExportExcel">Esporta backup Excel</button>'+
-      '<button class="btn secondary" id="btnExport">Esporta JSON</button>'+
-      '<label class="btn secondary" style="cursor:pointer;">Importa JSON<input type="file" id="importFile" accept=".json" style="display:none;"></label>'+
-      '<button class="btn danger" id="btnReset">Ripristina dati originali</button></div>'+
-      '<p class="muted" style="margin-top:10px;">Backup Excel esporta l\'anno selezionato ('+DATA.currentYear+') piu investimenti e risparmi storici.</p></div>';
-  renderCatList();
-  function updateColorVar(key, cssVar, value){
-    s[key] = value;
-    document.documentElement.style.setProperty(cssVar, value);
-    if(cssVar==='--accent'){
-      var m = document.querySelector('meta[name="theme-color"]');
-      if(m) m.setAttribute('content', value);
-    }
-    saveData();
-  }
-  document.getElementById('col_accent').addEventListener('input', function(e){ updateColorVar('accent','--accent',e.target.value); });
-  document.getElementById('col_bg').addEventListener('input', function(e){ updateColorVar('bg','--bg',e.target.value); });
-  document.getElementById('col_card').addEventListener('input', function(e){ updateColorVar('card','--card',e.target.value); });
-  document.getElementById('col_text').addEventListener('input', function(e){ updateColorVar('text','--text',e.target.value); });
-  document.getElementById('chkAutoDark').addEventListener('change', function(e){
-    s.autoDark = e.target.checked; saveData();
-    if(e.target.checked) applyTheme();
-  });
-  document.querySelectorAll('.preset-swatch').forEach(function(sw){
-    sw.addEventListener('click', function(){
-      var preset = THEME_PRESETS[sw.dataset.preset];
-      Object.assign(s, preset); s.autoDark = false;
-      saveData(); applyTheme(); renderImpostazioni();
-      toast('Tema "'+sw.dataset.preset+'" applicato');
-    });
-  });
-  document.getElementById('btnResetTheme').addEventListener('click', function(){
-    Object.assign(s, SEED.settings);
-    saveData(); applyTheme(); renderImpostazioni();
-    toast('Colori ripristinati');
-  });
-  document.getElementById('btnAddYear2').addEventListener('click', function(){ addNewYear(); renderImpostazioni(); });
-  document.getElementById('btnAddCat').addEventListener('click', function(){
-    var inp = document.getElementById('newCatInput');
-    var val = inp.value.trim();
-    if(val && !DATA.categories.includes(val)){
-      DATA.categories.push(val); saveData(); renderCatList(); inp.value='';
-    }
-  });
-  document.getElementById('btnExport').addEventListener('click', function(){
-    var blob = new Blob([JSON.stringify(DATA, null, 2)], {type:'application/json'});
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url; a.download = 'gestione_risparmi.json'; a.click();
-    URL.revokeObjectURL(url);
-  });
-  document.getElementById('btnExportExcel').addEventListener('click', exportToExcel);
-  document.getElementById('importFile').addEventListener('change', function(e){
-    var file = e.target.files[0]; if(!file) return;
-    var reader = new FileReader();
-    reader.onload = function(ev){
-      try{
-        DATA = JSON.parse(ev.target.result);
-        migrate(); saveData(); applyTheme(); renderYearSelector();
-        toast('Dati importati'); currentMonthIndex = 0; renderAll();
-      }catch(err){ alert('File non valido'); }
-    };
-    reader.readAsText(file);
-  });
-  document.getElementById('btnReset').addEventListener('click', function(){
-    if(confirm('Ripristinare i dati originali?')){
-      DATA = JSON.parse(JSON.stringify(SEED));
-      saveData(); applyTheme(); renderYearSelector(); currentMonthIndex = 0; renderAll();
-      toast('Dati ripristinati');
-    }
-  });
-}
-
-function exportToExcel(){
-  var wb = XLSX.utils.book_new();
-  var eurFmt = '"\u20ac"#,##0.00';
-  var yd = getYearData();
-  var dashRows = [["Mese","Entrate","Risparmi","Spese Fisse","Budget Variabili","Spese Variabili","Spese Viaggi","Spese Extra","Risparmio Reale"]];
-  var tE=0,tR=0,tF=0,tB=0,tV=0,tVi=0,tEx=0,tRR=0;
-  yd.months.forEach(function(m){
-    var c = computeMonth(m);
-    dashRows.push([m.name, c.totaleEntrate, c.risparmi, c.totaleFisse, c.budgetVariabili, c.speseVariabili, c.viaggi, c.extra, c.risparmioReale]);
-    tE+=c.totaleEntrate; tR+=c.risparmi; tF+=c.totaleFisse; tB+=c.budgetVariabili; tV+=c.speseVariabili; tVi+=c.viaggi; tEx+=c.extra; tRR+=c.risparmioReale;
-  });
-  dashRows.push(["TOTALE", tE, tR, tF, tB, tV, tVi, tEx, tRR]);
-  var wsDash = XLSX.utils.aoa_to_sheet(dashRows);
-  for(var r=1; r<dashRows.length; r++){
-    for(var col=1; col<=8; col++){
-      var ref = XLSX.utils.encode_cell({r:r, c:col});
-      if(wsDash[ref]) wsDash[ref].z = eurFmt;
-    }
-  }
-  XLSX.utils.book_append_sheet(wb, wsDash, "Dashboard "+DATA.currentYear);
-
-  yd.months.forEach(function(m){
-    var c = computeMonth(m);
-    var rows = [];
-    rows.push(["CONFIGURAZIONE "+m.name.toUpperCase()+" "+DATA.currentYear]);
-    rows.push(["Stipendio", m.stipendio]);
-    rows.push(["Entrate extra", m.entrateExtra]);
-    rows.push(["Totale entrate", c.totaleEntrate]);
-    rows.push(["Risparmio %", m.risparmioPercent]);
-    rows.push(["Risparmio", c.risparmi]);
-    rows.push(["Auto", m.fisse.auto]);
-    rows.push(["Telefono", m.fisse.telefono]);
-    rows.push(["Abbonamenti", m.fisse.abbonamenti]);
-    rows.push(["Totale spese fisse", c.totaleFisse]);
-    rows.push(["Budget variabili", c.budgetVariabili]);
-    rows.push(["Spese viaggi", m.speseViaggi]);
-    rows.push(["Spese extra", m.speseExtra]);
-    rows.push(["Spese variabili", c.speseVariabili]);
-    rows.push(["Risparmio reale", c.risparmioReale]);
-    rows.push([]);
-    rows.push(["REGISTRO SPESE"]);
-    rows.push(["Data","Categoria","Descrizione","Importo"]);
-    var esr = rows.length;
-    m.expenses.forEach(function(e){ rows.push([e.data, e.categoria, e.descrizione, e.importo]); });
-    var ws = XLSX.utils.aoa_to_sheet(rows);
-    [1,2,3,5,6,7,8,9,10,11,12,13,14].forEach(function(rr){
-      var ref = XLSX.utils.encode_cell({r:rr, c:1});
-      if(ws[ref]) ws[ref].z = eurFmt;
-    });
-    for(var rr2=esr; rr2<rows.length; rr2++){
-      var ref2 = XLSX.utils.encode_cell({r:rr2, c:3});
-      if(ws[ref2]) ws[ref2].z = eurFmt;
-    }
-    var sn = (m.name+" "+DATA.currentYear).slice(0,31);
-    XLSX.utils.book_append_sheet(wb, ws, sn);
-  });
-
-  var inv = DATA.investimenti;
-  var invRows = [["Totale anni precedenti", inv.totalePrecedente], []];
-  Object.keys(inv.perAnno).sort().forEach(function(y){
-    invRows.push(["Investimenti "+y]);
-    invRows.push(["Mese","Importo"]);
-    MONTH_NAMES.forEach(function(mn){ invRows.push([mn, inv.perAnno[y][mn]||0]); });
-    var tY = MONTH_NAMES.reduce(function(s,mn){ return s+(Number(inv.perAnno[y][mn])||0); }, 0);
-    invRows.push(["Totale "+y, tY]);
-    invRows.push([]);
-  });
-  invRows.push(["RISPARMI STORICI (anni precedenti)"]);
-  invRows.push(["Anno","Risparmio"]);
-  Object.keys(DATA.risparmiStorico).sort().forEach(function(y){ invRows.push([y, DATA.risparmiStorico[y]]); });
-  var wsInv = XLSX.utils.aoa_to_sheet(invRows);
-  var ref0 = XLSX.utils.encode_cell({r:0, c:1});
-  if(wsInv[ref0]) wsInv[ref0].z = eurFmt;
-  for(var i=0; i<invRows.length; i++){
-    var refI = XLSX.utils.encode_cell({r:i, c:1});
-    if(wsInv[refI] && typeof invRows[i][1]==='number') wsInv[refI].z = eurFmt;
-  }
-  XLSX.utils.book_append_sheet(wb, wsInv, "Investimenti");
-
-  var ds = new Date().toISOString().slice(0,10);
-  XLSX.writeFile(wb, "backup_gestione_risparmi_"+DATA.currentYear+"_"+ds+".xlsx");
-  toast('Backup Excel scaricato');
-}
-
-function renderAll(){
-  var activeBtn = document.querySelector('#mainNav button.active, #mobileNav button.active');
-  var at = activeBtn.dataset.tab;
-  if(at==='dashboard') renderDashboard();
-  if(at==='mesi') renderMesi();
-  if(at==='investimenti') renderInvestimenti();
-  if(at==='impostazioni') renderImpostazioni();
-}
-loadData();
-applyTheme();
-renderYearSelector();
-renderAll();
+function emptyMonths(tFisse=null,tPerc=null){if(tFisse===undefined)tFisse=null;if(tPerc===undefined)tPerc=null;return MONTHNAMES.map(n=>({name:n,stipendio:0,entrateExtra:0,risparmioPercent:tPerc!==null?tPerc:20,fisse:tFisse?Object.assign({},tFisse):{auto:0,telefono:0,abbonamenti:0,speseViaggi:0,speseExtra:0},expenses:[]}));}
+function emptyPerAnno(){var o={};MONTHNAMES.forEach(n=>o[n]=0);return o;}
+function loadData(){var raw=localStorage.getItem(STORAGEKEY);if(raw){try{DATA=JSON.parse(raw);migrate();return;}catch(e){}}DATA=JSON.parse(JSON.stringify(SEED));saveData(false);}
+function migrate(){if(!DATA.years){var y=2026;DATA.years={};DATA.years[y]={months:DATA.months};DATA.currentYear=y;}var inv=DATA.investimenti;DATA.investimenti={totalePrecedente:inv.totaleObiettivo||0,perAnno:DATA.investimenti.perAnno||{}};if(!DATA.investimenti.perAnno[DATA.currentYear])DATA.investimenti.perAnno[DATA.currentYear]=emptyPerAnno();if(!DATA.settings)DATA.settings=JSON.parse(JSON.stringify(SEED.settings));if(!DATA.risparmiStorico)DATA.risparmiStorico={};if(!DATA.categories)DATA.categories=SEED.categories;saveData(false);}
+function saveData(countAsChange=true){localStorage.setItem(STORAGEKEY,JSON.stringify(DATA));}
+function getYearData(){if(!DATA.years[DATA.currentYear])DATA.years[DATA.currentYear]={months:emptyMonths()};return DATA.years[DATA.currentYear];}
+function getYearsList(){return Object.keys(DATA.years).map(Number).sort((a,b)=>a-b);}
+function addNewYear(){var years=getYearsList();var newYear=years.length?Math.max.apply(null,years)+1:new Date().getFullYear();if(DATA.years[newYear]){toast('Anno già presente');DATA.currentYear=newYear;renderYearSelector();renderAll();return;}var lastYear=years.length?Math.max.apply(null,years):null;var tFisse=null,tPerc=null;if(lastYear){var dec=DATA.years[lastYear].months[11];tFisse=dec.fisse;tPerc=dec.risparmioPercent;}DATA.years[newYear]={months:emptyMonths(tFisse,tPerc)};if(!DATA.investimenti.perAnno[newYear])DATA.investimenti.perAnno[newYear]=emptyPerAnno();DATA.currentYear=newYear;saveData();renderYearSelector();currentMonthIndex=0;renderAll();toast('Anno '+newYear+' creato');}
+function renderYearSelector(){var sel=document.getElementById('yearSelector');var years=getYearsList();sel.innerHTML=years.map(y=>'<option value="'+y+'" '+(y===DATA.currentYear?'selected':'')+'>'+y+'</option>').join('');}
+function applyTheme(){var s=DATA.settings||SEED.settings;var r=document.documentElement.style;r.setProperty('--accent',s.accent);r.setProperty('--bg',s.bg);r.setProperty('--card',s.card);r.setProperty('--text',s.text);r.setProperty('--border',s.theme==='dark'?'rgba(255,255,255,.12)':'#e6e8ee');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',s.accent);if(s.autoDark){var isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;var preset=isDark?THEMEPRESETS.scuro:THEMEPRESETS.chiaro;Object.assign(s,preset);saveData();}}
+function toast(msg,undoFn){var t=document.getElementById('toast');var msgEl=document.getElementById('toastMsg');msgEl.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+function fmt(n){n=Number(n)||0;return n.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';}
+function euroField(id,val,step){return '<div class="input-affix"><span class="affix">€</span><input type="number" step="'+(step||'0.01')+'" id="'+id+'" value="'+(val||0)+'"></div>';}
+function percentField(id,val){return '<div class="input-affix suffix"><input type="number" step="1" id="'+id+'" value="'+(val||0)+'"><span class="affix">%</span></div>';}
+function nextExpenseId(){var max=0;Object.values(DATA.years).forEach(y=>{y.months.forEach(m=>{m.expenses.forEach(e=>{if(e.id>max)max=e.id;});});});return max+1;}
+function computeMonth(m){var te=Number(m.stipendio||0)+Number(m.entrateExtra||0);var ris=te*Number(m.risparmioPercent||0)/100;var tf=Number(m.fisse.auto||0)+Number(m.fisse.telefono||0)+Number(m.fisse.abbonamenti||0);var bv=te-ris-tf;var sv=m.expenses.reduce((s,e)=>s+Number(e.importo||0),0);var vi=Number(m.speseViaggi||0);var ex=Number(m.speseExtra||0);var rr=ris+bv-sv-vi-ex;return{totaleEntrate:te,risparmi:ris,totaleFisse:tf,budgetVariabili:bv,speseVariabili:sv,viaggi:vi,extra:ex,risparmioReale:rr};}
+function categoryBreakdown(m){var map={};DATA.categories.forEach(c=>map[c]={tot:0,n:0});m.expenses.forEach(e=>{if(!map[e.categoria])map[e.categoria]={tot:0,n:0};map[e.categoria].tot+=Number(e.importo||0);map[e.categoria].n++;});return map;}
+function isoWeek(ds){var d=new Date(ds+'T00:00:00');var t=new Date(d.valueOf);var dn=d.getDay();if(dn===0)dn=7;t.setDate(t.getDate()+3-dn);var ft=new Date(t.getFullYear(),0,4);var diff=Math.round((t-ft)/86400000);return 1+Math.floor(diff/7);}
+function weeklyControl(m,comp){var wks={};m.expenses.forEach(e=>{if(!e.data)return;var w=isoWeek(e.data);if(!wks[w])wks[w]=0;wks[w]+=Number(e.importo||0);});var wns=Object.keys(wks).map(Number).sort((a,b)=>a-b);var n=wns.length||1;var bpw=comp.budgetVariabili/n;return wns.map(w=>{var sp=wks[w]||0;return{settimana:'Sett. '+w,budget:bpw,spesa:sp,rimanente:bpw-sp};});}
+function filteredExpenses(m){return m.expenses.filter(e=>{if(expenseFilter.categoria&&e.categoria!==expenseFilter.categoria)return false;if(expenseFilter.search){var q=expenseFilter.search.toLowerCase();if(!e.descrizione.toLowerCase().includes(q))return false;}return true;});}
+function switchTab(tabName){document.querySelectorAll('#mainNav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tabName));['dashboard','mesi','investimenti','impostazioni'].forEach(t=>{document.getElementById('tab-'+t).style.display=t===tabName?'block':'none';});renderAll();window.scrollTo({top:0,behavior:'instant'});}
+function openQuickAdd(){var sel=document.getElementById('qacat');sel.innerHTML=DATA.categories.map(c=>'<option value="'+c+'">'+c+'</option>').join('');document.getElementById('qadata').value=new Date().toISOString().slice(0,10);document.getElementById('qadesc').value='';document.getElementById('qaimp').value=0;document.getElementById('quickAddOverlay').classList.add('show');setTimeout(()=>document.getElementById('qadesc').focus(),50);}
+function closeQuickAdd(){document.getElementById('quickAddOverlay').classList.remove('show');}
+function renderDashboard(){var el=document.getElementById('tab-dashboard');var yd=getYearData();var tE=0,tR=0,tS=0,tRR=0,cum=0;var monthly=yd.months.map(m=>{var c=computeMonth(m);tE+=c.totaleEntrate;tR+=c.risparmi;tS+=c.speseVariabili+c.viaggi+c.extra;tRR+=c.risparmioReale;cum+=c.risparmioReale;return{name:m.name,c:c,cum:cum};});var catTot={};DATA.categories.forEach(c=>catTot[c]=0);yd.months.forEach(m=>{m.expenses.forEach(e=>{catTot[e.categoria]=(catTot[e.categoria]||0)+Number(e.importo||0);});});var rows=monthly.map(x=>'<tr><td>'+x.name+'</td><td>'+fmt(x.c.totaleEntrate)+'</td><td>'+fmt(x.c.speseVariabili+x.c.viaggi+x.c.extra)+'</td><td class="'+(x.c.risparmioReale>=0?'pos':'neg')+'">'+fmt(x.c.risparmioReale)+'</td><td class="'+(x.cum>=0?'pos':'neg')+'">'+fmt(x.cum)+'</td></tr>').join('');
+var rs=DATA.risparmiStorico||{};var rsYears=Object.keys(rs).map(Number).sort((a,b)=>a-b);var rsTotale=rsYears.reduce((s,y)=>s+Number(rs[y]||0),0);var rsRows=rsYears.map(y=>'<tr><td data-label="Anno">'+y+'</td><td data-label="Risparmio"><div class="input-affix"><span class="affix">€</span><input type="number" step="0.01" class="rs-val" data-year="'+y+'" value="'+rs[y]+'"></div></td><td data-label=""><button class="btn danger icon btnDelRs" data-year="'+y+'">🗑️</button></td></tr>').join('')||'<tr><td colspan="3" class="muted">Nessun anno storico inserito</td></tr>';
+el.innerHTML='<div class="grid cols-4"><div class="stat"><div class="label">Entrate Totali '+DATA.currentYear+'</div><div class="value">'+fmt(tE)+'</div></div><div class="stat"><div class="label">Risparmi Pianificati</div><div class="value">'+fmt(tR)+'</div></div><div class="stat"><div class="label">Spese Totali</div><div class="value">'+fmt(tS)+'</div></div><div class="stat"><div class="label">Risparmio Reale</div><div class="value '+(tRR>=0?'pos':'neg')+'">'+fmt(tRR)+'</div></div></div><div class="grid cols-2"><div class="card"><h2>Entrate vs Spese</h2><div class="chart-wrap"><canvas id="chartBar"></canvas></div></div><div class="card"><h2>Risparmio reale</h2><div class="chart-wrap"><canvas id="chartLine"></canvas></div></div></div><div class="grid cols-2"><div class="card"><h2>Risparmio cumulato</h2><div class="chart-wrap"><canvas id="chartCum"></canvas></div></div><div class="card"><h2>Spese per categoria</h2><div class="chart-wrap"><canvas id="chartPie"></canvas></div></div></div><div class="card"><h2>Riepilogo '+DATA.currentYear+'</h2><div style="max-height:320px;overflow:auto"><table><thead><tr><th>Mese</th><th>Entrate</th><th>Spese</th><th>Risp. Reale</th><th>Cumulato</th></tr></thead><tbody>'+rows+'</tbody></table></div></div><div class="card"><h2>Anni precedenti (risparmi storici)</h2><p class="muted" style="margin-bottom:12px">Inserisci qui il risparmio totale di anni non tracciati in dettaglio nell\'app, per avere il quadro completo del tuo risparmio nel tempo.</p><table><thead><tr><th>Anno</th><th>Risparmio</th><th></th></tr></thead><tbody>'+rsRows+'</tbody></table><div class="top-actions" style="margin-top:12px"><button class="btn secondary" id="btnAddRsYear">Aggiungi anno storico</button></div><div class="stat" style="max-width:220px;margin-top:12px"><div class="label">Totale storico</div><div class="value">'+fmt(rsTotale)+'</div></div></div></div>';
+var labels=monthly.map(x=>x.name.slice(0,3));destroyCharts();var accentColor=getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()||'#4f6df5';
+charts.bar=new Chart(document.getElementById('chartBar'),{type:'bar',data:{labels:labels,datasets:[{label:'Entrate',data:monthly.map(x=>x.c.totaleEntrate),backgroundColor:accentColor},{label:'Spese',data:monthly.map(x=>x.c.speseVariabili+x.c.viaggi+x.c.extra+x.c.totaleFisse),backgroundColor:'#e0463e'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:function(ctx){return ctx.dataset.label+': '+fmt(ctx.raw);}}}}}});
+charts.line=new Chart(document.getElementById('chartLine'),{type:'line',data:{labels:labels,datasets:[{label:'Risparmio reale',data:monthly.map(x=>x.c.risparmioReale),borderColor:'#1f9d55',backgroundColor:'rgba(31,157,85,.1)',fill:true,tension:.3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){return 'Risparmio: '+fmt(ctx.raw);}}}}}});
+charts.cum=new Chart(document.getElementById('chartCum'),{type:'line',data:{labels:labels,datasets:[{label:'Cumulato',data:monthly.map(x=>x.cum),borderColor:'#f5a623',backgroundColor:'rgba(245,166,35,.15)',fill:true,tension:.3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){return 'Cumulato: '+fmt(ctx.raw);}}}}}});
+var cl=Object.keys(catTot).filter(k=>catTot[k]>0);var totCat=cl.reduce((s,k)=>s+catTot[k],0);charts.pie=new Chart(document.getElementById('chartPie'),{type:'doughnut',data:{labels:cl,datasets:[{data:cl.map(k=>catTot[k]),backgroundColor:['#4f6df5','#e0463e','#f5a623','#1f9d55','#8e44ad','#16a3b6','#e67e22','#7f8c8d','#c0392b']}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:function(ctx){return ctx.label+': '+fmt(ctx.raw)+' ('+(ctx.raw/totCat*100).toFixed(1)+'%)';}}}}}});
+bindRisparmiStoricoEvents();}
+function bindRisparmiStoricoEvents(){var btn=document.getElementById('btnAddRsYear');if(btn)btn.addEventListener('click',function(){var yearStr=prompt('Inserisci l\'anno da aggiungere (es. 2024)');if(!yearStr)return;var year=parseInt(yearStr,10);if(!year||DATA.risparmiStorico[year]!==null&&DATA.risparmiStorico[year]!==undefined){toast('Anno non valido o già presente');return;}DATA.risparmiStorico[year]=0;saveData();renderDashboard();});document.querySelectorAll('.rs-val').forEach(inp=>{inp.addEventListener('input',function(e){DATA.risparmiStorico[e.target.dataset.year]=Number(e.target.value)||0;saveData();});inp.addEventListener('change',renderDashboard);});document.querySelectorAll('.btnDelRs').forEach(b=>b.addEventListener('click',function(){if(confirm('Eliminare l\'anno storico '+b.dataset.year+'?')){delete DATA.risparmiStorico[b.dataset.year];saveData();renderDashboard();}}));}
+function destroyCharts(){Object.values(charts).forEach(c=>{if(c)c.destroy();});charts={};}
+function expenseRow(e){var opts=DATA.categories.map(c=>'<option value="'+c+'" '+(e.categoria===c?'selected':'')+'>'+c+'</option>').join('');var descEsc=e.descrizione.replace(/"/g,'&quot;');return '<tr data-id="'+e.id+'"><td data-label="Data"><input type="date" class="e-data" value="'+e.data+'"></td><td data-label="Categoria"><select class="e-cat">'+opts+'</select></td><td data-label="Descrizione"><input type="text" class="e-desc" value="'+descEsc+'" placeholder="es. Cena da Anna"></td><td data-label="Importo"><div class="input-affix"><span class="affix">€</span><input type="number" step="0.01" class="e-imp" value="'+e.importo+'"></div></td><td data-label=""><div class="row-actions"><button class="btn secondary icon btnDupExp" title="Duplica">📋</button><button class="btn danger icon btnDelExp" title="Elimina">🗑️</button></div></td></tr>';}
+function renderMesi(){var el=document.getElementById('tab-mesi');var yd=getYearData();var m=yd.months[currentMonthIndex];var comp=computeMonth(m);var catB=categoryBreakdown(m);var weekly=weeklyControl(m,comp);var vis=filteredExpenses(m).sort((a,b)=>new Date(b.data)-new Date(a.data));var budgetPerc=comp.budgetVariabili>0?(comp.speseVariabili/comp.budgetVariabili)*100:0;
+var tabsHtml=yd.months.map((mm,i)=>{var mc=computeMonth(mm);var isComp=mc.risparmioReale>=0&&mc.speseVariabili<=mc.budgetVariabili;return '<button data-m="'+i+'" class="'+(i===currentMonthIndex?'active':'')+(isComp?' completed':'')+'">'+mm.name+(isComp?' ✓':'')+'</button>';}).join('');
+var catRows=Object.keys(catB).map(c=>'<tr><td>'+c+'</td><td>'+fmt(catB[c].tot)+'</td><td>'+catB[c].n+'</td></tr>').join('');
+var weekRows=weekly.map(w=>'<tr><td>'+w.settimana+'</td><td>'+fmt(w.budget)+'</td><td>'+fmt(w.spesa)+'</td><td class="'+(w.rimanente>=0?'pos':'neg')+'">'+fmt(w.rimanente)+'</td><td>'+(w.rimanente>=0?'<span class="badge ok">OK</span>':'<span class="badge over">Superato</span>')+'</td></tr>').join('')||'<tr><td colspan="5" class="muted">Nessuna spesa</td></tr>';
+var catOptions='<option value="">Tutte</option>'+DATA.categories.map(c=>'<option value="'+c+'" '+(expenseFilter.categoria===c?'selected':'')+'>'+c+'</option>').join('');
+var expRows=vis.map(expenseRow).join('')||'<tr><td colspan="5" class="muted">Nessuna spesa</td></tr>';
+var totVis=vis.reduce((s,e)=>s+Number(e.importo||0),0);
+el.innerHTML='<div class="month-tabs">'+tabsHtml+'</div><div class="grid cols-2"><div class="card"><h2>Configurazione '+m.name+' '+DATA.currentYear+'</h2><div class="grid cols-2"><div class="field"><label>Stipendio</label>'+euroField('fstipendio',m.stipendio)+'</div><div class="field"><label>Entrate extra</label>'+euroField('fextra',m.entrateExtra)+'</div><div class="field"><label>Risparmio %</label>'+percentField('fpercent',m.risparmioPercent)+'</div><div class="field"><label>Auto</label>'+euroField('fauto',m.fisse.auto)+'</div><div class="field"><label>Telefono</label>'+euroField('ftel',m.fisse.telefono)+'</div><div class="field"><label>Abbonamenti</label>'+euroField('fabb',m.fisse.abbonamenti)+'</div><div class="field"><label>Spese viaggi</label>'+euroField('fviaggi',m.speseViaggi)+'</div><div class="field"><label>Spese extra</label>'+euroField('fspeseextra',m.speseExtra)+'</div></div><button class="btn primary" id="btnSaveConfig">Salva configurazione</button></div><div class="card"><h2>Riepilogo calcolato</h2><div class="grid cols-2"><div class="stat"><div class="label">Totale Entrate</div><div class="value">'+fmt(comp.totaleEntrate)+'</div></div><div class="stat"><div class="label">Risparmi</div><div class="value">'+fmt(comp.risparmi)+'</div></div><div class="stat"><div class="label">Spese Fisse</div><div class="value">'+fmt(comp.totaleFisse)+'</div></div><div class="stat"><div class="label">Budget Variabili</div><div class="value">'+fmt(comp.budgetVariabili)+'</div></div><div class="stat"><div class="label">Spese Variabili</div><div class="value">'+fmt(comp.speseVariabili)+'</div></div><div class="stat"><div class="label">Risparmio Reale</div><div class="value '+(comp.risparmioReale>=0?'pos':'neg')+'">'+fmt(comp.risparmioReale)+'</div></div></div><div class="field" style="margin-top:14px"><label>Utilizzo budget variabili</label><div class="progress-bar"><div class="fill" style="width:'+Math.min(budgetPerc,100).toFixed(1)+'%;background:'+ (budgetPerc>90?'var(--red)':budgetPerc>70?'var(--accent)':'var(--green)')+'"></div></div><div class="muted" style="margin-top:4px">'+fmt(comp.speseVariabili)+' di '+fmt(comp.budgetVariabili)+' ('+budgetPerc.toFixed(1)+'%)</div></div></div></div><div class="grid cols-2"><div class="card"><h2>Analisi categorie</h2><table><thead><tr><th>Categoria</th><th>Speso</th><th>N</th></tr></thead><tbody>'+catRows+'</tbody></table></div><div class="card"><h2>Controllo settimanale</h2><table><thead><tr><th>Sett.</th><th>Budget</th><th>Speso</th><th>Rimanente</th><th>Status</th></tr></thead><tbody>'+weekRows+'</tbody></table></div></div><div class="card"><h2>Registro spese '+m.name+' '+DATA.currentYear+'</h2><div class="top-actions"><div class="filters"><div class="field"><label>Filtra categoria</label><select id="filterCat">'+catOptions+'</select></div><div class="field"><label>Cerca</label><input type="text" id="filterSearch" value="'+(expenseFilter.search||'')+'" placeholder="es. Cena da Anna"></div></div><div class="muted" style="margin-bottom:10px">'+vis.length+' spese | Totale '+fmt(totVis)+'</div></div><div style="overflow-x:auto"><table class="expenses-table card-table"><thead><tr><th>Data</th><th>Categoria</th><th>Descrizione</th><th>Importo</th><th></th></tr></thead><tbody id="expensesBody">'+expRows+'</tbody></table></div></div></div>';
+document.querySelectorAll('.month-tabs button').forEach(b=>b.addEventListener('click',function(){currentMonthIndex=Number(b.dataset.m);expenseFilter={categoria:null,search:'';renderMesi();}));document.getElementById('btnSaveConfig').addEventListener('click',function(){m.stipendio=Number(document.getElementById('fstipendio').value)||0;m.entrateExtra=Number(document.getElementById('fextra').value)||0;m.risparmioPercent=Number(document.getElementById('fpercent').value)||0;m.fisse.auto=Number(document.getElementById('fauto').value)||0;m.fisse.telefono=Number(document.getElementById('ftel').value)||0;m.fisse.abbonamenti=Number(document.getElementById('fabb').value)||0;m.speseViaggi=Number(document.getElementById('fviaggi').value)||0;m.speseExtra=Number(document.getElementById('fspeseextra').value)||0;saveData();toast('Configurazione salvata');renderMesi();});document.getElementById('filterCat').addEventListener('change',function(e){expenseFilter.categoria=e.target.value||null;renderMesi();});var searchTimer=null;document.getElementById('filterSearch').addEventListener('input',function(e){var input=e.target;var value=input.value;clearTimeout(searchTimer);searchTimer=setTimeout(function(){expenseFilter.search=value;renderMesi();var newInput=document.getElementById('filterSearch');if(newInput){newInput.focus;newInput.setSelectionRange(value.length,value.length);}},500);});document.getElementById('expensesBody').addEventListener('input',function(e){var tr=e.target.closest('tr');if(!tr)return;var id=Number(tr.dataset.id);var exp=m.expenses.find(x=>x.id===id);if(!exp)return;if(e.target.classList.contains('e-data'))exp.data=e.target.value;if(e.target.classList.contains('e-cat'))exp.categoria=e.target.value;if(e.target.classList.contains('e-desc'))exp.descrizione=e.target.value;if(e.target.classList.contains('e-imp'))exp.importo=Number(e.target.value)||0;saveData();renderMesi();});document.getElementById('expensesBody').addEventListener('change',function(e){if(e.target.classList.contains('e-imp')||e.target.classList.contains('e-cat'))renderMesi();});document.getElementById('expensesBody').addEventListener('click',function(e){var delBtn=e.target.closest('.btnDelExp');var dupBtn=e.target.closest('.btnDupExp');if(delBtn){var tr=delBtn.closest('tr');var id=Number(tr.dataset.id);var exp=m.expenses.find(x=>x.id===id);if(!exp)return;m.expenses=m.expenses.filter(x=>x.id!==id);saveData();toast('Spesa eliminata',function(){m.expenses.push(exp);saveData();renderMesi();});renderMesi();}if(dupBtn){var tr2=dupBtn.closest('tr');var id2=Number(tr2.dataset.id);var orig=m.expenses.find(x=>x.id===id2);if(!orig)return;var copy=Object.assign({},orig,{id:nextExpenseId(),data:new Date().toISOString().slice(0,10)});m.expenses.push(copy);saveData();toast('Spesa duplicata');renderMesi();}});}
+function renderInvestimenti(){var el=document.getElementById('tab-investimenti');var inv=DATA.investimenti;if(!inv.perAnno[DATA.currentYear])inv.perAnno[DATA.currentYear]=emptyPerAnno();var av=inv.perAnno[DATA.currentYear];var tAC=MONTHNAMES.reduce((s,mn)=>s+(Number(av[mn])||0),0);var tAA=Object.entries(inv.perAnno).filter(entry=>Number(entry[0])!==DATA.currentYear).reduce((s,entry)=>s+MONTHNAMES.reduce((s2,mn)=>s2+(Number(entry[1][mn])||0),0),0);var tC=(Number(inv.totalePrecedente)||0)+tAA+tAC;var rows=MONTHNAMES.map(mn=>'<tr><td data-label="Mese">'+mn+'</td><td data-label="Importo"><div class="input-affix"><span class="affix">€</span><input type="number" step="0.01" class="inv-val" data-mn="'+mn+'" value="'+(av[mn]||0)+'"></div></td></tr>').join('');
+el.innerHTML='<div class="card"><h2>Totale investimenti anni precedenti</h2><p class="muted" style="margin-bottom:12px">Importo cumulato investito prima del tracciamento mensile (modificabile).</p><div class="grid cols-2"><div class="field"><label>Totale anni precedenti</label>'+euroField('invprecedente',inv.totalePrecedente)+'</div><div class="stat"><div class="label">Totale complessivo</div><div class="value">'+fmt(tC)+'</div></div></div></div><div class="card"><h2>Investimenti mensili '+DATA.currentYear+'</h2><table class="card-table"><thead><tr><th>Mese</th><th>Importo</th></tr></thead><tbody>'+rows+'</tbody></table><div class="stat" style="margin-top:14px;max-width:260px"><div class="label">Totale '+DATA.currentYear+'</div><div class="value">'+fmt(tAC)+'</div></div></div></div>';
+document.getElementById('invprecedente').addEventListener('input',function(e){inv.totalePrecedente=Number(e.target.value)||0;saveData();});document.getElementById('invprecedente').addEventListener('change',renderInvestimenti);document.querySelectorAll('.inv-val').forEach(inp=>{inp.addEventListener('input',function(e){av[e.target.dataset.mn]=Number(e.target.value)||0;saveData();});inp.addEventListener('change',renderInvestimenti);});}
+function renderCatList(){var el=document.getElementById('catList');el.innerHTML=DATA.categories.map(c=>'<span class="badge ok" style="margin:3px;display:inline-flex;align-items:center;gap:6px">'+c+'<button data-cat="'+c+'" class="btnDelCat" style="border:none;background:none;color:var(--red);cursor:pointer;font-weight:700">🗑️</button></span>').join('');el.querySelectorAll('.btnDelCat').forEach(b=>b.addEventListener('click',function(){DATA.categories=DATA.categories.filter(c=>c!==b.dataset.cat);saveData();renderCatList();}));}
+function renderImpostazioni(){var el=document.getElementById('tab-impostazioni');var s=DATA.settings;var presetsHtml=Object.entries(THEMEPRESETS).map(entry=>{var name=entry[0],p=entry[1];return '<div class="preset-swatch" data-preset="'+name+'" title="'+name+'" style="background:'+p.accent+'"></div>';}).join('');
+el.innerHTML='<div class="card"><h2>Tema e colori</h2><div class="grid cols-4"><div class="field"><label>Colore principale</label><input type="color" id="colaccent" value="'+s.accent+'"></div><div class="field"><label>Colore sfondo</label><input type="color" id="colbg" value="'+s.bg+'"></div><div class="field"><label>Colore card</label><input type="color" id="colcard" value="'+s.card+'"></div><div class="field"><label>Colore testo</label><input type="color" id="coltext" value="'+s.text+'"></div></div><div class="field" style="margin-top:10px"><label><input type="checkbox" id="chkAutoDark" '+(s.autoDark?'checked':'')+'> Rileva tema scuro da sistema</label></div><p class="muted">Temi predefiniti:</p><div class="theme-presets">'+presetsHtml+'</div><div style="margin-top:14px"><button class="btn secondary" id="btnResetTheme">Ripristina colori predefiniti</button></div></div><div class="card"><h2>Categorie di spesa</h2><div id="catList" style="margin-bottom:12px"></div><div style="display:flex;gap:8px"><input type="text" id="newCatInput" placeholder="Nuova categoria"><button class="btn primary" id="btnAddCat">Aggiungi</button></div></div><div class="card"><h2>Anni gestiti</h2><div class="muted" style="margin-bottom:10px">'+getYearsList().join(', ')+'</div><button class="btn secondary" id="btnAddYear2">Aggiungi anno</button></div><div class="card"><h2>Dati e backup</h2><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn primary" id="btnExportExcel">Esporta backup Excel</button><button class="btn secondary" id="btnExport">Esporta JSON</button><label class="btn secondary" style="cursor:pointer">Importa JSON<input type="file" id="importFile" accept=".json" style="display:none"></label><button class="btn danger" id="btnReset">Ripristina dati originali</button></div><p class="muted" style="margin-top:10px">Backup Excel: esporta l\'anno selezionato ('+DATA.currentYear+') più investimenti e risparmi storici.</p></div></div>';
+renderCatList();function updateColorVar(key,cssVar,value){s[key]=value;document.documentElement.style.setProperty(cssVar,value);if(cssVar==='--accent'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',value);}saveData();}
+document.getElementById('colaccent').addEventListener('input',function(e){updateColorVar('accent','--accent',e.target.value);});document.getElementById('colbg').addEventListener('input',function(e){updateColorVar('bg','--bg',e.target.value);});document.getElementById('colcard').addEventListener('input',function(e){updateColorVar('card','--card',e.target.value);});document.getElementById('coltext').addEventListener('input',function(e){updateColorVar('text','--text',e.target.value);});document.getElementById('chkAutoDark').addEventListener('change',function(e){s.autoDark=e.target.checked;saveData();if(e.target.checked)applyTheme();});document.querySelectorAll('.preset-swatch').forEach(sw=>sw.addEventListener('click',function(){var preset=THEMEPRESETS[sw.dataset.preset];Object.assign(s,preset);s.autoDark=false;saveData();applyTheme();renderImpostazioni();toast('Tema '+sw.dataset.preset+' applicato');}));document.getElementById('btnResetTheme').addEventListener('click',function(){Object.assign(s,SEED.settings);saveData();applyTheme();renderImpostazioni();toast('Colori ripristinati');});document.getElementById('btnAddYear2').addEventListener('click',function(){addNewYear();renderImpostazioni();});document.getElementById('btnAddCat').addEventListener('click',function(){var inp=document.getElementById('newCatInput');var val=inp.value.trim();if(val&&!DATA.categories.includes(val)){DATA.categories.push(val);saveData();renderCatList();inp.value='';}});document.getElementById('btnExport').addEventListener('click',function(){var blob=new Blob([JSON.stringify(DATA,null,2)],{type:'application/json'});var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download='gestionerisparmi.json';a.click();URL.revokeObjectURL(url);toast('Backup JSON esportato');});document.getElementById('btnExportExcel').addEventListener('click',exportToExcel);document.getElementById('importFile').addEventListener('change',function(e){var file=e.target.files[0];if(!file)return;var reader=new FileReader();reader.onload=function(ev){try{DATA=JSON.parse(ev.target.result);migrate();saveData();applyTheme();renderYearSelector();toast('Dati importati');currentMonthIndex=0;renderAll();}catch(err){alert('File non valido');}
+};reader.readAsText(file);});document.getElementById('btnReset').addEventListener('click',function(){if(confirm('Ripristinare i dati originali?')){DATA=JSON.parse(JSON.stringify(SEED));saveData();applyTheme();renderYearSelector();currentMonthIndex=0;renderAll();toast('Dati ripristinati');}});}
+function exportToExcel(){var wb=XLSX.utils.book_new();var eurFmt='_€* #,##0.00_);_€* \\-#,##0.00_';var yd=getYearData();var dashRows=[['Mese','Entrate','Risparmi','Spese Fisse','Budget Variabili','Spese Variabili','Spese Viaggi','Spese Extra','Risparmio Reale']];var tE=0,tR=0,tF=0,tB=0,tV=0,tVi=0,tEx=0,tRR=0;yd.months.forEach(m=>{var c=computeMonth(m);dashRows.push([m.name,c.totaleEntrate,c.risparmi,c.totaleFisse,c.budgetVariabili,c.speseVariabili,c.viaggi,c.extra,c.risparmioReale]);tE+=c.totaleEntrate;tR+=c.risparmi;tF+=c.totaleFisse;tB+=c.budgetVariabili;tV+=c.speseVariabili;tVi+=c.viaggi;tEx+=c.extra;tRR+=c.risparmioReale;});dashRows.push(['TOTALE',tE,tR,tF,tB,tV,tVi,tEx,tRR]);var wsDash=XLSX.utils.aoa_to_sheet(dashRows);for(var r=1;r<dashRows.length;r++){for(var col=1;col<9;col++){var ref=XLSX.utils.encode_cell({r:r,c:col});if(wsDash[ref])wsDash[ref].z=eurFmt;}}XLSX.utils.book_append_sheet(wb,wsDash,'Dashboard '+DATA.currentYear);yd.months.forEach(m=>{var c=computeMonth(m);var rows=[];rows.push(['CONFIGURAZIONE '+m.name.toUpperCase()+' '+DATA.currentYear]);rows.push(['Stipendio',m.stipendio]);rows.push(['Entrate extra',m.entrateExtra]);rows.push(['Totale entrate',c.totaleEntrate]);rows.push(['Risparmio %',m.risparmioPercent]);rows.push(['Risparmio',c.risparmi]);rows.push(['Auto',m.fisse.auto]);rows.push(['Telefono',m.fisse.telefono]);rows.push(['Abbonamenti',m.fisse.abbonamenti]);rows.push(['Totale spese fisse',c.totaleFisse]);rows.push(['Budget variabili',c.budgetVariabili]);rows.push(['Spese viaggi',m.speseViaggi]);rows.push(['Spese extra',m.speseExtra]);rows.push(['Spese variabili',c.speseVariabili]);rows.push(['Risparmio reale',c.risparmioReale]);rows.push([]);rows.push(['REGISTRO SPESE']);rows.push(['Data','Categoria','Descrizione','Importo']);var esr=rows.length;m.expenses.forEach(e=>{rows.push([e.data,e.categoria,e.descrizione,e.importo]);});var ws=XLSX.utils.aoa_to_sheet(rows);[[1,2,3,5,6,7,8,9,10,11,12,13,14]].forEach(rr=>{var ref=XLSX.utils.encode_cell({r:rr,c:1});if(ws[ref])ws[ref].z=eurFmt;});for(var rr=esr;rr<rows.length;rr++){var ref2=XLSX.utils.encode_cell({r:rr,c:3});if(ws[ref2])ws[ref2].z=eurFmt;}var sn=(m.name+' '+DATA.currentYear).slice(0,31);XLSX.utils.book_append_sheet(wb,ws,sn);});var inv=DATA.investimenti;var invRows=[['Totale anni precedenti',inv.totalePrecedente]];Object.keys(inv.perAnno).sort().forEach(y=>{invRows.push(['Investimenti '+y]);invRows.push(['Mese','Importo']);MONTHNAMES.forEach(mn=>{invRows.push([mn,inv.perAnno[y][mn]||0]);});var tY=MONTHNAMES.reduce((s,mn)=>s+(Number(inv.perAnno[y][mn])||0),0);invRows.push(['Totale '+y,tY]);invRows.push([]);});invRows.push(['RISPARMI STORICI anni precedenti']);invRows.push(['Anno','Risparmio']);Object.keys(DATA.risparmiStorico||{}).sort().forEach(y=>{invRows.push([y,DATA.risparmiStorico[y]]);});var wsInv=XLSX.utils.aoa_to_sheet(invRows);var ref0=XLSX.utils.encode_cell({r:0,c:1});if(wsInv[ref0])wsInv[ref0].z=eurFmt;for(var i=0;i<invRows.length;i++){var refI=XLSX.utils.encode_cell({r:i,c:1});if(wsInv[refI]&&typeof invRows[i][1]==='number')wsInv[refI].z=eurFmt;}XLSX.utils.book_append_sheet(wb,wsInv,'Investimenti');var ds=new Date().toISOString().slice(0,10);XLSX.writeFile(wb,'backup_gestione_risparmi_'+DATA.currentYear+'_'+ds+'.xlsx');toast('Backup Excel scaricato');}
+function renderAll(){var activeBtn=document.querySelector('#mainNav button.active');var at=activeBtn?activeBtn.dataset.tab:'dashboard';if(at==='dashboard')renderDashboard();if(at==='mesi')renderMesi();if(at==='investimenti')renderInvestimenti();if(at==='impostazioni')renderImpostazioni();}
+document.getElementById('mainNav').addEventListener('click',function(e){var btn=e.target.closest('button[data-tab]');if(!btn)return;switchTab(btn.dataset.tab);});document.getElementById('yearSelector').addEventListener('change',function(e){DATA.currentYear=Number(e.target.value);if(!DATA.investimenti.perAnno[DATA.currentYear])DATA.investimenti.perAnno[DATA.currentYear]=emptyPerAnno();currentMonthIndex=0;saveData();renderAll();});document.getElementById('btnAddYear').addEventListener('click',addNewYear);document.getElementById('fabQuickAdd').addEventListener('click',openQuickAdd);document.getElementById('qacancel').addEventListener('click',closeQuickAdd);document.getElementById('quickAddOverlay').addEventListener('click',function(e){if(e.target.id==='quickAddOverlay')closeQuickAdd();});document.getElementById('btnToday').addEventListener('click',function(){document.getElementById('qadata').value=new Date().toISOString().slice(0,10);});document.getElementById('qasave').addEventListener('click',function(){var dataStr=document.getElementById('qadata').value||new Date().toISOString().slice(0,10);var cat=document.getElementById('qacat').value;var desc=document.getElementById('qadesc').value;var imp=Number(document.getElementById('qaimp').value)||0;var dateObj=new Date(dataStr+'T00:00:00');var monthIdx=dateObj.getMonth();var yd=getYearData();var m=yd.months[monthIdx];var newExp={id:nextExpenseId(),data:dataStr,categoria:cat,descrizione:desc,importo:imp};m.expenses.push(newExp);saveData();closeQuickAdd();toast('Spesa aggiunta a '+m.name);currentMonthIndex=monthIdx;renderAll();});
+loadData();applyTheme();renderYearSelector();renderAll();
 </script>
+<select id="yearSelector" style="position:absolute;right:20px;top:70px;width:120px;padding:8px;border:1px solid var(--border);border-radius:8px"></select>
+<button class="btn secondary" id="btnAddYear" style="position:absolute;right:150px;top:70px">+ Anno</button>
+<button class="btn secondary" id="btnToday" style="display:none">Oggi</button>
 </body>
 </html>

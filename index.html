@@ -4,12 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Gestione Risparmi</title>
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Risparmi">
 <meta name="theme-color" content="#4f6df5">
-<link rel="apple-touch-icon" href="data:image/png;base64,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">
-<link rel="icon" href="data:image/png;base64,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">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <style>
@@ -110,7 +109,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px;padding-
 <body>
 <header>
   <div class="header-left">
-    <h1>💰 Gestione Risparmi</h1>
+    <h1>Gestione Risparmi</h1>
     <div class="year-switch">
       <select id="yearSelector"></select>
       <button class="btn secondary icon" id="btnAddYear" title="Aggiungi anno">+</button>
@@ -131,10 +130,10 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px;padding-
 </main>
 <footer>Dati salvati nel browser. Usa Impostazioni per backup.</footer>
 <nav class="mobile-tabbar" id="mobileNav">
-  <button data-tab="dashboard" class="active"><span class="ico">📊</span>Dashboard</button>
-  <button data-tab="mesi"><span class="ico">🗓️</span>Mesi</button>
-  <button data-tab="investimenti"><span class="ico">📈</span>Investimenti</button>
-  <button data-tab="impostazioni"><span class="ico">⚙️</span>Impostazioni</button>
+  <button data-tab="dashboard" class="active"><span class="ico">&#128202;</span>Dashboard</button>
+  <button data-tab="mesi"><span class="ico">&#128197;</span>Mesi</button>
+  <button data-tab="investimenti"><span class="ico">&#128200;</span>Investimenti</button>
+  <button data-tab="impostazioni"><span class="ico">&#9881;</span>Impostazioni</button>
 </nav>
 <div id="toast"><span id="toastMsg"></span><button class="undo-btn" id="toastUndo">Annulla</button></div>
 
@@ -142,10 +141,10 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px;padding-
 <div class="modal-overlay" id="quickAddOverlay">
   <div class="modal-box">
     <h3>Aggiungi spesa rapida</h3>
-    <div class="field"><label>Data</label><div style="display:flex;gap:8px;"><input type="date" id="qa_data" style="flex:1"><button class="btn small" id="btnToday">📅 Oggi</button></div></div>
+    <div class="field"><label>Data</label><div style="display:flex;gap:8px;"><input type="date" id="qa_data" style="flex:1"><button class="btn small" id="btnToday">Oggi</button></div></div>
     <div class="field"><label>Categoria</label><select id="qa_cat"></select></div>
     <div class="field"><label>Descrizione</label><input type="text" id="qa_desc" placeholder="es. Cena da Anna"></div>
-    <div class="field"><label>Importo</label><div class="input-affix"><span class="affix">€</span><input type="number" step="0.01" id="qa_imp" value="0"></div></div>
+    <div class="field"><label>Importo</label><div class="input-affix"><span class="affix">&euro;</span><input type="number" step="0.01" id="qa_imp" value="0"></div></div>
     <div style="display:flex;gap:10px;margin-top:14px;">
       <button class="btn secondary" id="qa_cancel" style="flex:1;">Annulla</button>
       <button class="btn" id="qa_save" style="flex:1;">Salva</button>
@@ -154,10 +153,10 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px;padding-
 </div>
 
 <script>
-const SEED = {"currentYear":2026,"categories":["Spesa","Trasporti","Ristoranti","Shopping","Salute","Intrattenimento","Uscite serali","Altro"],"years":{"2026":{"months":[{"name":"Gennaio","stipendio":2063,"entrateExtra":1160,"risparmioPercent":60,"fisse":{"auto":305,"telefono":5.95,"abbonamenti":36},"speseViaggi":0,"speseExtra":0,"expenses":[{"data":"2026-01-01","categoria":"Ristoranti","descrizione":"Mercatini di Merano","importo":52.72,"id":1},{"data":"2026-01-02","categoria":"Ristoranti","descrizione":"Sushi","importo":16,"id":2},{"data":"2026-01-03","categoria":"Shopping","descrizione":"Felpa H&M","importo":30,"id":3},{"data":"2026-01-03","categoria":"Spesa","descrizione":"Iperal","importo":14,"id":4},{"data":"2026-01-03","categoria":"Ristoranti","descrizione":"Pizza","importo":20.8,"id":5},{"data":"2026-01-04","categoria":"Intrattenimento","descrizione":"Cinema","importo":29.3,"id":6},{"data":"2026-01-05","categoria":"Intrattenimento","descrizione":"Abbonamento Fantacalcio","importo":12.49,"id":7},{"data":"2026-01-06","categoria":"Spesa","descrizione":"Esselunga","importo":45.5,"id":8},{"data":"2026-01-06","categoria":"Shopping","descrizione":"Uniqlo","importo":25,"id":9},{"data":"2026-01-07","categoria":"Ristoranti","descrizione":"Pizza","importo":6,"id":10},{"data":"2026-01-09","categoria":"Uscite serali","descrizione":"Gasthaus","importo":19.5,"id":11},{"data":"2026-01-10","categoria":"Shopping","descrizione":"Decathlon","importo":53,"id":12},{"data":"2026-01-10","categoria":"Salute","descrizione":"Iscrizione Bergamo 21 (10km)","importo":26.4,"id":13},{"data":"2026-01-10","categoria":"Ristoranti","descrizione":"Cena cinese","importo":29.2,"id":14},{"data":"2026-01-11","categoria":"Ristoranti","descrizione":"Pizza","importo":9,"id":15},{"data":"2026-01-12","categoria":"Shopping","descrizione":"Cuscino","importo":40,"id":16},{"data":"2026-01-14","categoria":"Altro","descrizione":"Donazione ActionAid","importo":30,"id":17},{"data":"2026-01-14","categoria":"Altro","descrizione":"Regalo Liz + Regalo Maffo","importo":27,"id":18},{"data":"2026-01-14","categoria":"Ristoranti","descrizione":"Hamburger","importo":22,"id":19},{"data":"2026-01-16","categoria":"Shopping","descrizione":"Amazon","importo":41.1,"id":20},{"data":"2026-01-17","categoria":"Uscite serali","descrizione":"Ombra","importo":15,"id":21},{"data":"2026-01-18","categoria":"Salute","descrizione":"Iscrizione Stra Stezzano (9km)","importo":3,"id":22},{"data":"2026-01-21","categoria":"Ristoranti","descrizione":"Pizza pappagallo","importo":6,"id":23},{"data":"2026-01-21","categoria":"Trasporti","descrizione":"Benzina","importo":30,"id":24},{"data":"2026-01-21","categoria":"Uscite serali","descrizione":"Gelato","importo":7,"id":25},{"data":"2026-01-22","categoria":"Altro","descrizione":"Sigarette","importo":12,"id":26},{"data":"2026-01-22","categoria":"Shopping","descrizione":"Indumenti Bees","importo":35,"id":27},{"data":"2026-01-24","categoria":"Ristoranti","descrizione":"Pizza da Anna","importo":10,"id":28},{"data":"2026-01-25","categoria":"Ristoranti","descrizione":"Pizza","importo":25.4,"id":29},{"data":"2026-01-26","categoria":"Altro","descrizione":"Regalo Gio + Giuli + Dada","importo":46,"id":30},{"data":"2026-01-28","categoria":"Ristoranti","descrizione":"Hamburger","importo":8.7,"id":31},{"data":"2026-01-29","categoria":"Ristoranti","descrizione":"Pizza","importo":35.5,"id":32},{"data":"2026-01-31","categoria":"Trasporti","descrizione":"Benzina","importo":50,"id":33},{"data":"2026-01-31","categoria":"Uscite serali","descrizione":"Festa Giuli e Gio","importo":34,"id":34},{"data":"2026-01-31","categoria":"Altro","descrizione":"Regalo x figlio Pié¤»","importo":10,"id":35}]},{"name":"Febbraio","stipendio":1803,"entrateExtra":110,"risparmioPercent":30,"fisse":{"auto":305,"telefono":8.95,"abbonamenti":36},"speseViaggi":1136,"speseExtra":401.5,"expenses":[{"data":"2026-02-02","categoria":"Trasporti","descrizione":"Telepass","importo":140,"id":36},{"data":"2026-02-04","categoria":"Ristoranti","descrizione":"Kebab","importo":11,"id":37},{"data":"2026-02-07","categoria":"Salute","descrizione":"Barbiere","importo":20,"id":38},{"data":"2026-02-07","categoria":"Shopping","descrizione":"Decathlon","importo":36.25,"id":39},{"data":"2026-02-07","categoria":"Ristoranti","descrizione":"Pizza","importo":22,"id":40},{"data":"2026-02-08","categoria":"Shopping","descrizione":"Decathlon","importo":37,"id":41},{"data":"2026-02-09","categoria":"Spesa","descrizione":"Iperal","importo":36,"id":42},{"data":"2026-02-11","categoria":"Ristoranti","descrizione":"Pizza","importo":7,"id":43},{"data":"2026-02-12","categoria":"Altro","descrizione":"Donazione ActionAid","importo":30,"id":44},{"data":"2026-02-12","categoria":"Ristoranti","descrizione":"Pizza","importo":25,"id":45},{"data":"2026-02-13","categoria":"Uscite serali","descrizione":"Plaza","importo":15.5,"id":46},{"data":"2026-02-15","categoria":"Salute","descrizione":"Iscrizione corsa Monza","importo":28,"id":47},{"data":"2026-02-15","categoria":"Ristoranti","descrizione":"Lasagne e polenta","importo":22.5,"id":48},{"data":"2026-02-15","categoria":"Trasporti","descrizione":"Benzina","importo":30,"id":49},{"data":"2026-02-15","categoria":"Spesa","descrizione":"Iperal","importo":24,"id":50},{"data":"2026-02-18","categoria":"Ristoranti","descrizione":"Pizza","importo":6.5,"id":51},{"data":"2026-02-19","categoria":"Ristoranti","descrizione":"Pizza","importo":18,"id":52},{"data":"2026-02-20","categoria":"Ristoranti","descrizione":"Messicano","importo":33.5,"id":53},{"data":"2026-02-21","categoria":"Shopping","descrizione":"Scarpe","importo":20,"id":54},{"data":"2026-02-21","categoria":"Ristoranti","descrizione":"Hamburger","importo":20,"id":55},{"data":"2026-02-23","categoria":"Spesa","descrizione":"Iperal","importo":34,"id":56},{"data":"2026-02-25","categoria":"Altro","descrizione":"Sigarette","importo":11,"id":57},{"data":"2026-02-25","categoria":"Ristoranti","descrizione":"Hamburger","importo":11.2,"id":58},{"data":"2026-02-28","categoria":"Spesa","descrizione":"Iper","importo":22.5,"id":59},{"data":"2026-02-28","categoria":"Uscite serali","descrizione":"Finale Sanremo","importo":13,"id":60},{"data":"2026-03-01","categoria":"Trasporti","descrizione":"Benzina","importo":50,"id":61},{"data":"2026-03-01","categoria":"Ristoranti","descrizione":"Pizza","importo":24.5,"id":62}]},{"name":"Marzo","stipendio":1763,"entrateExtra":240,"risparmioPercent":40,"fisse":{"auto":305,"telefono":8.95,"abbonamenti":36},"speseViaggi":219,"speseExtra":0,"expenses":[{"data":"2026-03-04","categoria":"Ristoranti","descrizione":"Pizza","importo":6.5,"id":63},{"data":"2026-03-06","categoria":"Ristoranti","descrizione":"Hamburger","importo":10.7,"id":64},{"data":"2026-03-07","categoria":"Spesa","descrizione":"Iperal","importo":19,"id":65},{"data":"2026-03-07","categoria":"Salute","descrizione":"Integratori","importo":30,"id":66},{"data":"2026-03-07","categoria":"Ristoranti","descrizione":"Pizza","importo":36,"id":67},{"data":"2026-03-08","categoria":"Uscite serali","descrizione":"Aperitivo","importo":12,"id":68},{"data":"2026-03-09","categoria":"Altro","descrizione":"Sigarette","importo":10,"id":69},{"data":"2026-03-13","categoria":"Altro","descrizione":"Donazione ActionAid","importo":30,"id":70},{"data":"2026-03-13","categoria":"Uscite serali","descrizione":"Vino","importo":12,"id":71},{"data":"2026-03-14","categoria":"Spesa","descrizione":"Iperal","importo":46,"id":72},{"data":"2026-03-14","categoria":"Uscite serali","descrizione":"Gelato","importo":24,"id":73},{"data":"2026-03-14","categoria":"Ristoranti","descrizione":"Pizza","importo":9,"id":74},{"data":"2026-03-15","categoria":"Ristoranti","descrizione":"Bun Burger","importo":22,"id":75},{"data":"2026-03-19","categoria":"Ristoranti","descrizione":"Pizza","importo":22,"id":76},{"data":"2026-03-20","categoria":"Trasporti","descrizione":"Benzina","importo":50,"id":77},{"data":"2026-03-20","categoria":"Uscite serali","descrizione":"Plaza","importo":9,"id":78},{"data":"2026-03-21","categoria":"Ristoranti","descrizione":"Shin Ja","importo":36,"id":79},{"data":"2026-03-22","categoria":"Altro","descrizione":"Regalo JT","importo":6,"id":80},{"data":"2026-03-22","categoria":"Salute","descrizione":"Straponte","importo":4,"id":81},{"data":"2026-03-22","categoria":"Uscite serali","descrizione":"Cinema","importo":15,"id":82},{"data":"2026-03-25","categoria":"Ristoranti","descrizione":"Pizza","importo":7,"id":83},{"data":"2026-03-26","categoria":"Ristoranti","descrizione":"Hamburger","importo":42,"id":84},{"data":"2026-03-28","categoria":"Altro","descrizione":"Cibo Loki","importo":100,"id":85},{"data":"2026-03-28","categoria":"Ristoranti","descrizione":"Pizza","importo":30,"id":86},{"data":"2026-03-30","categoria":"Ristoranti","descrizione":"Pranzo in rifugio","importo":78,"id":87},{"data":"2026-04-01","categoria":"Ristoranti","descrizione":"Pizza","importo":6.5,"id":88},{"data":"2026-04-04","categoria":"Ristoranti","descrizione":"Pizza","importo":50,"id":89}]},{"name":"Aprile","stipendio":1799,"entrateExtra":200,"risparmioPercent":20,"fisse":{"auto":305,"telefono":8.95,"abbonamenti":36},"speseViaggi":0,"speseExtra":0,"expenses":[{"data":"2026-04-06","categoria":"Shopping","descrizione":"Amazon","importo":110,"id":90},{"data":"2026-04-06","categoria":"Ristoranti","descrizione":"Pasquetta","importo":25,"id":91},{"data":"2026-04-06","categoria":"Trasporti","descrizione":"Benzina","importo":50,"id":92},{"data":"2026-04-09","categoria":"Ristoranti","descrizione":"Pizza","importo":23,"id":93},{"data":"2026-04-11","categoria":"Shopping","descrizione":"Pomodori","importo":20,"id":94},{"data":"2026-04-11","categoria":"Salute","descrizione":"Mutande","importo":50,"id":95},{"data":"2026-04-11","categoria":"Ristoranti","descrizione":"Pizza","importo":17,"id":96},{"data":"2026-04-12","categoria":"Salute","descrizione":"Capelli","importo":25,"id":97},{"data":"2026-04-13","categoria":"Shopping","descrizione":"Amazon","importo":65.28,"id":98},{"data":"2026-04-13","categoria":"Ristoranti","descrizione":"Pizza","importo":33,"id":99},{"data":"2026-04-16","categoria":"Ristoranti","descrizione":"Mc","importo":15,"id":100},{"data":"2026-04-15","categoria":"Shopping","descrizione":"DAZN","importo":16.99,"id":101},{"data":"2026-04-15","categoria":"Altro","descrizione":"Donazione ActionAid","importo":30,"id":102},{"data":"2026-04-17","categoria":"Ristoranti","descrizione":"Pizza","importo":18.5,"id":103},{"data":"2026-04-18","categoria":"Shopping","descrizione":"Cappellino","importo":18,"id":104},{"data":"2026-04-18","categoria":"Ristoranti","descrizione":"Pizza","importo":70.5,"id":105},{"data":"2026-04-19","categoria":"Trasporti","descrizione":"Benzina","importo":50,"id":106},{"data":"2026-04-19","categoria":"Ristoranti","descrizione":"Pranzo","importo":40,"id":107},{"data":"2026-04-22","categoria":"Ristoranti","descrizione":"Pizza","importo":6.5,"id":108},{"data":"2026-04-23","categoria":"Spesa","descrizione":"Iperal + farmacia","importo":53.7,"id":109},{"data":"2026-04-24","categoria":"Ristoranti","descrizione":"Pizza","importo":23,"id":110},{"data":"2026-04-25","categoria":"Trasporti","descrizione":"Ingresso Venezia","importo":20,"id":111},{"data":"2026-04-25","categoria":"Ristoranti","descrizione":"Aperitivo Venezia","importo":25,"id":112},{"data":"2026-04-25","categoria":"Intrattenimento","descrizione":"Serata addio al celibato Tommi","importo":60,"id":113},{"data":"2026-04-25","categoria":"Ristoranti","descrizione":"Cena Venezia","importo":126,"id":114},{"data":"2026-04-30","categoria":"Trasporti","descrizione":"Telepass","importo":95.6,"id":115},{"data":"2026-04-30","categoria":"Salute","descrizione":"Crema viso","importo":40,"id":116},{"data":"2026-05-01","categoria":"Altro","descrizione":"Lavaggio auto","importo":10,"id":117},{"data":"2026-05-01","categoria":"Ristoranti","descrizione":"Pizza","importo":22,"id":118},{"data":"2026-05-02","categoria":"Uscite serali","descrizione":"Birra","importo":8,"id":119}]},{"name":"Maggio","stipendio":1818,"entrateExtra":200,"risparmioPercent":20,"fisse":{"auto":305,"telefono":8.95,"abbonamenti":46},"speseViaggi":0,"speseExtra":430,"expenses":[{"data":"2026-05-04","categoria":"Altro","descrizione":"Colazione","importo":15,"id":120},{"data":"2026-05-04","categoria":"Shopping","descrizione":"Completo matrimoni","importo":260,"id":121},{"data":"2026-05-04","categoria":"Ristoranti","descrizione":"Colazione","importo":22,"id":122},{"data":"2026-05-05","categoria":"Ristoranti","descrizione":"Hamburger","importo":9.5,"id":123},{"data":"2026-05-06","categoria":"Ristoranti","descrizione":"Pizza","importo":6.5,"id":124},{"data":"2026-05-06","categoria":"Salute","descrizione":"Iscrizione corsa Monza","importo":30,"id":125},{"data":"2026-05-07","categoria":"Ristoranti","descrizione":"Pizza","importo":25,"id":126},{"data":"2026-05-08","categoria":"Ristoranti","descrizione":"Bofrost","importo":37,"id":127},{"data":"2026-05-09","categoria":"Altro","descrizione":"","importo":33,"id":128},{"data":"2026-05-11","categoria":"Trasporti","descrizione":"Benzina","importo":50,"id":129},{"data":"2026-05-11","categoria":"Ristoranti","descrizione":"Pizza","importo":21,"id":130},{"data":"2026-05-13","categoria":"Shopping","descrizione":"Pantaloni + camice","importo":100,"id":131},{"data":"2026-05-14","categoria":"Shopping","descrizione":"Amazon","importo":18.5,"id":132},{"data":"2026-05-14","categoria":"Altro","descrizione":"Donazione ActionAid","importo":30,"id":133},{"data":"2026-05-16","categoria":"Shopping","descrizione":"Amazon","importo":40,"id":134},{"data":"2026-05-16","categoria":"Ristoranti","descrizione":"Sushi","importo":23,"id":135},{"data":"2026-05-20","categoria":"Ristoranti","descrizione":"Pizza","importo":13,"id":136},{"data":"2026-05-20","categoria":"Spesa","descrizione":"Iperal","importo":40,"id":137},{"data":"2026-05-22","categoria":"Ristoranti","descrizione":"Pizza","importo":27,"id":138},{"data":"2026-05-23","categoria":"Shopping","descrizione":"Scarpe per matrimonio","importo":43,"id":139},{"data":"2026-05-23","categoria":"Ristoranti","descrizione":"Festa oratorio Azzano","importo":35.5,"id":140},{"data":"2026-05-24","categoria":"Ristoranti","descrizione":"Pizza","importo":22,"id":141},{"data":"2026-05-26","categoria":"Spesa","descrizione":"Iperal","importo":30,"id":142},{"data":"2026-05-26","categoria":"Trasporti","descrizione":"Benzina","importo":40,"id":143},{"data":"2026-05-27","categoria":"Ristoranti","descrizione":"Pizza","importo":6.5,"id":144},{"data":"2026-05-27","categoria":"Ristoranti","descrizione":"Mc Donald","importo":16,"id":145},{"data":"2026-05-29","categoria":"Ristoranti","descrizione":"Hamburger","importo":27,"id":146},{"data":"2026-05-30","categoria":"Salute","descrizione":"Parrucchiere","importo":17,"id":147},{"data":"2026-05-30","categoria":"Salute","descrizione":"Breezy","importo":45,"id":148},{"data":"2026-05-31","categoria":"Altro","descrizione":"Addio al celibato JT","importo":100.5,"id":149}]},{"name":"Giugno","stipendio":1799,"entrateExtra":100,"risparmioPercent":20,"fisse":{"auto":305,"telefono":8.95,"abbonamenti":46},"speseViaggi":0,"speseExtra":304,"expenses":[{"data":"2026-06-01","categoria":"Altro","descrizione":"Casa Alassio + regalino Dada","importo":48,"id":150},{"data":"2026-06-01","categoria":"Spesa","descrizione":"Iperal","importo":32,"id":151},{"data":"2026-06-02","categoria":"Altro","descrizione":"Matrimonio Giulietta & JT","importo":250,"id":152},{"data":"2026-06-03","categoria":"Altro","descrizione":"Addio al celibato Tommi","importo":280,"id":153},{"data":"2026-06-04","categoria":"Ristoranti","descrizione":"Pizza","importo":25,"id":154},{"data":"2026-06-04","categoria":"Spesa","descrizione":"Iperal","importo":22.6,"id":155},{"data":"2026-06-07","categoria":"Altro","descrizione":"Baci Alassio","importo":21,"id":156},{"data":"2026-06-07","categoria":"Ristoranti","descrizione":"Mc Donald's","importo":12,"id":157},{"data":"2026-06-08","categoria":"Altro","descrizione":"Lava secco","importo":9.5,"id":158},{"data":"2026-06-09","categoria":"Altro","descrizione":"Festa Bees","importo":80,"id":159},{"data":"2026-06-09","categoria":"Shopping","descrizione":"Amazon","importo":29,"id":160},{"data":"2026-06-10","categoria":"Shopping","descrizione":"Cravatta","importo":60,"id":161},{"data":"2026-06-12","categoria":"Altro","descrizione":"Donazione ActionAid","importo":30,"id":162},{"data":"2026-06-13","categoria":"Shopping","descrizione":"Amazon","importo":18.5,"id":163},{"data":"2026-06-13","categoria":"Ristoranti","descrizione":"Burger King","importo":12.9,"id":164},{"data":"2026-06-16","categoria":"Uscite serali","descrizione":"Aperitivo città alta","importo":21,"id":165},{"data":"2026-06-17","categoria":"Spesa","descrizione":"Iperal","importo":30,"id":166},{"data":"2026-06-25","categoria":"Ristoranti","descrizione":"Cena Goisis","importo":45,"id":167},{"data":"2026-06-27","categoria":"Altro","descrizione":"Addio al celibato Tommi","importo":289,"id":168},{"data":"2026-06-27","categoria":"Salute","descrizione":"Parrucchiere","importo":20,"id":169},{"data":"2026-06-27","categoria":"Spesa","descrizione":"Iperal","importo":20,"id":170},{"data":"2026-06-27","categoria":"Trasporti","descrizione":"Benzina","importo":50,"id":171},{"data":"2026-06-28","categoria":"Ristoranti","descrizione":"Sushi","importo":33,"id":172}]},{"name":"Luglio","stipendio":2120,"entrateExtra":370,"risparmioPercent":20,"fisse":{"auto":305,"telefono":8.95,"abbonamenti":46},"speseViaggi":0,"speseExtra":211.53,"expenses":[{"data":"2026-07-01","categoria":"Altro","descrizione":"Matrimonio Tommi & Michi","importo":250,"id":173},{"data":"2026-07-01","categoria":"Ristoranti","descrizione":"Colazione","importo":14.2,"id":174},{"data":"2026-07-02","categoria":"Ristoranti","descrizione":"Bun Buger","importo":19.3,"id":175},{"data":"2026-07-05","categoria":"Ristoranti","descrizione":"Edoné¤»","importo":53.1,"id":176},{"data":"2026-07-06","categoria":"Altro","descrizione":"Sigarette","importo":11.3,"id":177},{"data":"2026-07-10","categoria":"Shopping","descrizione":"Borraccia","importo":20,"id":178},{"data":"2026-07-10","categoria":"Uscite serali","descrizione":"Calcetto + cena + bar","importo":38,"id":179},{"data":"2026-07-11","categoria":"Ristoranti","descrizione":"Pizza e gelato","importo":26.4,"id":180},{"data":"2026-07-12","categoria":"Shopping","descrizione":"Scarpe + integratori","importo":177,"id":181},{"data":"2026-07-12","categoria":"Ristoranti","descrizione":"Pizza","importo":20,"id":182},{"data":"2026-07-13","categoria":"Altro","descrizione":"Donazione ActionAid","importo":30,"id":183},{"data":"2026-07-13","categoria":"Salute","descrizione":"Cibo cane","importo":137.5,"id":184},{"data":"2026-07-15","categoria":"Ristoranti","descrizione":"Bombonera","importo":21.5,"id":185},{"data":"2026-07-17","categoria":"Trasporti","descrizione":"Benzina","importo":50,"id":186},{"data":"2026-07-18","categoria":"Ristoranti","descrizione":"Borghetto","importo":55,"id":187},{"data":"2026-07-24","categoria":"Uscite serali","descrizione":"Ape + altro","importo":55,"id":188},{"data":"2026-07-25","categoria":"Shopping","descrizione":"Amazon","importo":68,"id":189},{"data":"2026-07-25","categoria":"Ristoranti","descrizione":"Edo picanha","importo":44,"id":190},{"data":"2026-07-26","categoria":"Altro","descrizione":"Aperitivo","importo":12,"id":191},{"data":"2026-07-29","categoria":"Trasporti","descrizione":"Benzina","importo":50,"id":192},{"data":"2026-07-29","categoria":"Ristoranti","descrizione":"Pizza + mc","importo":17.4,"id":193},{"data":"2026-07-30","categoria":"Ristoranti","descrizione":"Edoné¤»","importo":66,"id":194},{"data":"2026-07-31","categoria":"Trasporti","descrizione":"Telepass","importo":140,"id":195},{"data":"2026-07-31","categoria":"Uscite serali","descrizione":"Fermento festival","importo":46.5,"id":196}]},{"name":"Agosto","stipendio":1904,"entrateExtra":350,"risparmioPercent":20,"fisse":{"auto":305,"telefono":8.95,"abbonamenti":46},"speseViaggi":790,"speseExtra":0,"expenses":[{"data":"2026-08-01","categoria":"Ristoranti","descrizione":"Goisis","importo":54.5,"id":197},{"data":"2026-08-02","categoria":"Spesa","descrizione":"Iperal","importo":26,"id":198},{"data":"2026-08-03","categoria":"Spesa","descrizione":"Iperal","importo":20,"id":199},{"data":"2026-08-06","categoria":"Salute","descrizione":"Lenti a contatto","importo":32,"id":200},{"data":"2026-08-07","categoria":"Shopping","descrizione":"Decathlon","importo":86,"id":201},{"data":"2026-08-08","categoria":"Trasporti","descrizione":"Gasolio","importo":83,"id":202},{"data":"2026-08-08","categoria":"Ristoranti","descrizione":"Spritz&Burger Albino","importo":43,"id":203},{"data":"2026-08-12","categoria":"Altro","descrizione":"Donazione ActionAid","importo":30,"id":204},{"data":"2026-08-13","categoria":"Trasporti","descrizione":"Benzina","importo":50,"id":205},{"data":"2026-08-14","categoria":"Spesa","descrizione":"Iper","importo":23,"id":206},{"data":"2026-08-14","categoria":"Shopping","descrizione":"Occhiali da sole Decathlon","importo":42,"id":207},{"data":"2026-08-15","categoria":"Altro","descrizione":"Ferragosto","importo":37,"id":208},{"data":"2026-08-16","categoria":"Spesa","descrizione":"Iperal","importo":20.3,"id":209},{"data":"2026-08-17","categoria":"Salute","descrizione":"Iscrizione Strabergamo","importo":8.6,"id":210},{"data":"2026-08-18","categoria":"Altro","descrizione":"GlideOS","importo":40,"id":211}]},{"name":"Settembre","stipendio":0,"entrateExtra":0,"risparmioPercent":20,"fisse":{"auto":305,"telefono":8.95,"abbonamenti":46},"speseViaggi":0,"speseExtra":0,"expenses":[]},{"name":"Ottobre","stipendio":0,"entrateExtra":0,"risparmioPercent":20,"fisse":{"auto":305,"telefono":8.95,"abbonamenti":46},"speseViaggi":0,"speseExtra":0,"expenses":[]},{"name":"Novembre","stipendio":0,"entrateExtra":0,"risparmioPercent":20,"fisse":{"auto":305,"telefono":8.95,"abbonamenti":46},"speseViaggi":0,"speseExtra":0,"expenses":[]},{"name":"Dicembre","stipendio":0,"entrateExtra":0,"risparmioPercent":20,"fisse":{"auto":305,"telefono":8.95,"abbonamenti":46},"speseViaggi":0,"speseExtra":0,"expenses":[]}]},"investimenti":{"totalePrecedente":1900,"perAnno":{"2026":{"Gennaio":100,"Febbraio":100,"Marzo":100,"Aprile":100,"Maggio":100,"Giugno":100,"Luglio":100,"Agosto":0,"Settembre":0,"Ottobre":0,"Novembre":0,"Dicembre":0}}},"risparmiStorico":{},"settings":{"theme":"light","accent":"#4f6df5","bg":"#f5f6fa","card":"#ffffff","text":"#1f2430","autoDark":false}};
+const SEED = {"currentYear": 2026, "categories": ["Spesa", "Trasporti", "Ristoranti", "Shopping", "Salute", "Intrattenimento", "Uscite serali", "Altro"], "years": {"2026": {"months": [{"name": "Gennaio", "stipendio": 2063, "entrateExtra": 1160, "risparmioPercent": 60, "fisse": {"auto": 305, "telefono": 5.95, "abbonamenti": 36}, "speseViaggi": 0, "speseExtra": 0, "expenses": [{"data": "2026-01-01", "categoria": "Ristoranti", "descrizione": "Mercatini di Merano", "importo": 52.72, "id": 1}, {"data": "2026-01-02", "categoria": "Ristoranti", "descrizione": "Sushi", "importo": 16, "id": 2}, {"data": "2026-01-03", "categoria": "Shopping", "descrizione": "Felpa H&M", "importo": 30, "id": 3}, {"data": "2026-01-03", "categoria": "Spesa", "descrizione": "Iperal", "importo": 14, "id": 4}, {"data": "2026-01-03", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 20.8, "id": 5}, {"data": "2026-01-04", "categoria": "Intrattenimento", "descrizione": "Cinema", "importo": 29.3, "id": 6}, {"data": "2026-01-05", "categoria": "Intrattenimento", "descrizione": "Abbonamento Fantacalcio", "importo": 12.49, "id": 7}, {"data": "2026-01-06", "categoria": "Spesa", "descrizione": "Esselunga", "importo": 45.5, "id": 8}, {"data": "2026-01-06", "categoria": "Shopping", "descrizione": "Uniqlo", "importo": 25, "id": 9}, {"data": "2026-01-07", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 6, "id": 10}, {"data": "2026-01-09", "categoria": "Uscite serali", "descrizione": "Gasthaus", "importo": 19.5, "id": 11}, {"data": "2026-01-10", "categoria": "Shopping", "descrizione": "Decathlon", "importo": 53, "id": 12}, {"data": "2026-01-10", "categoria": "Salute", "descrizione": "Iscrizione Bergamo 21 (10km)", "importo": 26.4, "id": 13}, {"data": "2026-01-10", "categoria": "Ristoranti", "descrizione": "Cena cinese", "importo": 29.2, "id": 14}, {"data": "2026-01-11", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 9, "id": 15}, {"data": "2026-01-12", "categoria": "Shopping", "descrizione": "Cuscino", "importo": 40, "id": 16}, {"data": "2026-01-14", "categoria": "Altro", "descrizione": "Donazione ActionAid", "importo": 30, "id": 17}, {"data": "2026-01-14", "categoria": "Altro", "descrizione": "Regalo Liz e Regalo Maffo", "importo": 27, "id": 18}, {"data": "2026-01-14", "categoria": "Ristoranti", "descrizione": "Hamburger", "importo": 22, "id": 19}, {"data": "2026-01-16", "categoria": "Shopping", "descrizione": "Amazon", "importo": 41.1, "id": 20}, {"data": "2026-01-17", "categoria": "Uscite serali", "descrizione": "Ombra", "importo": 15, "id": 21}, {"data": "2026-01-18", "categoria": "Salute", "descrizione": "Iscrizione Stra Stezzano (9km)", "importo": 3, "id": 22}, {"data": "2026-01-21", "categoria": "Ristoranti", "descrizione": "Pizza pappagallo", "importo": 6, "id": 23}, {"data": "2026-01-21", "categoria": "Trasporti", "descrizione": "Benzina", "importo": 30, "id": 24}, {"data": "2026-01-21", "categoria": "Uscite serali", "descrizione": "Gelato", "importo": 7, "id": 25}, {"data": "2026-01-22", "categoria": "Altro", "descrizione": "Sigarette", "importo": 12, "id": 26}, {"data": "2026-01-22", "categoria": "Shopping", "descrizione": "Indumenti Bees", "importo": 35, "id": 27}, {"data": "2026-01-24", "categoria": "Ristoranti", "descrizione": "Pizza da Anna", "importo": 10, "id": 28}, {"data": "2026-01-25", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 25.4, "id": 29}, {"data": "2026-01-26", "categoria": "Altro", "descrizione": "Regalo Gio, Giuli e Dada", "importo": 46, "id": 30}, {"data": "2026-01-28", "categoria": "Ristoranti", "descrizione": "Hamburger", "importo": 8.7, "id": 31}, {"data": "2026-01-29", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 35.5, "id": 32}, {"data": "2026-01-31", "categoria": "Trasporti", "descrizione": "Benzina", "importo": 50, "id": 33}, {"data": "2026-01-31", "categoria": "Uscite serali", "descrizione": "Festa Giuli e Gio", "importo": 34, "id": 34}, {"data": "2026-01-31", "categoria": "Altro", "descrizione": "Regalo per il figlio di Pie", "importo": 10, "id": 35}]}, {"name": "Febbraio", "stipendio": 1803, "entrateExtra": 110, "risparmioPercent": 30, "fisse": {"auto": 305, "telefono": 8.95, "abbonamenti": 36}, "speseViaggi": 1136, "speseExtra": 401.5, "expenses": [{"data": "2026-02-02", "categoria": "Trasporti", "descrizione": "Telepass", "importo": 140, "id": 36}, {"data": "2026-02-04", "categoria": "Ristoranti", "descrizione": "Kebab", "importo": 11, "id": 37}, {"data": "2026-02-07", "categoria": "Salute", "descrizione": "Barbiere", "importo": 20, "id": 38}, {"data": "2026-02-07", "categoria": "Shopping", "descrizione": "Decathlon", "importo": 36.25, "id": 39}, {"data": "2026-02-07", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 22, "id": 40}, {"data": "2026-02-08", "categoria": "Shopping", "descrizione": "Decathlon", "importo": 37, "id": 41}, {"data": "2026-02-09", "categoria": "Spesa", "descrizione": "Iperal", "importo": 36, "id": 42}, {"data": "2026-02-11", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 7, "id": 43}, {"data": "2026-02-12", "categoria": "Altro", "descrizione": "Donazione ActionAid", "importo": 30, "id": 44}, {"data": "2026-02-12", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 25, "id": 45}, {"data": "2026-02-13", "categoria": "Uscite serali", "descrizione": "Plaza", "importo": 15.5, "id": 46}, {"data": "2026-02-15", "categoria": "Salute", "descrizione": "Iscrizione corsa Monza", "importo": 28, "id": 47}, {"data": "2026-02-15", "categoria": "Ristoranti", "descrizione": "Lasagne e polenta", "importo": 22.5, "id": 48}, {"data": "2026-02-15", "categoria": "Trasporti", "descrizione": "Benzina", "importo": 30, "id": 49}, {"data": "2026-02-15", "categoria": "Spesa", "descrizione": "Iperal", "importo": 24, "id": 50}, {"data": "2026-02-18", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 6.5, "id": 51}, {"data": "2026-02-19", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 18, "id": 52}, {"data": "2026-02-20", "categoria": "Ristoranti", "descrizione": "Messicano", "importo": 33.5, "id": 53}, {"data": "2026-02-21", "categoria": "Shopping", "descrizione": "Scarpe", "importo": 20, "id": 54}, {"data": "2026-02-21", "categoria": "Ristoranti", "descrizione": "Hamburger", "importo": 20, "id": 55}, {"data": "2026-02-23", "categoria": "Spesa", "descrizione": "Iperal", "importo": 34, "id": 56}, {"data": "2026-02-25", "categoria": "Altro", "descrizione": "Sigarette", "importo": 11, "id": 57}, {"data": "2026-02-25", "categoria": "Ristoranti", "descrizione": "Hamburger", "importo": 11.2, "id": 58}, {"data": "2026-02-28", "categoria": "Spesa", "descrizione": "Iper", "importo": 22.5, "id": 59}, {"data": "2026-02-28", "categoria": "Uscite serali", "descrizione": "Finale Sanremo", "importo": 13, "id": 60}, {"data": "2026-03-01", "categoria": "Trasporti", "descrizione": "Benzina", "importo": 50, "id": 61}, {"data": "2026-03-01", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 24.5, "id": 62}]}, {"name": "Marzo", "stipendio": 1763, "entrateExtra": 240, "risparmioPercent": 40, "fisse": {"auto": 305, "telefono": 8.95, "abbonamenti": 36}, "speseViaggi": 219, "speseExtra": 0, "expenses": [{"data": "2026-03-04", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 6.5, "id": 63}, {"data": "2026-03-06", "categoria": "Ristoranti", "descrizione": "Hamburger", "importo": 10.7, "id": 64}, {"data": "2026-03-07", "categoria": "Spesa", "descrizione": "Iperal", "importo": 19, "id": 65}, {"data": "2026-03-07", "categoria": "Salute", "descrizione": "Integratori", "importo": 30, "id": 66}, {"data": "2026-03-07", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 36, "id": 67}, {"data": "2026-03-08", "categoria": "Uscite serali", "descrizione": "Aperitivo", "importo": 12, "id": 68}, {"data": "2026-03-09", "categoria": "Altro", "descrizione": "Sigarette", "importo": 10, "id": 69}, {"data": "2026-03-13", "categoria": "Altro", "descrizione": "Donazione ActionAid", "importo": 30, "id": 70}, {"data": "2026-03-13", "categoria": "Uscite serali", "descrizione": "Vino", "importo": 12, "id": 71}, {"data": "2026-03-14", "categoria": "Spesa", "descrizione": "Iperal", "importo": 46, "id": 72}, {"data": "2026-03-14", "categoria": "Uscite serali", "descrizione": "Gelato", "importo": 24, "id": 73}, {"data": "2026-03-14", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 9, "id": 74}, {"data": "2026-03-15", "categoria": "Ristoranti", "descrizione": "Bun Burger", "importo": 22, "id": 75}, {"data": "2026-03-19", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 22, "id": 76}, {"data": "2026-03-20", "categoria": "Trasporti", "descrizione": "Benzina", "importo": 50, "id": 77}, {"data": "2026-03-20", "categoria": "Uscite serali", "descrizione": "Plaza", "importo": 9, "id": 78}, {"data": "2026-03-21", "categoria": "Ristoranti", "descrizione": "Shin Ja", "importo": 36, "id": 79}, {"data": "2026-03-22", "categoria": "Altro", "descrizione": "Regalo JT", "importo": 6, "id": 80}, {"data": "2026-03-22", "categoria": "Salute", "descrizione": "Straponte", "importo": 4, "id": 81}, {"data": "2026-03-22", "categoria": "Uscite serali", "descrizione": "Cinema", "importo": 15, "id": 82}, {"data": "2026-03-25", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 7, "id": 83}, {"data": "2026-03-26", "categoria": "Ristoranti", "descrizione": "Hamburger", "importo": 42, "id": 84}, {"data": "2026-03-28", "categoria": "Altro", "descrizione": "Cibo Loki", "importo": 100, "id": 85}, {"data": "2026-03-28", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 30, "id": 86}, {"data": "2026-03-30", "categoria": "Ristoranti", "descrizione": "Pranzo in rifugio", "importo": 78, "id": 87}, {"data": "2026-04-01", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 6.5, "id": 88}, {"data": "2026-04-04", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 50, "id": 89}]}, {"name": "Aprile", "stipendio": 1799, "entrateExtra": 200, "risparmioPercent": 20, "fisse": {"auto": 305, "telefono": 8.95, "abbonamenti": 36}, "speseViaggi": 0, "speseExtra": 0, "expenses": [{"data": "2026-04-06", "categoria": "Shopping", "descrizione": "Amazon", "importo": 110, "id": 90}, {"data": "2026-04-06", "categoria": "Ristoranti", "descrizione": "Pasquetta", "importo": 25, "id": 91}, {"data": "2026-04-06", "categoria": "Trasporti", "descrizione": "Benzina", "importo": 50, "id": 92}, {"data": "2026-04-09", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 23, "id": 93}, {"data": "2026-04-11", "categoria": "Shopping", "descrizione": "Pomodori", "importo": 20, "id": 94}, {"data": "2026-04-11", "categoria": "Salute", "descrizione": "Mutande", "importo": 50, "id": 95}, {"data": "2026-04-11", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 17, "id": 96}, {"data": "2026-04-12", "categoria": "Salute", "descrizione": "Capelli", "importo": 25, "id": 97}, {"data": "2026-04-13", "categoria": "Shopping", "descrizione": "Amazon", "importo": 65.28, "id": 98}, {"data": "2026-04-13", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 33, "id": 99}, {"data": "2026-04-16", "categoria": "Ristoranti", "descrizione": "Mc", "importo": 15, "id": 100}, {"data": "2026-04-15", "categoria": "Shopping", "descrizione": "DAZN", "importo": 16.99, "id": 101}, {"data": "2026-04-15", "categoria": "Altro", "descrizione": "Donazione ActionAid", "importo": 30, "id": 102}, {"data": "2026-04-17", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 18.5, "id": 103}, {"data": "2026-04-18", "categoria": "Shopping", "descrizione": "Cappellino", "importo": 18, "id": 104}, {"data": "2026-04-18", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 70.5, "id": 105}, {"data": "2026-04-19", "categoria": "Trasporti", "descrizione": "Benzina", "importo": 50, "id": 106}, {"data": "2026-04-19", "categoria": "Ristoranti", "descrizione": "Pranzo", "importo": 40, "id": 107}, {"data": "2026-04-22", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 6.5, "id": 108}, {"data": "2026-04-23", "categoria": "Spesa", "descrizione": "Iperal e farmacia", "importo": 53.7, "id": 109}, {"data": "2026-04-24", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 23, "id": 110}, {"data": "2026-04-25", "categoria": "Trasporti", "descrizione": "Ingresso Venezia", "importo": 20, "id": 111}, {"data": "2026-04-25", "categoria": "Ristoranti", "descrizione": "Aperitivo Venezia", "importo": 25, "id": 112}, {"data": "2026-04-25", "categoria": "Intrattenimento", "descrizione": "Serata addio al celibato Tommi", "importo": 60, "id": 113}, {"data": "2026-04-25", "categoria": "Ristoranti", "descrizione": "Cena Venezia", "importo": 126, "id": 114}, {"data": "2026-04-30", "categoria": "Trasporti", "descrizione": "Telepass", "importo": 95.6, "id": 115}, {"data": "2026-04-30", "categoria": "Salute", "descrizione": "Crema viso", "importo": 40, "id": 116}, {"data": "2026-05-01", "categoria": "Altro", "descrizione": "Lavaggio auto", "importo": 10, "id": 117}, {"data": "2026-05-01", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 22, "id": 118}, {"data": "2026-05-02", "categoria": "Uscite serali", "descrizione": "Birra", "importo": 8, "id": 119}]}, {"name": "Maggio", "stipendio": 1818, "entrateExtra": 200, "risparmioPercent": 20, "fisse": {"auto": 305, "telefono": 8.95, "abbonamenti": 46}, "speseViaggi": 0, "speseExtra": 430, "expenses": [{"data": "2026-05-04", "categoria": "Altro", "descrizione": "Colazione", "importo": 15, "id": 120}, {"data": "2026-05-04", "categoria": "Shopping", "descrizione": "Completo matrimoni", "importo": 260, "id": 121}, {"data": "2026-05-04", "categoria": "Ristoranti", "descrizione": "Colazione", "importo": 22, "id": 122}, {"data": "2026-05-05", "categoria": "Ristoranti", "descrizione": "Hamburger", "importo": 9.5, "id": 123}, {"data": "2026-05-06", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 6.5, "id": 124}, {"data": "2026-05-06", "categoria": "Salute", "descrizione": "Iscrizione corsa Monza", "importo": 30, "id": 125}, {"data": "2026-05-07", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 25, "id": 126}, {"data": "2026-05-08", "categoria": "Ristoranti", "descrizione": "Bofrost", "importo": 37, "id": 127}, {"data": "2026-05-09", "categoria": "Altro", "descrizione": "Varie", "importo": 33, "id": 128}, {"data": "2026-05-11", "categoria": "Trasporti", "descrizione": "Benzina", "importo": 50, "id": 129}, {"data": "2026-05-11", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 21, "id": 130}, {"data": "2026-05-13", "categoria": "Shopping", "descrizione": "Pantaloni e camicia", "importo": 100, "id": 131}, {"data": "2026-05-14", "categoria": "Shopping", "descrizione": "Amazon", "importo": 18.5, "id": 132}, {"data": "2026-05-14", "categoria": "Altro", "descrizione": "Donazione ActionAid", "importo": 30, "id": 133}, {"data": "2026-05-16", "categoria": "Shopping", "descrizione": "Amazon", "importo": 40, "id": 134}, {"data": "2026-05-16", "categoria": "Ristoranti", "descrizione": "Sushi", "importo": 23, "id": 135}, {"data": "2026-05-20", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 13, "id": 136}, {"data": "2026-05-20", "categoria": "Spesa", "descrizione": "Iperal", "importo": 40, "id": 137}, {"data": "2026-05-22", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 27, "id": 138}, {"data": "2026-05-23", "categoria": "Shopping", "descrizione": "Scarpe per matrimonio", "importo": 43, "id": 139}, {"data": "2026-05-23", "categoria": "Ristoranti", "descrizione": "Festa oratorio Azzano", "importo": 35.5, "id": 140}, {"data": "2026-05-24", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 22, "id": 141}, {"data": "2026-05-26", "categoria": "Spesa", "descrizione": "Iperal", "importo": 30, "id": 142}, {"data": "2026-05-26", "categoria": "Trasporti", "descrizione": "Benzina", "importo": 40, "id": 143}, {"data": "2026-05-27", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 6.5, "id": 144}, {"data": "2026-05-27", "categoria": "Ristoranti", "descrizione": "Mc Donald", "importo": 16, "id": 145}, {"data": "2026-05-29", "categoria": "Ristoranti", "descrizione": "Hamburger", "importo": 27, "id": 146}, {"data": "2026-05-30", "categoria": "Salute", "descrizione": "Parrucchiere", "importo": 17, "id": 147}, {"data": "2026-05-30", "categoria": "Salute", "descrizione": "Breezy", "importo": 45, "id": 148}, {"data": "2026-05-31", "categoria": "Altro", "descrizione": "Addio al celibato JT", "importo": 100.5, "id": 149}]}, {"name": "Giugno", "stipendio": 1799, "entrateExtra": 100, "risparmioPercent": 20, "fisse": {"auto": 305, "telefono": 8.95, "abbonamenti": 46}, "speseViaggi": 0, "speseExtra": 304, "expenses": [{"data": "2026-06-01", "categoria": "Altro", "descrizione": "Casa Alassio e regalino Dada", "importo": 48, "id": 150}, {"data": "2026-06-01", "categoria": "Spesa", "descrizione": "Iperal", "importo": 32, "id": 151}, {"data": "2026-06-02", "categoria": "Altro", "descrizione": "Matrimonio Giulietta e JT", "importo": 250, "id": 152}, {"data": "2026-06-03", "categoria": "Altro", "descrizione": "Addio al celibato Tommi", "importo": 280, "id": 153}, {"data": "2026-06-04", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 25, "id": 154}, {"data": "2026-06-04", "categoria": "Spesa", "descrizione": "Iperal", "importo": 22.6, "id": 155}, {"data": "2026-06-07", "categoria": "Altro", "descrizione": "Baci Alassio", "importo": 21, "id": 156}, {"data": "2026-06-07", "categoria": "Ristoranti", "descrizione": "Mc Donalds", "importo": 12, "id": 157}, {"data": "2026-06-08", "categoria": "Altro", "descrizione": "Lavasecco", "importo": 9.5, "id": 158}, {"data": "2026-06-09", "categoria": "Altro", "descrizione": "Festa Bees", "importo": 80, "id": 159}, {"data": "2026-06-09", "categoria": "Shopping", "descrizione": "Amazon", "importo": 29, "id": 160}, {"data": "2026-06-10", "categoria": "Shopping", "descrizione": "Cravatta", "importo": 60, "id": 161}, {"data": "2026-06-12", "categoria": "Altro", "descrizione": "Donazione ActionAid", "importo": 30, "id": 162}, {"data": "2026-06-13", "categoria": "Shopping", "descrizione": "Amazon", "importo": 18.5, "id": 163}, {"data": "2026-06-13", "categoria": "Ristoranti", "descrizione": "Burger King", "importo": 12.9, "id": 164}, {"data": "2026-06-16", "categoria": "Uscite serali", "descrizione": "Aperitivo citta alta", "importo": 21, "id": 165}, {"data": "2026-06-17", "categoria": "Spesa", "descrizione": "Iperal", "importo": 30, "id": 166}, {"data": "2026-06-25", "categoria": "Ristoranti", "descrizione": "Cena Goisis", "importo": 45, "id": 167}, {"data": "2026-06-27", "categoria": "Altro", "descrizione": "Addio al celibato Tommi", "importo": 289, "id": 168}, {"data": "2026-06-27", "categoria": "Salute", "descrizione": "Parrucchiere", "importo": 20, "id": 169}, {"data": "2026-06-27", "categoria": "Spesa", "descrizione": "Iperal", "importo": 20, "id": 170}, {"data": "2026-06-27", "categoria": "Trasporti", "descrizione": "Benzina", "importo": 50, "id": 171}, {"data": "2026-06-28", "categoria": "Ristoranti", "descrizione": "Sushi", "importo": 33, "id": 172}]}, {"name": "Luglio", "stipendio": 2120, "entrateExtra": 370, "risparmioPercent": 20, "fisse": {"auto": 305, "telefono": 8.95, "abbonamenti": 46}, "speseViaggi": 0, "speseExtra": 211.53, "expenses": [{"data": "2026-07-01", "categoria": "Altro", "descrizione": "Matrimonio Tommi e Michi", "importo": 250, "id": 173}, {"data": "2026-07-01", "categoria": "Ristoranti", "descrizione": "Colazione", "importo": 14.2, "id": 174}, {"data": "2026-07-02", "categoria": "Ristoranti", "descrizione": "Bun Burger", "importo": 19.3, "id": 175}, {"data": "2026-07-05", "categoria": "Ristoranti", "descrizione": "Edone", "importo": 53.1, "id": 176}, {"data": "2026-07-06", "categoria": "Altro", "descrizione": "Sigarette", "importo": 11.3, "id": 177}, {"data": "2026-07-10", "categoria": "Shopping", "descrizione": "Borraccia", "importo": 20, "id": 178}, {"data": "2026-07-10", "categoria": "Uscite serali", "descrizione": "Calcetto, cena e bar", "importo": 38, "id": 179}, {"data": "2026-07-11", "categoria": "Ristoranti", "descrizione": "Pizza e gelato", "importo": 26.4, "id": 180}, {"data": "2026-07-12", "categoria": "Shopping", "descrizione": "Scarpe e integratori", "importo": 177, "id": 181}, {"data": "2026-07-12", "categoria": "Ristoranti", "descrizione": "Pizza", "importo": 20, "id": 182}, {"data": "2026-07-13", "categoria": "Altro", "descrizione": "Donazione ActionAid", "importo": 30, "id": 183}, {"data": "2026-07-13", "categoria": "Salute", "descrizione": "Cibo cane", "importo": 137.5, "id": 184}, {"data": "2026-07-15", "categoria": "Ristoranti", "descrizione": "Bombonera", "importo": 21.5, "id": 185}, {"data": "2026-07-17", "categoria": "Trasporti", "descrizione": "Benzina", "importo": 50, "id": 186}, {"data": "2026-07-18", "categoria": "Ristoranti", "descrizione": "Borghetto", "importo": 55, "id": 187}, {"data": "2026-07-24", "categoria": "Uscite serali", "descrizione": "Ape e altro", "importo": 55, "id": 188}, {"data": "2026-07-25", "categoria": "Shopping", "descrizione": "Amazon", "importo": 68, "id": 189}, {"data": "2026-07-25", "categoria": "Ristoranti", "descrizione": "Edo picanha", "importo": 44, "id": 190}, {"data": "2026-07-26", "categoria": "Altro", "descrizione": "Aperitivo", "importo": 12, "id": 191}, {"data": "2026-07-29", "categoria": "Trasporti", "descrizione": "Benzina", "importo": 50, "id": 192}, {"data": "2026-07-29", "categoria": "Ristoranti", "descrizione": "Pizza e Mc", "importo": 17.4, "id": 193}, {"data": "2026-07-30", "categoria": "Ristoranti", "descrizione": "Edone", "importo": 66, "id": 194}, {"data": "2026-07-31", "categoria": "Trasporti", "descrizione": "Telepass", "importo": 140, "id": 195}, {"data": "2026-07-31", "categoria": "Uscite serali", "descrizione": "Fermento festival", "importo": 46.5, "id": 196}]}, {"name": "Agosto", "stipendio": 1904, "entrateExtra": 350, "risparmioPercent": 20, "fisse": {"auto": 305, "telefono": 8.95, "abbonamenti": 46}, "speseViaggi": 790, "speseExtra": 0, "expenses": [{"data": "2026-08-01", "categoria": "Ristoranti", "descrizione": "Goisis", "importo": 54.5, "id": 197}, {"data": "2026-08-02", "categoria": "Spesa", "descrizione": "Iperal", "importo": 26, "id": 198}, {"data": "2026-08-03", "categoria": "Spesa", "descrizione": "Iperal", "importo": 20, "id": 199}, {"data": "2026-08-06", "categoria": "Salute", "descrizione": "Lenti a contatto", "importo": 32, "id": 200}, {"data": "2026-08-07", "categoria": "Shopping", "descrizione": "Decathlon", "importo": 86, "id": 201}, {"data": "2026-08-08", "categoria": "Trasporti", "descrizione": "Gasolio", "importo": 83, "id": 202}, {"data": "2026-08-08", "categoria": "Ristoranti", "descrizione": "Spritz e Burger Albino", "importo": 43, "id": 203}, {"data": "2026-08-12", "categoria": "Altro", "descrizione": "Donazione ActionAid", "importo": 30, "id": 204}, {"data": "2026-08-13", "categoria": "Trasporti", "descrizione": "Benzina", "importo": 50, "id": 205}, {"data": "2026-08-14", "categoria": "Spesa", "descrizione": "Iper", "importo": 23, "id": 206}, {"data": "2026-08-14", "categoria": "Shopping", "descrizione": "Occhiali da sole Decathlon", "importo": 42, "id": 207}, {"data": "2026-08-15", "categoria": "Altro", "descrizione": "Ferragosto", "importo": 37, "id": 208}, {"data": "2026-08-16", "categoria": "Spesa", "descrizione": "Iperal", "importo": 20.3, "id": 209}, {"data": "2026-08-17", "categoria": "Salute", "descrizione": "Iscrizione Strabergamo", "importo": 8.6, "id": 210}, {"data": "2026-08-18", "categoria": "Altro", "descrizione": "GlideOS", "importo": 40, "id": 211}]}, {"name": "Settembre", "stipendio": 0, "entrateExtra": 0, "risparmioPercent": 20, "fisse": {"auto": 305, "telefono": 8.95, "abbonamenti": 46}, "speseViaggi": 0, "speseExtra": 0, "expenses": []}, {"name": "Ottobre", "stipendio": 0, "entrateExtra": 0, "risparmioPercent": 20, "fisse": {"auto": 305, "telefono": 8.95, "abbonamenti": 46}, "speseViaggi": 0, "speseExtra": 0, "expenses": []}, {"name": "Novembre", "stipendio": 0, "entrateExtra": 0, "risparmioPercent": 20, "fisse": {"auto": 305, "telefono": 8.95, "abbonamenti": 46}, "speseViaggi": 0, "speseExtra": 0, "expenses": []}, {"name": "Dicembre", "stipendio": 0, "entrateExtra": 0, "risparmioPercent": 20, "fisse": {"auto": 305, "telefono": 8.95, "abbonamenti": 46}, "speseViaggi": 0, "speseExtra": 0, "expenses": []}]}}, "investimenti": {"totalePrecedente": 1900, "perAnno": {"2026": {"Gennaio": 100, "Febbraio": 100, "Marzo": 100, "Aprile": 100, "Maggio": 100, "Giugno": 100, "Luglio": 100, "Agosto": 0, "Settembre": 0, "Ottobre": 0, "Novembre": 0, "Dicembre": 0}}}, "risparmiStorico": {}, "settings": {"theme": "light", "accent": "#4f6df5", "bg": "#f5f6fa", "card": "#ffffff", "text": "#1f2430", "autoDark": false}};
 const STORAGE_KEY = 'risparmi_app_v2';
 const MONTH_NAMES = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
-let DATA = null, currentMonthIndex = 0, charts = {}, expenseFilter = {categoria:'', search:''}, lastDeletedExpense = null, undoTimeout = null;
+let DATA = null, currentMonthIndex = 0, charts = {}, expenseFilter = {categoria:'', search:''};
 
 const THEME_PRESETS = {
   chiaro:  {theme:'light', accent:'#4f6df5', bg:'#f5f6fa', card:'#ffffff', text:'#1f2430'},
@@ -167,199 +166,741 @@ const THEME_PRESETS = {
   violetto:{theme:'dark',  accent:'#9d6dff', bg:'#181423', card:'#241d33', text:'#f0edf8'}
 };
 
-function emptyMonths(tFisse=null, tPerc=null){return MONTH_NAMES.map(n=>({name:n,stipendio:0,entrateExtra:0,risparmioPercent:tPerc!=null?tPerc:20,fisse:tFisse?{...tFisse}:{auto:0,telefono:0,abbonamenti:0},speseViaggi:0,speseExtra:0,expenses:[]}));}
-function emptyPerAnno(){const o={};MONTH_NAMES.forEach(n=>o[n]=0);return o;}
+function emptyMonths(tFisse, tPerc){
+  if(tFisse===undefined) tFisse=null;
+  if(tPerc===undefined) tPerc=null;
+  return MONTH_NAMES.map(function(n){
+    return {name:n,stipendio:0,entrateExtra:0,risparmioPercent:(tPerc!=null?tPerc:20),fisse:(tFisse?Object.assign({},tFisse):{auto:0,telefono:0,abbonamenti:0}),speseViaggi:0,speseExtra:0,expenses:[]};
+  });
+}
+function emptyPerAnno(){var o={};MONTH_NAMES.forEach(function(n){o[n]=0;});return o;}
 
 function loadData(){
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if(raw){try{DATA=JSON.parse(raw);migrate();return;}catch(e){}}
-  DATA=JSON.parse(JSON.stringify(SEED));saveData();
+  var raw = localStorage.getItem(STORAGE_KEY);
+  if(raw){
+    try{ DATA = JSON.parse(raw); migrate(); return; }catch(e){}
+  }
+  DATA = JSON.parse(JSON.stringify(SEED));
+  saveData();
 }
 function migrate(){
-  if(!DATA.years){const y=2026;DATA.years={[y]:{months:DATA.months||[]}};DATA.currentYear=y;const inv=DATA.investimenti||{};DATA.investimenti={totalePrecedente:inv.totaleObiettivo||0,perAnno:{[y]:inv.valori||emptyPerAnno()}};delete DATA.months;}
-  if(!DATA.settings)DATA.settings=JSON.parse(JSON.stringify(SEED.settings));
-  if(!DATA.investimenti.perAnno)DATA.investimenti.perAnno={};
-  if(!DATA.investimenti.perAnno[DATA.currentYear])DATA.investimenti.perAnno[DATA.currentYear]=emptyPerAnno();
+  if(!DATA.years){
+    var y = 2026;
+    DATA.years = {}; DATA.years[y] = {months: DATA.months || []};
+    DATA.currentYear = y;
+    var inv = DATA.investimenti || {};
+    DATA.investimenti = {totalePrecedente: inv.totaleObiettivo || 0, perAnno:{}};
+    DATA.investimenti.perAnno[y] = inv.valori || emptyPerAnno();
+    delete DATA.months;
+  }
+  if(!DATA.settings) DATA.settings = JSON.parse(JSON.stringify(SEED.settings));
+  if(!DATA.investimenti.perAnno) DATA.investimenti.perAnno = {};
+  if(!DATA.investimenti.perAnno[DATA.currentYear]) DATA.investimenti.perAnno[DATA.currentYear] = emptyPerAnno();
   if(!DATA.risparmiStorico) DATA.risparmiStorico = {};
   saveData();
 }
-function saveData(){localStorage.setItem(STORAGE_KEY,JSON.stringify(DATA));}
-function getYearData(){if(!DATA.years[DATA.currentYear])DATA.years[DATA.currentYear]={months:emptyMonths()};return DATA.years[DATA.currentYear];}
-function getYearsList(){return Object.keys(DATA.years).map(Number).sort((a,b)=>a-b);}
+function saveData(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(DATA)); }
+function getYearData(){
+  if(!DATA.years[DATA.currentYear]) DATA.years[DATA.currentYear] = {months: emptyMonths()};
+  return DATA.years[DATA.currentYear];
+}
+function getYearsList(){ return Object.keys(DATA.years).map(Number).sort(function(a,b){return a-b;}); }
 function addNewYear(){
-  const years=getYearsList();const newYear=years.length?Math.max(...years)+1:(new Date()).getFullYear();
-  if(DATA.years[newYear]){toast('Anno già presente');DATA.currentYear=newYear;renderYearSelector();renderAll();return;}
-  const lastYear=years.length?Math.max(...years):null;let tFisse=null,tPerc=null;
-  if(lastYear){const dec=DATA.years[lastYear].months[11];tFisse=dec.fisse;tPerc=dec.risparmioPercent;}
-  DATA.years[newYear]={months:emptyMonths(tFisse,tPerc)};DATA.investimenti.perAnno[newYear]=emptyPerAnno();DATA.currentYear=newYear;saveData();renderYearSelector();currentMonthIndex=0;renderAll();toast('Anno '+newYear+' creato');
+  var years = getYearsList();
+  var newYear = years.length ? Math.max.apply(null, years) + 1 : (new Date()).getFullYear();
+  if(DATA.years[newYear]){
+    toast('Anno gia presente');
+    DATA.currentYear = newYear; renderYearSelector(); renderAll(); return;
+  }
+  var lastYear = years.length ? Math.max.apply(null, years) : null;
+  var tFisse = null, tPerc = null;
+  if(lastYear){
+    var dec = DATA.years[lastYear].months[11];
+    tFisse = dec.fisse; tPerc = dec.risparmioPercent;
+  }
+  DATA.years[newYear] = {months: emptyMonths(tFisse, tPerc)};
+  DATA.investimenti.perAnno[newYear] = emptyPerAnno();
+  DATA.currentYear = newYear;
+  saveData(); renderYearSelector(); currentMonthIndex = 0; renderAll();
+  toast('Anno ' + newYear + ' creato');
 }
-function renderYearSelector(){const sel=document.getElementById('yearSelector');const years=getYearsList();sel.innerHTML=years.map(y=>`<option value="${y}" ${y===DATA.currentYear?'selected':''}>${y}</option>`).join('');}
-function applyTheme(){const s=DATA.settings||SEED.settings;const r=document.documentElement.style;r.setProperty('--accent',s.accent);r.setProperty('--bg',s.bg);r.setProperty('--card',s.card);r.setProperty('--text',s.text);r.setProperty('--border',s.theme==='dark'?'rgba(255,255,255,.12)':'#e6e8ee');const m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',s.accent);if(s.autoDark){const isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;const preset=isDark?THEME_PRESETS.scuro:THEME_PRESETS.chiaro;Object.assign(s,preset);saveData();applyTheme();}}
-function toast(msg,undoFn=null){const t=document.getElementById('toast');const msgEl=document.getElementById('toastMsg');msgEl.textContent=msg;const undoBtn=document.getElementById('toastUndo');if(undoFn){undoBtn.style.display='inline-block';undoBtn.onclick=()=>{clearTimeout(undoTimeout);undoFn();t.classList.remove('show');};}else{undoBtn.style.display='none';}t.classList.add('show');if(undoFn){undoTimeout=setTimeout(()=>{t.classList.remove('show');},5000);}else{setTimeout(()=>t.classList.remove('show'),2500);}}
-function fmt(n){n=Number(n)||0;return n.toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';}
-function euroField(id,val,step){return `<div class="input-affix"><span class="affix">€</span><input type="number" step="${step||'0.01'}" id="${id}" value="${val}"></div>`;}
-function percentField(id,val){return `<div class="input-affix suffix"><span class="affix">%</span><input type="number" step="1" id="${id}" value="${val}"></div>`;}
-function nextExpenseId(){let max=0;Object.values(DATA.years).forEach(y=>y.months.forEach(m=>m.expenses.forEach(e=>{if(e.id>max)max=e.id;})));return max+1;}
+function renderYearSelector(){
+  var sel = document.getElementById('yearSelector');
+  var years = getYearsList();
+  sel.innerHTML = years.map(function(y){
+    return '<option value="'+y+'" '+(y===DATA.currentYear?'selected':'')+'>'+y+'</option>';
+  }).join('');
+}
+function applyTheme(){
+  var s = DATA.settings || SEED.settings;
+  var r = document.documentElement.style;
+  r.setProperty('--accent', s.accent);
+  r.setProperty('--bg', s.bg);
+  r.setProperty('--card', s.card);
+  r.setProperty('--text', s.text);
+  r.setProperty('--border', s.theme==='dark' ? 'rgba(255,255,255,.12)' : '#e6e8ee');
+  var m = document.querySelector('meta[name="theme-color"]');
+  if(m) m.setAttribute('content', s.accent);
+  if(s.autoDark){
+    var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var preset = isDark ? THEME_PRESETS.scuro : THEME_PRESETS.chiaro;
+    Object.assign(s, preset); saveData(); applyTheme();
+  }
+}
+var undoTimeout = null;
+function toast(msg, undoFn){
+  var t = document.getElementById('toast');
+  var msgEl = document.getElementById('toastMsg');
+  msgEl.textContent = msg;
+  var undoBtn = document.getElementById('toastUndo');
+  if(undoFn){
+    undoBtn.style.display = 'inline-block';
+    undoBtn.onclick = function(){ clearTimeout(undoTimeout); undoFn(); t.classList.remove('show'); };
+  } else {
+    undoBtn.style.display = 'none';
+  }
+  t.classList.add('show');
+  if(undoFn){
+    undoTimeout = setTimeout(function(){ t.classList.remove('show'); }, 5000);
+  } else {
+    setTimeout(function(){ t.classList.remove('show'); }, 2500);
+  }
+}
+function fmt(n){
+  n = Number(n) || 0;
+  return n.toLocaleString('it-IT', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' \u20ac';
+}
+function euroField(id, val, step){
+  return '<div class="input-affix"><span class="affix">\u20ac</span><input type="number" step="'+(step||'0.01')+'" id="'+id+'" value="'+val+'"></div>';
+}
+function percentField(id, val){
+  return '<div class="input-affix suffix"><span class="affix">%</span><input type="number" step="1" id="'+id+'" value="'+val+'"></div>';
+}
+function nextExpenseId(){
+  var max = 0;
+  Object.values(DATA.years).forEach(function(y){
+    y.months.forEach(function(m){
+      m.expenses.forEach(function(e){ if(e.id > max) max = e.id; });
+    });
+  });
+  return max + 1;
+}
 
-function computeMonth(m){const te=(Number(m.stipendio)||0)+(Number(m.entrateExtra)||0);const ris=te*(Number(m.risparmioPercent)||0)/100;const tf=(Number(m.fisse.auto)||0)+(Number(m.fisse.telefono)||0)+(Number(m.fisse.abbonamenti)||0);const bv=te-ris-tf;const sv=m.expenses.reduce((s,e)=>s+(Number(e.importo)||0),0);const vi=Number(m.speseViaggi)||0;const ex=Number(m.speseExtra)||0;const rr=ris+bv-sv-vi-ex;return{totaleEntrate:te,risparmi:ris,totaleFisse:tf,budgetVariabili:bv,speseVariabili:sv,viaggi:vi,extra:ex,risparmioReale:rr};}
-function categoryBreakdown(m){const map={};DATA.categories.forEach(c=>map[c]={tot:0,n:0});m.expenses.forEach(e=>{if(!map[e.categoria])map[e.categoria]={tot:0,n:0};map[e.categoria].tot+=Number(e.importo)||0;map[e.categoria].n+=1;});return map;}
-function isoWeek(ds){const d=new Date(ds+'T00:00:00');const t=new Date(d.valueOf());const dn=(d.getDay()+6)%7;t.setDate(t.getDate()-dn+3);const ft=new Date(t.getFullYear(),0,4);const diff=(t-ft)/86400000;return 1+Math.round(diff/7);}
-function weeklyControl(m,comp){const wks={};m.expenses.forEach(e=>{if(!e.data)return;const w=isoWeek(e.data);wks[w]=(wks[w]||0)+(Number(e.importo)||0);});const wns=Object.keys(wks).map(Number).sort((a,b)=>a-b);const n=wns.length||1;const bpw=comp.budgetVariabili/n;return wns.map(w=>{const sp=wks[w];return{settimana:w,budget:bpw,speso:sp,rimanente:bpw-sp};});}
-function filteredExpenses(m){return m.expenses.filter(e=>{if(expenseFilter.categoria&&e.categoria!==expenseFilter.categoria)return false;if(expenseFilter.search){const q=expenseFilter.search.toLowerCase();if(!(e.descrizione||'').toLowerCase().includes(q))return false;}return true;});}
+function computeMonth(m){
+  var te = (Number(m.stipendio)||0) + (Number(m.entrateExtra)||0);
+  var ris = te * (Number(m.risparmioPercent)||0) / 100;
+  var tf = (Number(m.fisse.auto)||0) + (Number(m.fisse.telefono)||0) + (Number(m.fisse.abbonamenti)||0);
+  var bv = te - ris - tf;
+  var sv = m.expenses.reduce(function(s,e){ return s + (Number(e.importo)||0); }, 0);
+  var vi = Number(m.speseViaggi)||0;
+  var ex = Number(m.speseExtra)||0;
+  var rr = ris + bv - sv - vi - ex;
+  return {totaleEntrate:te, risparmi:ris, totaleFisse:tf, budgetVariabili:bv, speseVariabili:sv, viaggi:vi, extra:ex, risparmioReale:rr};
+}
+function categoryBreakdown(m){
+  var map = {};
+  DATA.categories.forEach(function(c){ map[c] = {tot:0, n:0}; });
+  m.expenses.forEach(function(e){
+    if(!map[e.categoria]) map[e.categoria] = {tot:0, n:0};
+    map[e.categoria].tot += Number(e.importo)||0;
+    map[e.categoria].n += 1;
+  });
+  return map;
+}
+function isoWeek(ds){
+  var d = new Date(ds+'T00:00:00');
+  var t = new Date(d.valueOf());
+  var dn = (d.getDay()+6)%7;
+  t.setDate(t.getDate()-dn+3);
+  var ft = new Date(t.getFullYear(),0,4);
+  var diff = (t-ft)/86400000;
+  return 1+Math.round(diff/7);
+}
+function weeklyControl(m, comp){
+  var wks = {};
+  m.expenses.forEach(function(e){
+    if(!e.data) return;
+    var w = isoWeek(e.data);
+    wks[w] = (wks[w]||0) + (Number(e.importo)||0);
+  });
+  var wns = Object.keys(wks).map(Number).sort(function(a,b){return a-b;});
+  var n = wns.length || 1;
+  var bpw = comp.budgetVariabili / n;
+  return wns.map(function(w){
+    var sp = wks[w];
+    return {settimana:w, budget:bpw, speso:sp, rimanente:bpw-sp};
+  });
+}
+function filteredExpenses(m){
+  return m.expenses.filter(function(e){
+    if(expenseFilter.categoria && e.categoria !== expenseFilter.categoria) return false;
+    if(expenseFilter.search){
+      var q = expenseFilter.search.toLowerCase();
+      if(!(e.descrizione||'').toLowerCase().includes(q)) return false;
+    }
+    return true;
+  });
+}
 
-function switchTab(tabName){document.querySelectorAll('#mainNav button,#mobileNav button').forEach(b=>{b.classList.toggle('active',b.dataset.tab===tabName);});['dashboard','mesi','investimenti','impostazioni'].forEach(t=>{document.getElementById('tab-'+t).style.display=(t===tabName)?'block':'none';});renderAll();window.scrollTo({top:0,behavior:'instant'});}
-document.getElementById('mainNav').addEventListener('click',e=>{const btn=e.target.closest('button[data-tab]');if(!btn)return;switchTab(btn.dataset.tab);});
-document.getElementById('mobileNav').addEventListener('click',e=>{const btn=e.target.closest('button[data-tab]');if(!btn)return;switchTab(btn.dataset.tab);});
-document.getElementById('yearSelector').addEventListener('change',e=>{DATA.currentYear=Number(e.target.value);if(!DATA.investimenti.perAnno[DATA.currentYear])DATA.investimenti.perAnno[DATA.currentYear]=emptyPerAnno();currentMonthIndex=0;saveData();renderAll();});
-document.getElementById('btnAddYear').addEventListener('click',addNewYear);
+function switchTab(tabName){
+  document.querySelectorAll('#mainNav button,#mobileNav button').forEach(function(b){
+    b.classList.toggle('active', b.dataset.tab===tabName);
+  });
+  ['dashboard','mesi','investimenti','impostazioni'].forEach(function(t){
+    document.getElementById('tab-'+t).style.display = (t===tabName) ? 'block' : 'none';
+  });
+  renderAll();
+  window.scrollTo({top:0, behavior:'instant'});
+}
+document.getElementById('mainNav').addEventListener('click', function(e){
+  var btn = e.target.closest('button[data-tab]'); if(!btn) return; switchTab(btn.dataset.tab);
+});
+document.getElementById('mobileNav').addEventListener('click', function(e){
+  var btn = e.target.closest('button[data-tab]'); if(!btn) return; switchTab(btn.dataset.tab);
+});
+document.getElementById('yearSelector').addEventListener('change', function(e){
+  DATA.currentYear = Number(e.target.value);
+  if(!DATA.investimenti.perAnno[DATA.currentYear]) DATA.investimenti.perAnno[DATA.currentYear] = emptyPerAnno();
+  currentMonthIndex = 0; saveData(); renderAll();
+});
+document.getElementById('btnAddYear').addEventListener('click', addNewYear);
 
-// ---------- QUICK ADD SPESA ----------
 function openQuickAdd(){
-  const sel=document.getElementById('qa_cat');
-  sel.innerHTML=DATA.categories.map(c=>`<option value="${c}">${c}</option>`).join('');
-  document.getElementById('qa_data').value=new Date().toISOString().slice(0,10);
-  document.getElementById('qa_desc').value='';
-  document.getElementById('qa_imp').value=0;
+  var sel = document.getElementById('qa_cat');
+  sel.innerHTML = DATA.categories.map(function(c){ return '<option value="'+c+'">'+c+'</option>'; }).join('');
+  document.getElementById('qa_data').value = new Date().toISOString().slice(0,10);
+  document.getElementById('qa_desc').value = '';
+  document.getElementById('qa_imp').value = 0;
   document.getElementById('quickAddOverlay').classList.add('show');
-  setTimeout(()=>document.getElementById('qa_desc').focus(),50);
+  setTimeout(function(){ document.getElementById('qa_desc').focus(); }, 50);
 }
-function closeQuickAdd(){document.getElementById('quickAddOverlay').classList.remove('show');}
-document.getElementById('fabQuickAdd').addEventListener('click',openQuickAdd);
-document.getElementById('qa_cancel').addEventListener('click',closeQuickAdd);
-document.getElementById('quickAddOverlay').addEventListener('click',e=>{if(e.target.id==='quickAddOverlay')closeQuickAdd();});
-document.getElementById('btnToday').addEventListener('click',()=>{document.getElementById('qa_data').value=new Date().toISOString().slice(0,10);});
-document.getElementById('qa_save').addEventListener('click',()=>{
-  const dataStr=document.getElementById('qa_data').value||new Date().toISOString().slice(0,10);
-  const cat=document.getElementById('qa_cat').value;
-  const desc=document.getElementById('qa_desc').value;
-  const imp=Number(document.getElementById('qa_imp').value)||0;
-  const dateObj=new Date(dataStr+'T00:00:00');
-  const monthIdx=dateObj.getMonth();
-  const yd=getYearData();
-  const m=yd.months[monthIdx];
-  const newExp={id:nextExpenseId(),data:dataStr,categoria:cat,descrizione:desc,importo:imp};
+function closeQuickAdd(){ document.getElementById('quickAddOverlay').classList.remove('show'); }
+document.getElementById('fabQuickAdd').addEventListener('click', openQuickAdd);
+document.getElementById('qa_cancel').addEventListener('click', closeQuickAdd);
+document.getElementById('quickAddOverlay').addEventListener('click', function(e){
+  if(e.target.id==='quickAddOverlay') closeQuickAdd();
+});
+document.getElementById('btnToday').addEventListener('click', function(){
+  document.getElementById('qa_data').value = new Date().toISOString().slice(0,10);
+});
+document.getElementById('qa_save').addEventListener('click', function(){
+  var dataStr = document.getElementById('qa_data').value || new Date().toISOString().slice(0,10);
+  var cat = document.getElementById('qa_cat').value;
+  var desc = document.getElementById('qa_desc').value;
+  var imp = Number(document.getElementById('qa_imp').value) || 0;
+  var dateObj = new Date(dataStr+'T00:00:00');
+  var monthIdx = dateObj.getMonth();
+  var yd = getYearData();
+  var m = yd.months[monthIdx];
+  var newExp = {id:nextExpenseId(), data:dataStr, categoria:cat, descrizione:desc, importo:imp};
   m.expenses.push(newExp);
-  saveData();
-  closeQuickAdd();
-  toast('Spesa aggiunta a '+m.name+' '+DATA.currentYear,()=>{m.expenses=m.expenses.filter(e=>e.id!==newExp.id);saveData();renderAll();});
-  currentMonthIndex=monthIdx;
+  saveData(); closeQuickAdd();
+  toast('Spesa aggiunta a '+m.name+' '+DATA.currentYear, function(){
+    m.expenses = m.expenses.filter(function(e){ return e.id !== newExp.id; });
+    saveData(); renderAll();
+  });
+  currentMonthIndex = monthIdx;
   renderAll();
 });
 
-// ---------- RISPARMI STORICO ----------
 function risparmiStoricoCard(){
-  const rs=DATA.risparmiStorico;
-  const years=Object.keys(rs).map(Number).sort((a,b)=>a-b);
-  const totale=years.reduce((s,y)=>s+(Number(rs[y])||0),0);
-  return `<div class="card">
-    <h2>Anni precedenti (risparmi storici)</h2>
-    <p class="muted">Inserisci qui il risparmio totale di anni non tracciati in dettaglio nell'app, per avere il quadro completo del tuo risparmio nel tempo.</p>
-    <table class="card-table"><thead><tr><th>Anno</th><th>Risparmio</th><th></th></tr></thead>
-    <tbody>${years.map(y=>`<tr><td data-label="Anno">${y}</td><td data-label="Risparmio"><div class="input-affix"><span class="affix">€</span><input type="number" step="0.01" class="rs-val" data-year="${y}" value="${rs[y]}"></div></td><td data-label=""><button class="btn danger icon btnDelRs" data-year="${y}">✕</button></td></tr>`).join('') || '<tr><td colspan="3" class="muted">Nessun anno storico inserito</td></tr>'}</tbody></table>
-    <div class="top-actions" style="margin-top:12px;">
-      <button class="btn secondary" id="btnAddRsYear">+ Aggiungi anno storico</button>
-      <div class="stat" style="max-width:220px;"><div class="label">Totale storico</div><div class="value">${fmt(totale)}</div></div>
-    </div>
-  </div>`;
+  var rs = DATA.risparmiStorico;
+  var years = Object.keys(rs).map(Number).sort(function(a,b){return a-b;});
+  var totale = years.reduce(function(s,y){ return s + (Number(rs[y])||0); }, 0);
+  var rows = years.map(function(y){
+    return '<tr><td data-label="Anno">'+y+'</td><td data-label="Risparmio"><div class="input-affix"><span class="affix">\u20ac</span><input type="number" step="0.01" class="rs-val" data-year="'+y+'" value="'+rs[y]+'"></div></td><td data-label=""><button class="btn danger icon btnDelRs" data-year="'+y+'">\u2715</button></td></tr>';
+  }).join('') || '<tr><td colspan="3" class="muted">Nessun anno storico inserito</td></tr>';
+  return '<div class="card"><h2>Anni precedenti (risparmi storici)</h2>'+
+    '<p class="muted">Inserisci qui il risparmio totale di anni non tracciati in dettaglio nell\'app, per avere il quadro completo del tuo risparmio nel tempo.</p>'+
+    '<table class="card-table"><thead><tr><th>Anno</th><th>Risparmio</th><th></th></tr></thead><tbody>'+rows+'</tbody></table>'+
+    '<div class="top-actions" style="margin-top:12px;"><button class="btn secondary" id="btnAddRsYear">+ Aggiungi anno storico</button>'+
+    '<div class="stat" style="max-width:220px;"><div class="label">Totale storico</div><div class="value">'+fmt(totale)+'</div></div></div></div>';
 }
 function bindRisparmiStoricoEvents(){
-  const btn=document.getElementById('btnAddRsYear');
-  if(btn) btn.addEventListener('click',()=>{
-    const yearStr=prompt('Inserisci l\'anno da aggiungere (es. 2024):');
+  var btn = document.getElementById('btnAddRsYear');
+  if(btn) btn.addEventListener('click', function(){
+    var yearStr = prompt('Inserisci l\'anno da aggiungere (es. 2024):');
     if(!yearStr) return;
-    const year=parseInt(yearStr,10);
-    if(!year || DATA.risparmiStorico[year]!=null){ toast('Anno non valido o già presente'); return; }
-    DATA.risparmiStorico[year]=0;
-    saveData();
-    renderDashboard();
+    var year = parseInt(yearStr, 10);
+    if(!year || DATA.risparmiStorico[year] != null){ toast('Anno non valido o gia presente'); return; }
+    DATA.risparmiStorico[year] = 0;
+    saveData(); renderDashboard();
   });
-  document.querySelectorAll('.rs-val').forEach(inp=>{
-    inp.addEventListener('input',e=>{DATA.risparmiStorico[e.target.dataset.year]=Number(e.target.value)||0;saveData();});
-    inp.addEventListener('change',renderDashboard);
+  document.querySelectorAll('.rs-val').forEach(function(inp){
+    inp.addEventListener('input', function(e){
+      DATA.risparmiStorico[e.target.dataset.year] = Number(e.target.value) || 0;
+      saveData();
+    });
+    inp.addEventListener('change', renderDashboard);
   });
-  document.querySelectorAll('.btnDelRs').forEach(b=>b.addEventListener('click',()=>{
-    if(confirm('Eliminare l\'anno storico '+b.dataset.year+'?')){delete DATA.risparmiStorico[b.dataset.year];saveData();renderDashboard();}
-  }));
+  document.querySelectorAll('.btnDelRs').forEach(function(b){
+    b.addEventListener('click', function(){
+      if(confirm('Eliminare l\'anno storico '+b.dataset.year+'?')){
+        delete DATA.risparmiStorico[b.dataset.year];
+        saveData(); renderDashboard();
+      }
+    });
+  });
 }
 
-// ---------- DASHBOARD ----------
 function renderDashboard(){
-  const el=document.getElementById('tab-dashboard');const yd=getYearData();let tE=0,tR=0,tS=0,tRR=0,cum=0;
-  const monthly=yd.months.map(m=>{const c=computeMonth(m);tE+=c.totaleEntrate;tR+=c.risparmi;tS+=c.speseVariabili+c.viaggi+c.extra;tRR+=c.risparmioReale;cum+=c.risparmioReale;return{name:m.name,c,cum};});
-  const catTot={};DATA.categories.forEach(c=>catTot[c]=0);yd.months.forEach(m=>m.expenses.forEach(e=>{catTot[e.categoria]=(catTot[e.categoria]||0)+(Number(e.importo)||0);}));
-  el.innerHTML=`<div class="grid cols-4"><div class="stat"><div class="label">Entrate Totali ${DATA.currentYear}</div><div class="value">${fmt(tE)}</div></div><div class="stat"><div class="label">Risparmi Pianificati</div><div class="value">${fmt(tR)}</div></div><div class="stat"><div class="label">Spese Totali</div><div class="value">${fmt(tS)}</div></div><div class="stat"><div class="label">Risparmio Reale</div><div class="value ${tRR>=0?'pos':'neg'}">${fmt(tRR)}</div></div></div><div class="grid cols-2"><div class="card"><h2>Entrate vs Spese</h2><div class="chart-wrap"><canvas id="chartBar"></canvas></div></div><div class="card"><h2>Risparmio reale</h2><div class="chart-wrap"><canvas id="chartLine"></canvas></div></div></div><div class="grid cols-2"><div class="card"><h2>Risparmio cumulato</h2><div class="chart-wrap"><canvas id="chartCum"></canvas></div></div><div class="card"><h2>Spese per categoria</h2><div class="chart-wrap"><canvas id="chartPie"></canvas></div></div></div><div class="card"><h2>Riepilogo ${DATA.currentYear}</h2><div style="max-height:320px;overflow:auto;"><table><thead><tr><th>Mese</th><th>Entrate</th><th>Spese</th><th>Risp. Reale</th><th>Cumulato</th></tr></thead><tbody>${monthly.map(x=>`<tr><td>${x.name}</td><td>${fmt(x.c.totaleEntrate)}</td><td>${fmt(x.c.speseVariabili+x.c.viaggi+x.c.extra)}</td><td class="${x.c.risparmioReale>=0?'pos':'neg'}">${fmt(x.c.risparmioReale)}</td><td class="${x.cum>=0?'pos':'neg'}">${fmt(x.cum)}</td></tr>`).join('')}</tbody></table></div></div>${risparmiStoricoCard()}`;
-  const labels=monthly.map(x=>x.name.slice(0,3));destroyCharts();
-  charts.bar=new Chart(document.getElementById('chartBar'),{type:'bar',data:{labels,datasets:[{label:'Entrate',data:monthly.map(x=>x.c.totaleEntrate),backgroundColor:getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()||'#4f6df5'},{label:'Spese',data:monthly.map(x=>x.c.speseVariabili+x.c.viaggi+x.c.extra+x.c.totaleFisse),backgroundColor:'#e0463e'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:(ctx)=>ctx.dataset.label+': '+fmt(ctx.raw)}}}}});
-  charts.line=new Chart(document.getElementById('chartLine'),{type:'line',data:{labels,datasets:[{label:'Risparmio reale',data:monthly.map(x=>x.c.risparmioReale),borderColor:'#1f9d55',backgroundColor:'rgba(31,157,85,.1)',fill:true,tension:.3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:(ctx)=>'Risparmio: '+fmt(ctx.raw)}}}}});
-  charts.cum=new Chart(document.getElementById('chartCum'),{type:'line',data:{labels,datasets:[{label:'Cumulato',data:monthly.map(x=>x.cum),borderColor:'#f5a623',backgroundColor:'rgba(245,166,35,.15)',fill:true,tension:.3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:(ctx)=>'Cumulato: '+fmt(ctx.raw)}}}}});
-  const cl=Object.keys(catTot).filter(k=>catTot[k]>0);const totCat=cl.reduce((s,k)=>s+catTot[k],0);charts.pie=new Chart(document.getElementById('chartPie'),{type:'doughnut',data:{labels:cl,datasets:[{data:cl.map(k=>catTot[k]),backgroundColor:['#4f6df5','#e0463e','#f5a623','#1f9d55','#8e44ad','#16a3b6','#e67e22','#7f8c8d','#c0392b']}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:(ctx)=>ctx.label+': '+fmt(ctx.raw)+' ('+((ctx.raw/totCat)*100).toFixed(1)+'%)'}}}}});
+  var el = document.getElementById('tab-dashboard');
+  var yd = getYearData();
+  var tE=0, tR=0, tS=0, tRR=0, cum=0;
+  var monthly = yd.months.map(function(m){
+    var c = computeMonth(m);
+    tE += c.totaleEntrate; tR += c.risparmi; tS += c.speseVariabili + c.viaggi + c.extra;
+    tRR += c.risparmioReale; cum += c.risparmioReale;
+    return {name:m.name, c:c, cum:cum};
+  });
+  var catTot = {};
+  DATA.categories.forEach(function(c){ catTot[c] = 0; });
+  yd.months.forEach(function(m){
+    m.expenses.forEach(function(e){ catTot[e.categoria] = (catTot[e.categoria]||0) + (Number(e.importo)||0); });
+  });
+  var rows = monthly.map(function(x){
+    return '<tr><td>'+x.name+'</td><td>'+fmt(x.c.totaleEntrate)+'</td><td>'+fmt(x.c.speseVariabili+x.c.viaggi+x.c.extra)+'</td>'+
+      '<td class="'+(x.c.risparmioReale>=0?'pos':'neg')+'">'+fmt(x.c.risparmioReale)+'</td>'+
+      '<td class="'+(x.cum>=0?'pos':'neg')+'">'+fmt(x.cum)+'</td></tr>';
+  }).join('');
+  el.innerHTML =
+    '<div class="grid cols-4">'+
+      '<div class="stat"><div class="label">Entrate Totali '+DATA.currentYear+'</div><div class="value">'+fmt(tE)+'</div></div>'+
+      '<div class="stat"><div class="label">Risparmi Pianificati</div><div class="value">'+fmt(tR)+'</div></div>'+
+      '<div class="stat"><div class="label">Spese Totali</div><div class="value">'+fmt(tS)+'</div></div>'+
+      '<div class="stat"><div class="label">Risparmio Reale</div><div class="value '+(tRR>=0?'pos':'neg')+'">'+fmt(tRR)+'</div></div>'+
+    '</div>'+
+    '<div class="grid cols-2">'+
+      '<div class="card"><h2>Entrate vs Spese</h2><div class="chart-wrap"><canvas id="chartBar"></canvas></div></div>'+
+      '<div class="card"><h2>Risparmio reale</h2><div class="chart-wrap"><canvas id="chartLine"></canvas></div></div>'+
+    '</div>'+
+    '<div class="grid cols-2">'+
+      '<div class="card"><h2>Risparmio cumulato</h2><div class="chart-wrap"><canvas id="chartCum"></canvas></div></div>'+
+      '<div class="card"><h2>Spese per categoria</h2><div class="chart-wrap"><canvas id="chartPie"></canvas></div></div>'+
+    '</div>'+
+    '<div class="card"><h2>Riepilogo '+DATA.currentYear+'</h2><div style="max-height:320px;overflow:auto;"><table><thead><tr><th>Mese</th><th>Entrate</th><th>Spese</th><th>Risp. Reale</th><th>Cumulato</th></tr></thead><tbody>'+rows+'</tbody></table></div></div>'+
+    risparmiStoricoCard();
+  var labels = monthly.map(function(x){ return x.name.slice(0,3); });
+  destroyCharts();
+  var accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#4f6df5';
+  charts.bar = new Chart(document.getElementById('chartBar'), {
+    type:'bar',
+    data:{labels:labels, datasets:[
+      {label:'Entrate', data:monthly.map(function(x){return x.c.totaleEntrate;}), backgroundColor:accentColor},
+      {label:'Spese', data:monthly.map(function(x){return x.c.speseVariabili+x.c.viaggi+x.c.extra+x.c.totaleFisse;}), backgroundColor:'#e0463e'}
+    ]},
+    options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}, tooltip:{callbacks:{label:function(ctx){return ctx.dataset.label+': '+fmt(ctx.raw);}}}}}
+  });
+  charts.line = new Chart(document.getElementById('chartLine'), {
+    type:'line',
+    data:{labels:labels, datasets:[{label:'Risparmio reale', data:monthly.map(function(x){return x.c.risparmioReale;}), borderColor:'#1f9d55', backgroundColor:'rgba(31,157,85,.1)', fill:true, tension:.3}]},
+    options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}, tooltip:{callbacks:{label:function(ctx){return 'Risparmio: '+fmt(ctx.raw);}}}}}
+  });
+  charts.cum = new Chart(document.getElementById('chartCum'), {
+    type:'line',
+    data:{labels:labels, datasets:[{label:'Cumulato', data:monthly.map(function(x){return x.cum;}), borderColor:'#f5a623', backgroundColor:'rgba(245,166,35,.15)', fill:true, tension:.3}]},
+    options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}, tooltip:{callbacks:{label:function(ctx){return 'Cumulato: '+fmt(ctx.raw);}}}}}
+  });
+  var cl = Object.keys(catTot).filter(function(k){ return catTot[k] > 0; });
+  var totCat = cl.reduce(function(s,k){ return s+catTot[k]; }, 0);
+  charts.pie = new Chart(document.getElementById('chartPie'), {
+    type:'doughnut',
+    data:{labels:cl, datasets:[{data:cl.map(function(k){return catTot[k];}), backgroundColor:['#4f6df5','#e0463e','#f5a623','#1f9d55','#8e44ad','#16a3b6','#e67e22','#7f8c8d','#c0392b']}]},
+    options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{position:'bottom'}, tooltip:{callbacks:{label:function(ctx){return ctx.label+': '+fmt(ctx.raw)+' ('+((ctx.raw/totCat)*100).toFixed(1)+'%)';}}}}}
+  });
   bindRisparmiStoricoEvents();
 }
-function destroyCharts(){Object.values(charts).forEach(c=>c&&c.destroy());charts={};}
+function destroyCharts(){
+  Object.values(charts).forEach(function(c){ if(c) c.destroy(); });
+  charts = {};
+}
 
-// ---------- MESI ----------
+function expenseRow(e){
+  var opts = DATA.categories.map(function(c){ return '<option value="'+c+'" '+(c===e.categoria?'selected':'')+'>'+c+'</option>'; }).join('');
+  var descEsc = (e.descrizione||'').replace(/"/g,'&quot;');
+  return '<tr data-id="'+e.id+'">'+
+    '<td data-label="Data"><input type="date" class="e-data" value="'+(e.data||'')+'"></td>'+
+    '<td data-label="Categoria"><select class="e-cat">'+opts+'</select></td>'+
+    '<td data-label="Descrizione"><input type="text" class="e-desc" value="'+descEsc+'" placeholder="es. Cena da Anna"></td>'+
+    '<td data-label="Importo"><div class="input-affix"><span class="affix">\u20ac</span><input type="number" step="0.01" class="e-imp" value="'+e.importo+'"></div></td>'+
+    '<td data-label=""><div class="row-actions"><button class="btn secondary icon btnDupExp" title="Duplica">\u29c9</button><button class="btn danger icon btnDelExp" title="Elimina">\u2715</button></div></td>'+
+  '</tr>';
+}
+
 function renderMesi(){
-  const el=document.getElementById('tab-mesi');const yd=getYearData();const m=yd.months[currentMonthIndex];const comp=computeMonth(m);const catB=categoryBreakdown(m);const weekly=weeklyControl(m,comp);const vis=filteredExpenses(m).sort((a,b)=>new Date(b.data)-new Date(a.data));
-  const budgetPerc=comp.budgetVariabili>0?(comp.speseVariabili/comp.budgetVariabili)*100:0;
-  el.innerHTML=`<div class="month-tabs">${yd.months.map((mm,i)=>{const mc=computeMonth(mm);const isComp=mc.risparmioReale>=0&&mc.speseVariabili<=mc.budgetVariabili;return `<button data-mi="${i}" class="${i===currentMonthIndex?'active':''}${isComp?' completed':''}">${mm.name}${isComp?' ✓':''}</button>`}).join('')}</div><div class="grid cols-2"><div class="card"><h2>Configurazione ${m.name} ${DATA.currentYear}</h2><div class="grid cols-2"><div class="field"><label>Stipendio</label>${euroField('f_stipendio',m.stipendio)}</div><div class="field"><label>Entrate extra</label>${euroField('f_extra',m.entrateExtra)}</div><div class="field"><label>Risparmio %</label>${percentField('f_percent',m.risparmioPercent)}</div><div class="field"><label>Auto</label>${euroField('f_auto',m.fisse.auto)}</div><div class="field"><label>Telefono</label>${euroField('f_tel',m.fisse.telefono)}</div><div class="field"><label>Abbonamenti</label>${euroField('f_abb',m.fisse.abbonamenti)}</div><div class="field"><label>Spese viaggi</label>${euroField('f_viaggi',m.speseViaggi)}</div><div class="field"><label>Spese extra</label>${euroField('f_speseextra',m.speseExtra)}</div></div><button class="btn" id="btnSaveConfig">Salva configurazione</button></div><div class="card"><h2>Riepilogo calcolato</h2><div class="grid cols-2"><div class="stat"><div class="label">Totale Entrate</div><div class="value">${fmt(comp.totaleEntrate)}</div></div><div class="stat"><div class="label">Risparmi</div><div class="value">${fmt(comp.risparmi)}</div></div><div class="stat"><div class="label">Spese Fisse</div><div class="value">${fmt(comp.totaleFisse)}</div></div><div class="stat"><div class="label">Budget Variabili</div><div class="value">${fmt(comp.budgetVariabili)}</div></div><div class="stat"><div class="label">Spese Variabili</div><div class="value">${fmt(comp.speseVariabili)}</div></div><div class="stat"><div class="label">Risparmio Reale</div><div class="value ${comp.risparmioReale>=0?'pos':'neg'}">${fmt(comp.risparmioReale)}</div></div></div><div class="field" style="margin-top:14px;"><label>Utilizzo budget variabili</label><div class="progress-bar"><div class="fill" style="width:${Math.min(budgetPerc,100).toFixed(1)}%;background:${budgetPerc>90?'var(--red)':budgetPerc>70?'var(--accent)':'var(--green)'}"></div></div><div class="muted" style="margin-top:4px;">${fmt(comp.speseVariabili)} di ${fmt(comp.budgetVariabili)} (${budgetPerc.toFixed(1)}%)</div></div></div></div><div class="grid cols-2"><div class="card"><h2>Analisi categorie</h2><table><thead><tr><th>Categoria</th><th>Speso</th><th>N</th></tr></thead><tbody>${Object.keys(catB).map(c=>`<tr><td>${c}</td><td>${fmt(catB[c].tot)}</td><td>${catB[c].n}</td></tr>`).join('')}</tbody></table></div><div class="card"><h2>Controllo settimanale</h2><table><thead><tr><th>Sett.</th><th>Budget</th><th>Speso</th><th>Rimanente</th><th>Status</th></tr></thead><tbody>${weekly.map(w=>`<tr><td>${w.settimana}</td><td>${fmt(w.budget)}</td><td>${fmt(w.speso)}</td><td class="${w.rimanente>=0?'pos':'neg'}">${fmt(w.rimanente)}</td><td>${w.rimanente>=0?'<span class="badge ok">OK</span>':'<span class="badge over">Superato</span>'}</td></tr>`).join('')||'<tr><td colspan=5 class="muted">Nessuna spesa</td></tr>'}</tbody></table></div></div><div class="card"><h2>Registro spese ${m.name} ${DATA.currentYear}</h2><div class="top-actions"><div class="filters"><div class="field"><label>Filtra categoria</label><select id="filterCat"><option value="">Tutte</option>${DATA.categories.map(c=>`<option value="${c}" ${expenseFilter.categoria===c?'selected':''}>${c}</option>`).join('')}</select></div><div class="field"><label>Cerca</label><input type="text" id="filterSearch" value="${expenseFilter.search}" placeholder="es. Cena da Anna..."></div></div><button class="btn" id="btnAddExpense">+ Aggiungi spesa</button></div><div class="muted" style="margin-bottom:10px;">${vis.length} spese • Totale: ${fmt(vis.reduce((s,e)=>s+(Number(e.importo)||0),0))}</div><div style="overflow-x:auto;"><table class="expenses-table card-table"><thead><tr><th>Data</th><th>Categoria</th><th>Descrizione</th><th>Importo</th><th></th></tr></thead><tbody id="expensesBody">${vis.map(e=>expenseRow(e)).join('')||'<tr><td colspan=5 class="muted">Nessuna spesa</td></tr>'}</tbody></table></div></div>`;
-  document.querySelectorAll('.month-tabs button').forEach(b=>b.addEventListener('click',()=>{currentMonthIndex=Number(b.dataset.mi);expenseFilter={categoria:'',search:''};renderMesi();}));
-  document.getElementById('btnSaveConfig').addEventListener('click',()=>{m.stipendio=Number(document.getElementById('f_stipendio').value)||0;m.entrateExtra=Number(document.getElementById('f_extra').value)||0;m.risparmioPercent=Number(document.getElementById('f_percent').value)||0;m.fisse.auto=Number(document.getElementById('f_auto').value)||0;m.fisse.telefono=Number(document.getElementById('f_tel').value)||0;m.fisse.abbonamenti=Number(document.getElementById('f_abb').value)||0;m.speseViaggi=Number(document.getElementById('f_viaggi').value)||0;m.speseExtra=Number(document.getElementById('f_speseextra').value)||0;saveData();toast('Configurazione salvata');renderMesi();});
-  document.getElementById('btnAddExpense').addEventListener('click',()=>{const today=new Date().toISOString().slice(0,10);m.expenses.push({id:nextExpenseId(),data:today,categoria:DATA.categories[0],descrizione:'',importo:0});saveData();renderMesi();});
-  document.getElementById('filterCat').addEventListener('change',e=>{expenseFilter.categoria=e.target.value;renderMesi();});
-  document.getElementById('filterSearch').addEventListener('input',e=>{expenseFilter.search=e.target.value;renderMesi();});
-  document.getElementById('expensesBody').addEventListener('input',e=>{const tr=e.target.closest('tr');if(!tr)return;const id=Number(tr.dataset.id);const exp=m.expenses.find(x=>x.id===id);if(!exp)return;if(e.target.classList.contains('e-data'))exp.data=e.target.value;if(e.target.classList.contains('e-cat'))exp.categoria=e.target.value;if(e.target.classList.contains('e-desc'))exp.descrizione=e.target.value;if(e.target.classList.contains('e-imp'))exp.importo=Number(e.target.value)||0;saveData();renderMesi();});
-  document.getElementById('expensesBody').addEventListener('change',e=>{if(e.target.classList.contains('e-imp')||e.target.classList.contains('e-cat'))renderMesi();});
-  document.getElementById('expensesBody').addEventListener('click',e=>{const delBtn=e.target.closest('.btnDelExp');const dupBtn=e.target.closest('.btnDupExp');if(delBtn){const tr=delBtn.closest('tr');const id=Number(tr.dataset.id);const exp=m.expenses.find(x=>x.id===id);if(!exp)return;m.expenses=m.expenses.filter(x=>x.id!==id);saveData();toast('Spesa eliminata',()=>{m.expenses.push(exp);saveData();renderMesi();});renderMesi();}if(dupBtn){const tr=dupBtn.closest('tr');const id=Number(tr.dataset.id);const orig=m.expenses.find(x=>x.id===id);if(!orig)return;const copy=Object.assign({},orig,{id:nextExpenseId(),data:new Date().toISOString().slice(0,10)});m.expenses.push(copy);saveData();toast('Spesa duplicata');renderMesi();}});
-}
-function expenseRow(e){return `<tr data-id="${e.id}"><td data-label="Data"><input type="date" class="e-data" value="${e.data||''}"></td><td data-label="Categoria"><select class="e-cat">${DATA.categories.map(c=>`<option value="${c}" ${c===e.categoria?'selected':''}>${c}</option>`).join('')}</select></td><td data-label="Descrizione"><input type="text" class="e-desc" value="${(e.descrizione||'').replace(/"/g,'&quot;')}" placeholder="es. Cena da Anna"></td><td data-label="Importo"><div class="input-affix"><span class="affix">€</span><input type="number" step="0.01" class="e-imp" value="${e.importo}"></div></td><td data-label=""><div class="row-actions"><button class="btn secondary icon btnDupExp" title="Duplica">⧉</button><button class="btn danger icon btnDelExp" title="Elimina">✕</button></div></td></tr>`;}
+  var el = document.getElementById('tab-mesi');
+  var yd = getYearData();
+  var m = yd.months[currentMonthIndex];
+  var comp = computeMonth(m);
+  var catB = categoryBreakdown(m);
+  var weekly = weeklyControl(m, comp);
+  var vis = filteredExpenses(m).sort(function(a,b){ return new Date(b.data) - new Date(a.data); });
+  var budgetPerc = comp.budgetVariabili > 0 ? (comp.speseVariabili/comp.budgetVariabili)*100 : 0;
 
-// ---------- INVESTIMENTI ----------
+  var tabsHtml = yd.months.map(function(mm, i){
+    var mc = computeMonth(mm);
+    var isComp = mc.risparmioReale >= 0 && mc.speseVariabili <= mc.budgetVariabili;
+    return '<button data-mi="'+i+'" class="'+(i===currentMonthIndex?'active':'')+(isComp?' completed':'')+'">'+mm.name+(isComp?' \u2713':'')+'</button>';
+  }).join('');
+
+  var catRows = Object.keys(catB).map(function(c){
+    return '<tr><td>'+c+'</td><td>'+fmt(catB[c].tot)+'</td><td>'+catB[c].n+'</td></tr>';
+  }).join('');
+
+  var weekRows = weekly.map(function(w){
+    return '<tr><td>'+w.settimana+'</td><td>'+fmt(w.budget)+'</td><td>'+fmt(w.speso)+'</td>'+
+      '<td class="'+(w.rimanente>=0?'pos':'neg')+'">'+fmt(w.rimanente)+'</td>'+
+      '<td>'+(w.rimanente>=0?'<span class="badge ok">OK</span>':'<span class="badge over">Superato</span>')+'</td></tr>';
+  }).join('') || '<tr><td colspan="5" class="muted">Nessuna spesa</td></tr>';
+
+  var catOptions = '<option value="">Tutte</option>' + DATA.categories.map(function(c){
+    return '<option value="'+c+'" '+(expenseFilter.categoria===c?'selected':'')+'>'+c+'</option>';
+  }).join('');
+
+  var expRows = vis.map(expenseRow).join('') || '<tr><td colspan="5" class="muted">Nessuna spesa</td></tr>';
+  var totVis = vis.reduce(function(s,e){ return s+(Number(e.importo)||0); }, 0);
+
+  el.innerHTML =
+    '<div class="month-tabs">'+tabsHtml+'</div>'+
+    '<div class="grid cols-2">'+
+      '<div class="card"><h2>Configurazione '+m.name+' '+DATA.currentYear+'</h2>'+
+        '<div class="grid cols-2">'+
+          '<div class="field"><label>Stipendio</label>'+euroField('f_stipendio', m.stipendio)+'</div>'+
+          '<div class="field"><label>Entrate extra</label>'+euroField('f_extra', m.entrateExtra)+'</div>'+
+          '<div class="field"><label>Risparmio %</label>'+percentField('f_percent', m.risparmioPercent)+'</div>'+
+          '<div class="field"><label>Auto</label>'+euroField('f_auto', m.fisse.auto)+'</div>'+
+          '<div class="field"><label>Telefono</label>'+euroField('f_tel', m.fisse.telefono)+'</div>'+
+          '<div class="field"><label>Abbonamenti</label>'+euroField('f_abb', m.fisse.abbonamenti)+'</div>'+
+          '<div class="field"><label>Spese viaggi</label>'+euroField('f_viaggi', m.speseViaggi)+'</div>'+
+          '<div class="field"><label>Spese extra</label>'+euroField('f_speseextra', m.speseExtra)+'</div>'+
+        '</div><button class="btn" id="btnSaveConfig">Salva configurazione</button>'+
+      '</div>'+
+      '<div class="card"><h2>Riepilogo calcolato</h2>'+
+        '<div class="grid cols-2">'+
+          '<div class="stat"><div class="label">Totale Entrate</div><div class="value">'+fmt(comp.totaleEntrate)+'</div></div>'+
+          '<div class="stat"><div class="label">Risparmi</div><div class="value">'+fmt(comp.risparmi)+'</div></div>'+
+          '<div class="stat"><div class="label">Spese Fisse</div><div class="value">'+fmt(comp.totaleFisse)+'</div></div>'+
+          '<div class="stat"><div class="label">Budget Variabili</div><div class="value">'+fmt(comp.budgetVariabili)+'</div></div>'+
+          '<div class="stat"><div class="label">Spese Variabili</div><div class="value">'+fmt(comp.speseVariabili)+'</div></div>'+
+          '<div class="stat"><div class="label">Risparmio Reale</div><div class="value '+(comp.risparmioReale>=0?'pos':'neg')+'">'+fmt(comp.risparmioReale)+'</div></div>'+
+        '</div>'+
+        '<div class="field" style="margin-top:14px;"><label>Utilizzo budget variabili</label>'+
+          '<div class="progress-bar"><div class="fill" style="width:'+Math.min(budgetPerc,100).toFixed(1)+'%;background:'+(budgetPerc>90?'var(--red)':budgetPerc>70?'var(--accent)':'var(--green)')+'"></div></div>'+
+          '<div class="muted" style="margin-top:4px;">'+fmt(comp.speseVariabili)+' di '+fmt(comp.budgetVariabili)+' ('+budgetPerc.toFixed(1)+'%)</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="grid cols-2">'+
+      '<div class="card"><h2>Analisi categorie</h2><table><thead><tr><th>Categoria</th><th>Speso</th><th>N</th></tr></thead><tbody>'+catRows+'</tbody></table></div>'+
+      '<div class="card"><h2>Controllo settimanale</h2><table><thead><tr><th>Sett.</th><th>Budget</th><th>Speso</th><th>Rimanente</th><th>Status</th></tr></thead><tbody>'+weekRows+'</tbody></table></div>'+
+    '</div>'+
+    '<div class="card"><h2>Registro spese '+m.name+' '+DATA.currentYear+'</h2>'+
+      '<div class="top-actions"><div class="filters">'+
+        '<div class="field"><label>Filtra categoria</label><select id="filterCat">'+catOptions+'</select></div>'+
+        '<div class="field"><label>Cerca</label><input type="text" id="filterSearch" value="'+expenseFilter.search+'" placeholder="es. Cena da Anna..."></div>'+
+      '</div><button class="btn" id="btnAddExpense">+ Aggiungi spesa</button></div>'+
+      '<div class="muted" style="margin-bottom:10px;">'+vis.length+' spese \u2022 Totale: '+fmt(totVis)+'</div>'+
+      '<div style="overflow-x:auto;"><table class="expenses-table card-table"><thead><tr><th>Data</th><th>Categoria</th><th>Descrizione</th><th>Importo</th><th></th></tr></thead><tbody id="expensesBody">'+expRows+'</tbody></table></div>'+
+    '</div>';
+
+  document.querySelectorAll('.month-tabs button').forEach(function(b){
+    b.addEventListener('click', function(){
+      currentMonthIndex = Number(b.dataset.mi);
+      expenseFilter = {categoria:'', search:''};
+      renderMesi();
+    });
+  });
+  document.getElementById('btnSaveConfig').addEventListener('click', function(){
+    m.stipendio = Number(document.getElementById('f_stipendio').value)||0;
+    m.entrateExtra = Number(document.getElementById('f_extra').value)||0;
+    m.risparmioPercent = Number(document.getElementById('f_percent').value)||0;
+    m.fisse.auto = Number(document.getElementById('f_auto').value)||0;
+    m.fisse.telefono = Number(document.getElementById('f_tel').value)||0;
+    m.fisse.abbonamenti = Number(document.getElementById('f_abb').value)||0;
+    m.speseViaggi = Number(document.getElementById('f_viaggi').value)||0;
+    m.speseExtra = Number(document.getElementById('f_speseextra').value)||0;
+    saveData(); toast('Configurazione salvata'); renderMesi();
+  });
+  document.getElementById('btnAddExpense').addEventListener('click', function(){
+    var today = new Date().toISOString().slice(0,10);
+    m.expenses.push({id:nextExpenseId(), data:today, categoria:DATA.categories[0], descrizione:'', importo:0});
+    saveData(); renderMesi();
+  });
+  document.getElementById('filterCat').addEventListener('change', function(e){ expenseFilter.categoria = e.target.value; renderMesi(); });
+  document.getElementById('filterSearch').addEventListener('input', function(e){ expenseFilter.search = e.target.value; renderMesi(); });
+  document.getElementById('expensesBody').addEventListener('input', function(e){
+    var tr = e.target.closest('tr'); if(!tr) return;
+    var id = Number(tr.dataset.id);
+    var exp = m.expenses.find(function(x){ return x.id===id; });
+    if(!exp) return;
+    if(e.target.classList.contains('e-data')) exp.data = e.target.value;
+    if(e.target.classList.contains('e-cat')) exp.categoria = e.target.value;
+    if(e.target.classList.contains('e-desc')) exp.descrizione = e.target.value;
+    if(e.target.classList.contains('e-imp')) exp.importo = Number(e.target.value)||0;
+    saveData(); renderMesi();
+  });
+  document.getElementById('expensesBody').addEventListener('change', function(e){
+    if(e.target.classList.contains('e-imp') || e.target.classList.contains('e-cat')) renderMesi();
+  });
+  document.getElementById('expensesBody').addEventListener('click', function(e){
+    var delBtn = e.target.closest('.btnDelExp');
+    var dupBtn = e.target.closest('.btnDupExp');
+    if(delBtn){
+      var tr = delBtn.closest('tr');
+      var id = Number(tr.dataset.id);
+      var exp = m.expenses.find(function(x){ return x.id===id; });
+      if(!exp) return;
+      m.expenses = m.expenses.filter(function(x){ return x.id!==id; });
+      saveData();
+      toast('Spesa eliminata', function(){ m.expenses.push(exp); saveData(); renderMesi(); });
+      renderMesi();
+    }
+    if(dupBtn){
+      var tr2 = dupBtn.closest('tr');
+      var id2 = Number(tr2.dataset.id);
+      var orig = m.expenses.find(function(x){ return x.id===id2; });
+      if(!orig) return;
+      var copy = Object.assign({}, orig, {id:nextExpenseId(), data:new Date().toISOString().slice(0,10)});
+      m.expenses.push(copy);
+      saveData(); toast('Spesa duplicata'); renderMesi();
+    }
+  });
+}
+
 function renderInvestimenti(){
-  const el=document.getElementById('tab-investimenti');const inv=DATA.investimenti;if(!inv.perAnno[DATA.currentYear])inv.perAnno[DATA.currentYear]=emptyPerAnno();const av=inv.perAnno[DATA.currentYear];const tAC=MONTH_NAMES.reduce((s,mn)=>s+(Number(av[mn])||0),0);const tAA=Object.entries(inv.perAnno).filter(([y])=>Number(y)!==DATA.currentYear).reduce((s,[,v])=>s+MONTH_NAMES.reduce((s2,mn)=>s2+(Number(v[mn])||0),0),0);const tC=(Number(inv.totalePrecedente)||0)+tAA+tAC;
-  el.innerHTML=`<div class="card"><h2>Totale investimenti anni precedenti</h2><p class="muted">Importo cumulato investito prima del tracciamento mensile (modificabile).</p><div class="grid cols-2"><div class="field"><label>Totale anni precedenti</label>${euroField('inv_precedente',inv.totalePrecedente)}</div><div class="stat"><div class="label">Totale complessivo</div><div class="value">${fmt(tC)}</div></div></div></div><div class="card"><h2>Investimenti mensili ${DATA.currentYear}</h2><table class="card-table"><thead><tr><th>Mese</th><th>Importo</th></tr></thead><tbody>${MONTH_NAMES.map(mn=>`<tr><td data-label="Mese">${mn}</td><td data-label="Importo"><div class="input-affix"><span class="affix">€</span><input type="number" step="0.01" class="inv-val" data-mn="${mn}" value="${av[mn]||0}"></div></td></tr>`).join('')}</tbody></table><div class="stat" style="margin-top:14px;max-width:260px;"><div class="label">Totale ${DATA.currentYear}</div><div class="value">${fmt(tAC)}</div></div></div>`;
-  document.getElementById('inv_precedente').addEventListener('input',e=>{inv.totalePrecedente=Number(e.target.value)||0;saveData();});
-  document.getElementById('inv_precedente').addEventListener('change',renderInvestimenti);
-  document.querySelectorAll('.inv-val').forEach(inp=>{inp.addEventListener('input',e=>{av[e.target.dataset.mn]=Number(e.target.value)||0;saveData();});inp.addEventListener('change',renderInvestimenti);});
+  var el = document.getElementById('tab-investimenti');
+  var inv = DATA.investimenti;
+  if(!inv.perAnno[DATA.currentYear]) inv.perAnno[DATA.currentYear] = emptyPerAnno();
+  var av = inv.perAnno[DATA.currentYear];
+  var tAC = MONTH_NAMES.reduce(function(s,mn){ return s+(Number(av[mn])||0); }, 0);
+  var tAA = Object.entries(inv.perAnno).filter(function(entry){ return Number(entry[0]) !== DATA.currentYear; })
+    .reduce(function(s,entry){ return s + MONTH_NAMES.reduce(function(s2,mn){ return s2+(Number(entry[1][mn])||0); }, 0); }, 0);
+  var tC = (Number(inv.totalePrecedente)||0) + tAA + tAC;
+  var rows = MONTH_NAMES.map(function(mn){
+    return '<tr><td data-label="Mese">'+mn+'</td><td data-label="Importo"><div class="input-affix"><span class="affix">\u20ac</span><input type="number" step="0.01" class="inv-val" data-mn="'+mn+'" value="'+(av[mn]||0)+'"></div></td></tr>';
+  }).join('');
+  el.innerHTML =
+    '<div class="card"><h2>Totale investimenti anni precedenti</h2>'+
+      '<p class="muted">Importo cumulato investito prima del tracciamento mensile (modificabile).</p>'+
+      '<div class="grid cols-2"><div class="field"><label>Totale anni precedenti</label>'+euroField('inv_precedente', inv.totalePrecedente)+'</div>'+
+      '<div class="stat"><div class="label">Totale complessivo</div><div class="value">'+fmt(tC)+'</div></div></div></div>'+
+    '<div class="card"><h2>Investimenti mensili '+DATA.currentYear+'</h2>'+
+      '<table class="card-table"><thead><tr><th>Mese</th><th>Importo</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+      '<div class="stat" style="margin-top:14px;max-width:260px;"><div class="label">Totale '+DATA.currentYear+'</div><div class="value">'+fmt(tAC)+'</div></div></div>';
+  document.getElementById('inv_precedente').addEventListener('input', function(e){ inv.totalePrecedente = Number(e.target.value)||0; saveData(); });
+  document.getElementById('inv_precedente').addEventListener('change', renderInvestimenti);
+  document.querySelectorAll('.inv-val').forEach(function(inp){
+    inp.addEventListener('input', function(e){ av[e.target.dataset.mn] = Number(e.target.value)||0; saveData(); });
+    inp.addEventListener('change', renderInvestimenti);
+  });
 }
 
-// ---------- IMPOSTAZIONI ----------
+function renderCatList(){
+  var el = document.getElementById('catList');
+  el.innerHTML = DATA.categories.map(function(c){
+    return '<span class="badge ok" style="margin:3px;display:inline-flex;align-items:center;gap:6px;">'+c+' <button data-cat="'+c+'" class="btnDelCat" style="border:none;background:none;color:var(--red);cursor:pointer;font-weight:700;">\u2715</button></span>';
+  }).join('');
+  el.querySelectorAll('.btnDelCat').forEach(function(b){
+    b.addEventListener('click', function(){
+      DATA.categories = DATA.categories.filter(function(c){ return c!==b.dataset.cat; });
+      saveData(); renderCatList();
+    });
+  });
+}
+
 function renderImpostazioni(){
-  const el=document.getElementById('tab-impostazioni');const s=DATA.settings;
-  el.innerHTML=`<div class="card"><h2>Tema e colori</h2><div class="grid cols-4"><div class="field"><label>Colore principale</label><input type="color" id="col_accent" value="${s.accent}"></div><div class="field"><label>Colore sfondo</label><input type="color" id="col_bg" value="${s.bg}"></div><div class="field"><label>Colore card</label><input type="color" id="col_card" value="${s.card}"></div><div class="field"><label>Colore testo</label><input type="color" id="col_text" value="${s.text}"></div></div><div class="field" style="margin-top:10px;"><label><input type="checkbox" id="chkAutoDark" ${s.autoDark?'checked':''}> Rileva tema scuro da sistema</label></div><p class="muted">Temi predefiniti:</p><div class="theme-presets">${Object.entries(THEME_PRESETS).map(([name,p])=>`<div class="preset-swatch" data-preset="${name}" title="${name}" style="background:${p.accent};">${name[0].toUpperCase()}</div>`).join('')}</div><div style="margin-top:14px;"><button class="btn secondary" id="btnResetTheme">Ripristina colori predefiniti</button></div></div><div class="card"><h2>Categorie di spesa</h2><div id="catList" style="margin-bottom:12px;"></div><div style="display:flex;gap:8px;"><input type="text" id="newCatInput" placeholder="Nuova categoria"><button class="btn" id="btnAddCat">Aggiungi</button></div></div><div class="card"><h2>Anni gestiti</h2><div class="muted" style="margin-bottom:10px;">${getYearsList().join(', ')}</div><button class="btn secondary" id="btnAddYear2">+ Aggiungi anno</button></div><div class="card"><h2>Dati e backup</h2><div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn" id="btnExportExcel">📊 Esporta backup Excel</button><button class="btn secondary" id="btnExport">Esporta JSON</button><label class="btn secondary" style="cursor:pointer;">Importa JSON<input type="file" id="importFile" accept=".json" style="display:none;"></label><button class="btn danger" id="btnReset">Ripristina dati originali</button></div><p class="muted" style="margin-top:10px;">Backup Excel esporta l'anno selezionato (${DATA.currentYear}) più investimenti e risparmi storici.</p></div></div>`;
+  var el = document.getElementById('tab-impostazioni');
+  var s = DATA.settings;
+  var presetsHtml = Object.entries(THEME_PRESETS).map(function(entry){
+    var name = entry[0], p = entry[1];
+    return '<div class="preset-swatch" data-preset="'+name+'" title="'+name+'" style="background:'+p.accent+';">'+name[0].toUpperCase()+'</div>';
+  }).join('');
+  el.innerHTML =
+    '<div class="card"><h2>Tema e colori</h2>'+
+      '<div class="grid cols-4">'+
+        '<div class="field"><label>Colore principale</label><input type="color" id="col_accent" value="'+s.accent+'"></div>'+
+        '<div class="field"><label>Colore sfondo</label><input type="color" id="col_bg" value="'+s.bg+'"></div>'+
+        '<div class="field"><label>Colore card</label><input type="color" id="col_card" value="'+s.card+'"></div>'+
+        '<div class="field"><label>Colore testo</label><input type="color" id="col_text" value="'+s.text+'"></div>'+
+      '</div>'+
+      '<div class="field" style="margin-top:10px;"><label><input type="checkbox" id="chkAutoDark" '+(s.autoDark?'checked':'')+'> Rileva tema scuro da sistema</label></div>'+
+      '<p class="muted">Temi predefiniti:</p><div class="theme-presets">'+presetsHtml+'</div>'+
+      '<div style="margin-top:14px;"><button class="btn secondary" id="btnResetTheme">Ripristina colori predefiniti</button></div>'+
+    '</div>'+
+    '<div class="card"><h2>Categorie di spesa</h2><div id="catList" style="margin-bottom:12px;"></div>'+
+      '<div style="display:flex;gap:8px;"><input type="text" id="newCatInput" placeholder="Nuova categoria"><button class="btn" id="btnAddCat">Aggiungi</button></div></div>'+
+    '<div class="card"><h2>Anni gestiti</h2><div class="muted" style="margin-bottom:10px;">'+getYearsList().join(', ')+'</div>'+
+      '<button class="btn secondary" id="btnAddYear2">+ Aggiungi anno</button></div>'+
+    '<div class="card"><h2>Dati e backup</h2><div style="display:flex;gap:10px;flex-wrap:wrap;">'+
+      '<button class="btn" id="btnExportExcel">Esporta backup Excel</button>'+
+      '<button class="btn secondary" id="btnExport">Esporta JSON</button>'+
+      '<label class="btn secondary" style="cursor:pointer;">Importa JSON<input type="file" id="importFile" accept=".json" style="display:none;"></label>'+
+      '<button class="btn danger" id="btnReset">Ripristina dati originali</button></div>'+
+      '<p class="muted" style="margin-top:10px;">Backup Excel esporta l\'anno selezionato ('+DATA.currentYear+') piu investimenti e risparmi storici.</p></div>';
   renderCatList();
-  function updateColorVar(key,cssVar,value){s[key]=value;document.documentElement.style.setProperty(cssVar,value);if(cssVar==='--accent'){const m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',value);}saveData();}
-  document.getElementById('col_accent').addEventListener('input',e=>updateColorVar('accent','--accent',e.target.value));
-  document.getElementById('col_bg').addEventListener('input',e=>updateColorVar('bg','--bg',e.target.value));
-  document.getElementById('col_card').addEventListener('input',e=>updateColorVar('card','--card',e.target.value));
-  document.getElementById('col_text').addEventListener('input',e=>updateColorVar('text','--text',e.target.value));
-  document.getElementById('chkAutoDark').addEventListener('change',e=>{s.autoDark=e.target.checked;saveData();if(e.target.checked){applyTheme();}});
-  document.querySelectorAll('.preset-swatch').forEach(sw=>sw.addEventListener('click',()=>{const preset=THEME_PRESETS[sw.dataset.preset];Object.assign(s,preset);s.autoDark=false;saveData();applyTheme();renderImpostazioni();toast('Tema "'+sw.dataset.preset+'" applicato');}));
-  document.getElementById('btnResetTheme').addEventListener('click',()=>{Object.assign(s,SEED.settings);saveData();applyTheme();renderImpostazioni();toast('Colori ripristinati');});
-  document.getElementById('btnAddYear2').addEventListener('click',()=>{addNewYear();renderImpostazioni();});
-  document.getElementById('btnAddCat').addEventListener('click',()=>{const inp=document.getElementById('newCatInput');const val=inp.value.trim();if(val&&!DATA.categories.includes(val)){DATA.categories.push(val);saveData();renderCatList();inp.value='';}});
-  document.getElementById('btnExport').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(DATA,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='gestione_risparmi.json';a.click();URL.revokeObjectURL(url);});
-  document.getElementById('btnExportExcel').addEventListener('click',exportToExcel);
-  document.getElementById('importFile').addEventListener('change',e=>{const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{try{DATA=JSON.parse(ev.target.result);migrate();saveData();applyTheme();renderYearSelector();toast('Dati importati');currentMonthIndex=0;renderAll();}catch(err){alert('File non valido');}};reader.readAsText(file);});
-  document.getElementById('btnReset').addEventListener('click',()=>{if(confirm('Ripristinare i dati originali?')){DATA=JSON.parse(JSON.stringify(SEED));saveData();applyTheme();renderYearSelector();currentMonthIndex=0;renderAll();toast('Dati ripristinati');}});
+  function updateColorVar(key, cssVar, value){
+    s[key] = value;
+    document.documentElement.style.setProperty(cssVar, value);
+    if(cssVar==='--accent'){
+      var m = document.querySelector('meta[name="theme-color"]');
+      if(m) m.setAttribute('content', value);
+    }
+    saveData();
+  }
+  document.getElementById('col_accent').addEventListener('input', function(e){ updateColorVar('accent','--accent',e.target.value); });
+  document.getElementById('col_bg').addEventListener('input', function(e){ updateColorVar('bg','--bg',e.target.value); });
+  document.getElementById('col_card').addEventListener('input', function(e){ updateColorVar('card','--card',e.target.value); });
+  document.getElementById('col_text').addEventListener('input', function(e){ updateColorVar('text','--text',e.target.value); });
+  document.getElementById('chkAutoDark').addEventListener('change', function(e){
+    s.autoDark = e.target.checked; saveData();
+    if(e.target.checked) applyTheme();
+  });
+  document.querySelectorAll('.preset-swatch').forEach(function(sw){
+    sw.addEventListener('click', function(){
+      var preset = THEME_PRESETS[sw.dataset.preset];
+      Object.assign(s, preset); s.autoDark = false;
+      saveData(); applyTheme(); renderImpostazioni();
+      toast('Tema "'+sw.dataset.preset+'" applicato');
+    });
+  });
+  document.getElementById('btnResetTheme').addEventListener('click', function(){
+    Object.assign(s, SEED.settings);
+    saveData(); applyTheme(); renderImpostazioni();
+    toast('Colori ripristinati');
+  });
+  document.getElementById('btnAddYear2').addEventListener('click', function(){ addNewYear(); renderImpostazioni(); });
+  document.getElementById('btnAddCat').addEventListener('click', function(){
+    var inp = document.getElementById('newCatInput');
+    var val = inp.value.trim();
+    if(val && !DATA.categories.includes(val)){
+      DATA.categories.push(val); saveData(); renderCatList(); inp.value='';
+    }
+  });
+  document.getElementById('btnExport').addEventListener('click', function(){
+    var blob = new Blob([JSON.stringify(DATA, null, 2)], {type:'application/json'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'gestione_risparmi.json'; a.click();
+    URL.revokeObjectURL(url);
+  });
+  document.getElementById('btnExportExcel').addEventListener('click', exportToExcel);
+  document.getElementById('importFile').addEventListener('change', function(e){
+    var file = e.target.files[0]; if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev){
+      try{
+        DATA = JSON.parse(ev.target.result);
+        migrate(); saveData(); applyTheme(); renderYearSelector();
+        toast('Dati importati'); currentMonthIndex = 0; renderAll();
+      }catch(err){ alert('File non valido'); }
+    };
+    reader.readAsText(file);
+  });
+  document.getElementById('btnReset').addEventListener('click', function(){
+    if(confirm('Ripristinare i dati originali?')){
+      DATA = JSON.parse(JSON.stringify(SEED));
+      saveData(); applyTheme(); renderYearSelector(); currentMonthIndex = 0; renderAll();
+      toast('Dati ripristinati');
+    }
+  });
 }
-function renderCatList(){const el=document.getElementById('catList');el.innerHTML=DATA.categories.map(c=>`<span class="badge ok" style="margin:3px;display:inline-flex;align-items:center;gap:6px;">${c} <button data-cat="${c}" class="btnDelCat" style="border:none;background:none;color:var(--red);cursor:pointer;font-weight:700;">✕</button></span>`).join('');el.querySelectorAll('.btnDelCat').forEach(b=>b.addEventListener('click',()=>{DATA.categories=DATA.categories.filter(c=>c!==b.dataset.cat);saveData();renderCatList();}));}
 
-// ---------- EXPORT TO EXCEL ----------
 function exportToExcel(){
-  const wb=XLSX.utils.book_new();const eurFmt='"€"#,##0.00';const yd=getYearData();
-  const dashRows=[["Mese","Entrate","Risparmi","Spese Fisse","Budget Variabili","Spese Variabili","Spese Viaggi","Spese Extra","Risparmio Reale"]];let tE=0,tR=0,tF=0,tB=0,tV=0,tVi=0,tEx=0,tRR=0;
-  yd.months.forEach(m=>{const c=computeMonth(m);dashRows.push([m.name,c.totaleEntrate,c.risparmi,c.totaleFisse,c.budgetVariabili,c.speseVariabili,c.viaggi,c.extra,c.risparmioReale]);tE+=c.totaleEntrate;tR+=c.risparmi;tF+=c.totaleFisse;tB+=c.budgetVariabili;tV+=c.speseVariabili;tVi+=c.viaggi;tEx+=c.extra;tRR+=c.risparmioReale;});
-  dashRows.push(["TOTALE",tE,tR,tF,tB,tV,tVi,tEx,tRR]);const wsDash=XLSX.utils.aoa_to_sheet(dashRows);for(let r=1;r<dashRows.length;r++){for(let col=1;col<=8;col++){const ref=XLSX.utils.encode_cell({r:r,c:col});if(wsDash[ref])wsDash[ref].z=eurFmt;}}XLSX.utils.book_append_sheet(wb,wsDash,"Dashboard "+DATA.currentYear);
-  yd.months.forEach(m=>{const c=computeMonth(m);const rows=[];rows.push(["CONFIGURAZIONE "+m.name.toUpperCase()+" "+DATA.currentYear]);rows.push(["Stipendio",m.stipendio]);rows.push(["Entrate extra",m.entrateExtra]);rows.push(["Totale entrate",c.totaleEntrate]);rows.push(["Risparmio %",m.risparmioPercent]);rows.push(["Risparmio €",c.risparmi]);rows.push(["Auto",m.fisse.auto]);rows.push(["Telefono",m.fisse.telefono]);rows.push(["Abbonamenti",m.fisse.abbonamenti]);rows.push(["Totale spese fisse",c.totaleFisse]);rows.push(["Budget variabili",c.budgetVariabili]);rows.push(["Spese viaggi",m.speseViaggi]);rows.push(["Spese extra",m.speseExtra]);rows.push(["Spese variabili",c.speseVariabili]);rows.push(["Risparmio reale",c.risparmioReale]);rows.push([]);rows.push(["REGISTRO SPESE"]);rows.push(["Data","Categoria","Descrizione","Importo"]);const esr=rows.length;m.expenses.forEach(e=>rows.push([e.data,e.categoria,e.descrizione,e.importo]));const ws=XLSX.utils.aoa_to_sheet(rows);const mr=[1,2,3,5,6,7,8,9,10,11,12,13,14];mr.forEach(r=>{const ref=XLSX.utils.encode_cell({r:r,c:1});if(ws[ref])ws[ref].z=eurFmt;});for(let r=esr;r<rows.length;r++){const ref=XLSX.utils.encode_cell({r:r,c:3});if(ws[ref])ws[ref].z=eurFmt;}let sn=(m.name+" "+DATA.currentYear).slice(0,31);XLSX.utils.book_append_sheet(wb,ws,sn);});
-  const inv=DATA.investimenti;const invRows=[["Totale anni precedenti",inv.totalePrecedente],[]];Object.keys(inv.perAnno).sort().forEach(y=>{invRows.push(["Investimenti "+y]);invRows.push(["Mese","Importo"]);MONTH_NAMES.forEach(mn=>invRows.push([mn,inv.perAnno[y][mn]||0]));const tY=MONTH_NAMES.reduce((s,mn)=>s+(Number(inv.perAnno[y][mn])||0),0);invRows.push(["Totale "+y,tY]);invRows.push([]);});
-  invRows.push(["RISPARMI STORICI (anni precedenti)"]);invRows.push(["Anno","Risparmio"]);Object.keys(DATA.risparmiStorico).sort().forEach(y=>invRows.push([y,DATA.risparmiStorico[y]]));
-  const wsInv=XLSX.utils.aoa_to_sheet(invRows);const ref0=XLSX.utils.encode_cell({r:0,c:1});if(wsInv[ref0])wsInv[ref0].z=eurFmt;for(let r=0;r<invRows.length;r++){const ref=XLSX.utils.encode_cell({r:r,c:1});if(wsInv[ref]&&typeof invRows[r][1]==='number')wsInv[ref].z=eurFmt;}XLSX.utils.book_append_sheet(wb,wsInv,"Investimenti");
-  const ds=new Date().toISOString().slice(0,10);XLSX.writeFile(wb,`backup_gestione_risparmi_${DATA.currentYear}_${ds}.xlsx`);toast('Backup Excel scaricato');
+  var wb = XLSX.utils.book_new();
+  var eurFmt = '"\u20ac"#,##0.00';
+  var yd = getYearData();
+  var dashRows = [["Mese","Entrate","Risparmi","Spese Fisse","Budget Variabili","Spese Variabili","Spese Viaggi","Spese Extra","Risparmio Reale"]];
+  var tE=0,tR=0,tF=0,tB=0,tV=0,tVi=0,tEx=0,tRR=0;
+  yd.months.forEach(function(m){
+    var c = computeMonth(m);
+    dashRows.push([m.name, c.totaleEntrate, c.risparmi, c.totaleFisse, c.budgetVariabili, c.speseVariabili, c.viaggi, c.extra, c.risparmioReale]);
+    tE+=c.totaleEntrate; tR+=c.risparmi; tF+=c.totaleFisse; tB+=c.budgetVariabili; tV+=c.speseVariabili; tVi+=c.viaggi; tEx+=c.extra; tRR+=c.risparmioReale;
+  });
+  dashRows.push(["TOTALE", tE, tR, tF, tB, tV, tVi, tEx, tRR]);
+  var wsDash = XLSX.utils.aoa_to_sheet(dashRows);
+  for(var r=1; r<dashRows.length; r++){
+    for(var col=1; col<=8; col++){
+      var ref = XLSX.utils.encode_cell({r:r, c:col});
+      if(wsDash[ref]) wsDash[ref].z = eurFmt;
+    }
+  }
+  XLSX.utils.book_append_sheet(wb, wsDash, "Dashboard "+DATA.currentYear);
+
+  yd.months.forEach(function(m){
+    var c = computeMonth(m);
+    var rows = [];
+    rows.push(["CONFIGURAZIONE "+m.name.toUpperCase()+" "+DATA.currentYear]);
+    rows.push(["Stipendio", m.stipendio]);
+    rows.push(["Entrate extra", m.entrateExtra]);
+    rows.push(["Totale entrate", c.totaleEntrate]);
+    rows.push(["Risparmio %", m.risparmioPercent]);
+    rows.push(["Risparmio", c.risparmi]);
+    rows.push(["Auto", m.fisse.auto]);
+    rows.push(["Telefono", m.fisse.telefono]);
+    rows.push(["Abbonamenti", m.fisse.abbonamenti]);
+    rows.push(["Totale spese fisse", c.totaleFisse]);
+    rows.push(["Budget variabili", c.budgetVariabili]);
+    rows.push(["Spese viaggi", m.speseViaggi]);
+    rows.push(["Spese extra", m.speseExtra]);
+    rows.push(["Spese variabili", c.speseVariabili]);
+    rows.push(["Risparmio reale", c.risparmioReale]);
+    rows.push([]);
+    rows.push(["REGISTRO SPESE"]);
+    rows.push(["Data","Categoria","Descrizione","Importo"]);
+    var esr = rows.length;
+    m.expenses.forEach(function(e){ rows.push([e.data, e.categoria, e.descrizione, e.importo]); });
+    var ws = XLSX.utils.aoa_to_sheet(rows);
+    [1,2,3,5,6,7,8,9,10,11,12,13,14].forEach(function(rr){
+      var ref = XLSX.utils.encode_cell({r:rr, c:1});
+      if(ws[ref]) ws[ref].z = eurFmt;
+    });
+    for(var rr2=esr; rr2<rows.length; rr2++){
+      var ref2 = XLSX.utils.encode_cell({r:rr2, c:3});
+      if(ws[ref2]) ws[ref2].z = eurFmt;
+    }
+    var sn = (m.name+" "+DATA.currentYear).slice(0,31);
+    XLSX.utils.book_append_sheet(wb, ws, sn);
+  });
+
+  var inv = DATA.investimenti;
+  var invRows = [["Totale anni precedenti", inv.totalePrecedente], []];
+  Object.keys(inv.perAnno).sort().forEach(function(y){
+    invRows.push(["Investimenti "+y]);
+    invRows.push(["Mese","Importo"]);
+    MONTH_NAMES.forEach(function(mn){ invRows.push([mn, inv.perAnno[y][mn]||0]); });
+    var tY = MONTH_NAMES.reduce(function(s,mn){ return s+(Number(inv.perAnno[y][mn])||0); }, 0);
+    invRows.push(["Totale "+y, tY]);
+    invRows.push([]);
+  });
+  invRows.push(["RISPARMI STORICI (anni precedenti)"]);
+  invRows.push(["Anno","Risparmio"]);
+  Object.keys(DATA.risparmiStorico).sort().forEach(function(y){ invRows.push([y, DATA.risparmiStorico[y]]); });
+  var wsInv = XLSX.utils.aoa_to_sheet(invRows);
+  var ref0 = XLSX.utils.encode_cell({r:0, c:1});
+  if(wsInv[ref0]) wsInv[ref0].z = eurFmt;
+  for(var i=0; i<invRows.length; i++){
+    var refI = XLSX.utils.encode_cell({r:i, c:1});
+    if(wsInv[refI] && typeof invRows[i][1]==='number') wsInv[refI].z = eurFmt;
+  }
+  XLSX.utils.book_append_sheet(wb, wsInv, "Investimenti");
+
+  var ds = new Date().toISOString().slice(0,10);
+  XLSX.writeFile(wb, "backup_gestione_risparmi_"+DATA.currentYear+"_"+ds+".xlsx");
+  toast('Backup Excel scaricato');
 }
 
-// ---------- INIT ----------
-function renderAll(){const at=document.querySelector('#mainNav button.active,#mobileNav button.active').dataset.tab;if(at==='dashboard')renderDashboard();if(at==='mesi')renderMesi();if(at==='investimenti')renderInvestimenti();if(at==='impostazioni')renderImpostazioni();}
-loadData();applyTheme();renderYearSelector();renderAll();
+function renderAll(){
+  var activeBtn = document.querySelector('#mainNav button.active, #mobileNav button.active');
+  var at = activeBtn.dataset.tab;
+  if(at==='dashboard') renderDashboard();
+  if(at==='mesi') renderMesi();
+  if(at==='investimenti') renderInvestimenti();
+  if(at==='impostazioni') renderImpostazioni();
+}
+loadData();
+applyTheme();
+renderYearSelector();
+renderAll();
 </script>
 </body>
 </html>

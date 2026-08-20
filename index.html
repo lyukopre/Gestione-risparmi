@@ -627,7 +627,25 @@ function renderMesi(){
     saveData(); renderMesi();
   });
   document.getElementById('filterCat').addEventListener('change', function(e){ expenseFilter.categoria = e.target.value; renderMesi(); });
-  document.getElementById('filterSearch').addEventListener('input', function(e){ expenseFilter.search = e.target.value; renderMesi(); });
+  var searchTimer = null;
+
+document.getElementById('filterSearch').addEventListener('input', function(e) {
+  var input = e.target;
+  var value = input.value;
+
+  clearTimeout(searchTimer);
+
+  searchTimer = setTimeout(function() {
+    expenseFilter.search = value;
+    renderMesi();
+
+    var newInput = document.getElementById('filterSearch');
+    if (newInput) {
+      newInput.focus();
+      newInput.setSelectionRange(value.length, value.length);
+    }
+  }, 500);
+});
   document.getElementById('expensesBody').addEventListener('input', function(e){
     var tr = e.target.closest('tr'); if(!tr) return;
     var id = Number(tr.dataset.id);

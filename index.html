@@ -1,210 +1,971 @@
 <!doctype html>
 <html lang="it">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><meta name="theme-color" content="#4f6df5"><title>Gestione Risparmi</title>
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-<style>
-:root{--a:#4f6df5;--bg:#f4f6fb;--card:#fff;--text:#182235;--muted:#697386;--line:#e3e7ef;--green:#168447;--red:#d63d47;--yellow:#c98a12;--safe:env(safe-area-inset-bottom,0px)}
-[data-theme="dark"]{--bg:#0f1117;--card:#1a1d27;--text:#eef1f7;--muted:#9aa3b8;--line:#2c3140;--green:#39d17f;--red:#ff6b6b;--yellow:#e8b64a}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;background:var(--bg);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:calc(96px + var(--safe));overflow-x:hidden;transition:background .2s,color .2s;-webkit-text-size-adjust:100%}
-.top{position:relative;background:var(--card);border-bottom:1px solid var(--line);padding:max(14px,env(safe-area-inset-top)) 14px 12px}
-.topin{max-width:760px;margin:auto;min-height:50px;display:flex;justify-content:space-between;align-items:center;gap:8px}
-.brand{font-weight:800;font-size:16px}
-.year{display:flex;gap:5px}
-.year select,.year button{border:1px solid var(--line);border-radius:10px;padding:9px 10px;background:var(--card);color:var(--text);font-size:14px;min-height:40px}
-.year button,.primary{background:var(--a)!important;border-color:var(--a)!important;color:#fff!important}
-main{max-width:760px;margin:auto;padding:12px 14px 24px}
-.nav{margin:0 0 16px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;box-shadow:0 3px 14px rgba(0,0,0,.06)}
-.nav button{border:0;background:transparent;color:var(--muted);border-radius:12px;padding:12px 4px;font-size:12.5px;line-height:1.35;min-height:52px;touch-action:manipulation}
-.nav button.active{background:color-mix(in srgb,var(--a) 18%,transparent);color:var(--a);font-weight:700}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:14px;box-shadow:0 2px 12px rgba(0,0,0,.045)}
-h2{font-size:17px;margin:0 0 10px}
-.muted{color:var(--muted);font-size:13px}
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.stat{background:var(--bg);border-radius:12px;padding:11px}
-.stat small{display:block;color:var(--muted);font-size:10px}
-.value{font-size:17px;font-weight:800;margin-top:4px}
-.pos{color:var(--green)}.neg{color:var(--red)}
-.chart{height:195px}
-.chart.donut{height:220px}
-.table{overflow:auto}
-.table table{width:100%;border-collapse:collapse;min-width:0}
-.table th,.table td{text-align:left;padding:8px 4px;border-bottom:1px solid var(--line);font-size:12px}
-.table th{color:var(--muted)}
-.tabs{display:flex;gap:7px;overflow:auto;margin-bottom:12px;-webkit-overflow-scrolling:touch;padding-bottom:2px}
-.tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 18px;color:var(--a);font-size:14px;font-weight:600;min-height:46px;touch-action:manipulation}
-.tabs button.active{background:var(--a);color:#fff;border-color:var(--a)}
-.pill-tabs{display:flex;gap:6px;margin-bottom:12px}
-.pill-tabs button{flex:1;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:10px;padding:8px;font-size:12.5px;font-weight:600}
-.pill-tabs button.active{background:var(--a);color:#fff;border-color:var(--a)}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.field label{display:block;color:var(--muted);font-size:12px;font-weight:700;margin:0 0 5px}
-.field input,.field select,.catinput{width:100%;min-width:0;border:1px solid var(--line);border-radius:10px;padding:11px;background:var(--card);color:var(--text);font:inherit;font-size:16px;min-height:44px}
-.btn{border:0;border-radius:10px;padding:12px 14px;font-weight:700;min-height:46px;cursor:pointer;touch-action:manipulation}
-.secondary{background:var(--bg);color:var(--text);border:1px solid var(--line)}
-.danger{background:#ffe8e9;color:var(--red)}
-[data-theme="dark"] .danger{background:#3a1f22;color:var(--red)}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.actions .btn{flex:1 1 130px;text-align:center}
-.expense-list{border-top:1px solid var(--line)}
-.expense{display:grid;grid-template-columns:82px 1fr 66px 26px;gap:5px;padding:5px 0;border-bottom:1px solid var(--line);align-items:center}
-.expense input,.expense select{width:100%;min-width:0;border:1px solid var(--line);border-radius:6px;padding:4px 5px;background:var(--card);color:var(--text);font-size:11.5px;min-height:28px}
-.expense .wide{grid-column:2}
-.expense .btn.danger{padding:0;font-size:13px;min-height:26px;height:26px;width:26px;line-height:26px;text-align:center;border-radius:6px}
-@media(max-width:380px){.expense{grid-template-columns:1fr 1fr;gap:4px;padding:7px 0}.expense .wide{grid-column:1/-1}.expense .btn.danger{grid-column:1/-1;justify-self:end;width:auto;height:auto;padding:4px 9px}}
-.hidden{display:none!important}
-.fab{position:fixed;right:16px;bottom:calc(88px + var(--safe));z-index:100;width:56px;height:56px;border:0;border-radius:50%;background:var(--a);color:#fff;font-size:27px;box-shadow:0 5px 18px rgba(0,0,0,.28);cursor:pointer;touch-action:manipulation}
-.modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);align-items:flex-end}
-.modal.open{display:flex}
-.sheet{width:100%;background:var(--card);border-radius:20px 20px 0 0;padding:20px 16px calc(20px + var(--safe))}
-.themes{display:flex;gap:10px;flex-wrap:wrap}
-.theme{width:42px;height:42px;border-radius:50%;border:3px solid transparent;cursor:pointer;touch-action:manipulation}
-.theme.active{border-color:var(--text)}
-.mode-toggle{display:flex;gap:8px;flex-wrap:wrap}
-.mode-toggle button{flex:1 1 90px;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:10px;padding:12px;font-weight:600;font-size:13.5px;cursor:pointer;min-height:46px;touch-action:manipulation}
-.mode-toggle button.active{background:var(--a);border-color:var(--a);color:#fff}
-.settings-grid{display:grid;gap:14px}
-.settings-card{margin:0}
-.history{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
-.invyear{display:flex;gap:8px;align-items:center;margin-bottom:12px}
-.invyear select{flex:1}
-.week-row{padding:10px 0;border-bottom:1px solid var(--line)}
-.week-row:last-child{border-bottom:0}
-.week-head{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;margin-bottom:6px;gap:8px}
-.week-head b{font-size:13.5px}
-.week-badge{font-weight:800;font-size:13px;flex-shrink:0}
-.week-bar-bg{height:10px;border-radius:6px;background:var(--bg);overflow:hidden;border:1px solid var(--line)}
-.week-bar-fill{height:100%;border-radius:6px;transition:width .3s ease}
-.week-foot{display:flex;justify-content:space-between;margin-top:5px;font-size:11.5px;color:var(--muted)}
-.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:11.5px;color:var(--muted)}
-.legend span{display:inline-flex;align-items:center;gap:5px}
-.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
-.catlist{display:flex;flex-direction:column;gap:8px;margin-top:10px}
-.catrow{display:flex;align-items:center;gap:8px;font-size:12.5px}
-.catrow .catdot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.catrow .catname{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.catrow .catval{font-weight:700;flex-shrink:0}
-.toast-wrap{position:fixed;left:0;right:0;bottom:calc(18px + var(--safe));z-index:300;display:flex;justify-content:center;pointer-events:none}
-.toast{background:var(--text);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:13.5px;font-weight:600;box-shadow:0 6px 20px rgba(0,0,0,.25);opacity:0;transform:translateY(10px);transition:opacity .25s ease,transform .25s ease;display:flex;align-items:center;gap:6px}
-.toast.show{opacity:1;transform:translateY(0)}
-.goal-card{background:var(--bg);border-radius:12px;padding:12px;margin-bottom:10px}
-.goal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.goal-name{font-weight:700;font-size:14px}
-.goal-amount{font-weight:800;font-size:15px;color:var(--a)}
-.goal-bar-bg{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
-.goal-bar-fill{height:100%;border-radius:4px;background:var(--a);transition:width .4s ease}
-.goal-footer{display:flex;justify-content:space-between;margin-top:6px;font-size:11.5px;color:var(--muted)}
-.trend-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
-.trend-row:last-child{border-bottom:0}
-.trend-name{font-size:13px;font-weight:600}
-.trend-val{font-size:13px;color:var(--muted)}
-.trend-arrow{font-size:15px;margin-left:6px}
-.up{color:var(--red)}.down{color:var(--green)}.flat{color:var(--muted)}
-.subcat-select{font-size:11.5px;padding:3px 6px;min-height:24px;border:1px solid var(--line);border-radius:5px;background:var(--card);color:var(--text)}
-@media(max-width:520px){.form{grid-template-columns:1fr}.card{padding:13px}.chart{height:185px}.brand{font-size:14px}.year select,.year button{font-size:13px;padding:9px}.history{grid-template-columns:1fr 1fr}.history .btn{grid-column:1/-1}}
-@media(min-width:700px){.stats{grid-template-columns:repeat(4,1fr)}body{padding-bottom:30px}.fab{bottom:24px}.modal{align-items:center;justify-content:center}.sheet{width:500px;border-radius:20px}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4f6df5">
+  <title>Gestione Risparmi</title>
+
+  <!-- Librerie esterne usate dai grafici e dall'import/export Excel. -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+  <style>
+    :root {
+      --accent: #4f6df5;
+      --background: #f4f6fb;
+      --surface: #ffffff;
+      --text: #182235;
+      --muted: #697386;
+      --line: #e3e7ef;
+      --positive: #168447;
+      --negative: #d63d47;
+      --warning: #c98a12;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    [data-theme="dark"] {
+      --background: #0f1117;
+      --surface: #1a1d27;
+      --text: #eef1f7;
+      --muted: #9aa3b8;
+      --line: #2c3140;
+      --positive: #39d17f;
+      --negative: #ff6b6b;
+      --warning: #e8b64a;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font: 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding-bottom: calc(90px + var(--safe-bottom));
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      padding: max(14px, env(safe-area-inset-top)) 14px 12px;
+    }
+
+    .topbar-inner {
+      max-width: 760px;
+      min-height: 50px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .brand { font-size: 16px; font-weight: 800; }
+    .year-controls { display: flex; gap: 6px; }
+
+    .year-controls select,
+    .year-controls button,
+    .btn,
+    .field input,
+    .field select,
+    .field textarea {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .year-controls select,
+    .year-controls button { min-height: 42px; padding: 8px 10px; }
+
+    .btn {
+      min-height: 44px;
+      padding: 10px 14px;
+      font-weight: 700;
+    }
+
+    .btn-primary {
+      background: var(--accent) !important;
+      border-color: var(--accent) !important;
+      color: #fff !important;
+    }
+
+    .btn-secondary { background: var(--background); }
+    .btn-danger { background: #ffe8e9; color: var(--negative); }
+    [data-theme="dark"] .btn-danger { background: #3a1f22; }
+
+    main { max-width: 760px; margin: auto; padding: 12px 14px 24px; }
+
+    .navigation {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      padding: 6px;
+      margin-bottom: 16px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 3px 14px rgba(0,0,0,.06);
+    }
+
+    .navigation button {
+      min-height: 56px;
+      padding: 8px 4px;
+      border: 0;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .navigation button.active {
+      background: color-mix(in srgb, var(--accent) 18%, transparent);
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .card {
+      margin-bottom: 14px;
+      padding: 14px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.045);
+    }
+
+    h2 { margin: 0 0 10px; font-size: 17px; }
+    h3 { margin: 16px 0 8px; font-size: 14px; }
+    .muted { color: var(--muted); font-size: 13px; }
+    .hidden { display: none !important; }
+    .positive { color: var(--positive); }
+    .negative { color: var(--negative); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .stat { padding: 11px; border-radius: 12px; background: var(--background); }
+    .stat small { display: block; color: var(--muted); font-size: 10px; }
+    .stat-value { margin-top: 4px; font-size: 17px; font-weight: 800; }
+
+    .chart { height: 210px; }
+    .chart-large { height: 250px; }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 8px 4px; border-bottom: 1px solid var(--line); text-align: left; font-size: 12px; }
+    th { color: var(--muted); }
+
+    .month-tabs, .scope-tabs { display: flex; gap: 7px; overflow-x: auto; margin-bottom: 12px; padding-bottom: 2px; }
+    .month-tabs button, .scope-tabs button {
+      white-space: nowrap;
+      min-height: 42px;
+      padding: 9px 16px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: var(--surface);
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .month-tabs button.active, .scope-tabs button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .field label { display: block; margin-bottom: 5px; color: var(--muted); font-size: 12px; font-weight: 700; }
+    .field input, .field select, .field textarea { width: 100%; min-height: 44px; padding: 10px; font-size: 16px; }
+    .field textarea { min-height: 150px; resize: vertical; }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .actions .btn { flex: 1 1 140px; }
+
+    .week-row, .history-row, .goal-row, .trend-row { padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .week-row:last-child, .history-row:last-child, .goal-row:last-child, .trend-row:last-child { border-bottom: 0; }
+    .week-head, .goal-head, .trend-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .week-head { margin-bottom: 6px; font-size: 12px; }
+    .week-head b { font-size: 13px; }
+    .week-bar { height: 10px; overflow: hidden; border: 1px solid var(--line); border-radius: 6px; background: var(--background); }
+    .week-fill { height: 100%; border-radius: 6px; }
+    .week-foot { display: flex; justify-content: space-between; margin-top: 5px; color: var(--muted); font-size: 11px; }
+
+    .expense-list { border-top: 1px solid var(--line); }
+    .expense-row { display: grid; grid-template-columns: 86px 1fr 82px 30px; gap: 5px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+    .expense-row input, .expense-row select { width: 100%; min-width: 0; min-height: 30px; padding: 4px 5px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--text); font-size: 12px; }
+    .expense-row .description { grid-column: 2; }
+    .expense-subcategory { grid-column: 1 / -1; }
+    .expense-delete { min-height: 30px; padding: 0; border: 0; border-radius: 6px; background: #ffe8e9; color: var(--negative); }
+    [data-theme="dark"] .expense-delete { background: #3a1f22; }
+
+    .category-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; }
+    .category-dot { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; }
+    .category-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .category-value { font-weight: 700; }
+
+    .goal-card { padding: 12px; margin-bottom: 10px; border-radius: 12px; background: var(--background); }
+    .goal-name { font-weight: 700; }
+    .goal-amount { color: var(--accent); font-weight: 800; }
+    .goal-bar { height: 8px; margin-top: 8px; overflow: hidden; border-radius: 4px; background: var(--line); }
+    .goal-fill { height: 100%; border-radius: 4px; background: var(--accent); }
+    .goal-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; color: var(--muted); font-size: 11px; }
+
+    .fab {
+      position: fixed;
+      right: 16px;
+      bottom: calc(20px + var(--safe-bottom));
+      z-index: 50;
+      width: 56px;
+      height: 56px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 28px;
+      box-shadow: 0 5px 18px rgba(0,0,0,.28);
+    }
+
+    .modal { display: none; position: fixed; inset: 0; z-index: 100; align-items: flex-end; background: rgba(0,0,0,.5); }
+    .modal.open { display: flex; }
+    .modal-sheet { width: 100%; padding: 20px 16px calc(20px + var(--safe-bottom)); border-radius: 20px 20px 0 0; background: var(--surface); }
+
+    .error-box { color: var(--negative); white-space: pre-wrap; }
+
+    @media (max-width: 520px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .brand { font-size: 14px; }
+      .navigation { grid-template-columns: repeat(2, 1fr); }
+      .expense-row { grid-template-columns: 1fr 1fr; }
+      .expense-row .description, .expense-subcategory { grid-column: 1 / -1; }
+    }
+
+    @media (min-width: 700px) {
+      body { padding-bottom: 30px; }
+      .stats { grid-template-columns: repeat(4, 1fr); }
+      .modal { align-items: center; justify-content: center; }
+      .modal-sheet { width: 500px; border-radius: 20px; }
+    }
+  </style>
 </head>
 <body>
-<header class="top"><div class="topin"><div class="brand">💰 Gestione Risparmi</div><div class="year"><select id="yearSelect"></select><button id="addYear">+ Anno</button></div></div></header>
-<main><nav class="nav" id="nav"><button class="active" data-page="dashboard">📊<br>Dashboard</button><button data-page="months">🗓️<br>Mesi</button><button data-page="goals">🎯<br>Obiettivi</button><button data-page="trends">📈<br>Trend</button><button data-page="settings">⚙️<br>Impostazioni</button></nav><section id="dashboard"></section><section id="months" class="hidden"></section><section id="goals" class="hidden"></section><section id="trends" class="hidden"></section><section id="settings" class="hidden"></section></main>
-<button class="fab" id="fab">+</button>
-<div class="modal" id="modal"><div class="sheet"><h2>Aggiungi spesa</h2><div class="field"><label>Data</label><input id="nDate" type="date"></div><div class="field"><label>Categoria</label><select id="nCat"></select></div><div class="field"><label>Sotto-categoria</label><select id="nSubCat"></select></div><div class="field"><label>Descrizione</label><input id="nDesc"></div><div class="field"><label>Importo</label><input id="nAmount" type="number" step=".01"></div><div class="actions"><button class="btn secondary" id="closeModal">Annulla</button><button class="btn primary" id="saveNew">Salva</button></div></div></div>
-<div class="toast-wrap"><div class="toast" id="toast">✓ <span id="toastMsg">Salvato</span></div></div>
-<script>
-(function(){'use strict';
-var MONTHS=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
-DEFAULT_CATS={Spesa:['Supermercato','Online','Mercato'],Trasporti:['Benzina','Mezzi pubblici','Taxi','Manutenzione'],Ristoranti:['Pranzi','Cene','Delivery'],Shopping:['Vestiti','Casa','Tech','Regali'],Salute:['Farmacia','Medico','Palestra'],Intrattenimento:['Film','Libri','Giochi','Concerti'],'Uscite serali':['Bar','Discoteca','Aperitivi'],Altro:['Varie','Fai-da-te'],Viaggi:['Voli','Hotel','Attività¬¬','Ristoranti viaggio']},
-KEY='gestione-risparmi-excel-v2',
-ACCENTS=['#4f6df5','#8da2ff','#168447','#d78619','#8d5cf6','#e0578f'],
-CATCOLORS=['#4f6df5','#d63d47','#168447','#d78619','#8d5cf6','#e0578f','#16a3b8','#9aa3b8','#c98a12','#39d17f','#ff6b6b','#6c5ce7'],
-DEFAULT_LABELS={auto:'Auto',telefono:'Telefono',abbonamenti:'Abbonamenti',viaggi:'Spese viaggi',extra:'Spese extra'};
-function blank(){return MONTHS.map(function(name){return{name:name,stipendio:0,extra:0,percent:20,fisse:{auto:0,telefono:0,abbonamenti:0},viaggi:0,speseExtra:0,expenses:[]}})}
-var seed={currentYear:2026,years:{2026:{months:blank()}},investments:{previous:0,years:{2025:{},2026:{}}},historical:{},categories:JSON.parse(JSON.stringify(DEFAULT_CATS)),theme:{accent:'#4f6df5',mode:'light'},fixedLabels:DEFAULT_LABELS,excelImportato:false,goals:[]};
-MONTHS.forEach(function(m){seed.investments.years[2025][m]=0;seed.investments.years[2026][m]=0});
-var DATA;try{DATA=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){DATA=null}
-if(!DATA||!DATA.years)DATA=seed;
-if(!DATA.fixedLabels)DATA.fixedLabels=DEFAULT_LABELS;
-if(!DATA.categories)DATA.categories=JSON.parse(JSON.stringify(DEFAULT_CATS));
-if(!DATA.historical)DATA.historical={};
-if(!DATA.theme)DATA.theme=seed.theme;
-if(!DATA.theme.accent)DATA.theme.accent='#4f6df5';
-if(!DATA.theme.mode)DATA.theme.mode='light';
-if(!DATA.investments)DATA.investments=seed.investments;
-if(!DATA.investments.years)DATA.investments.years={};
-if(!DATA.investments.years[DATA.currentYear])DATA.investments.years[DATA.currentYear]={};
-if(!DATA.investments.years[2025])DATA.investments.years[2025]={};
-if(!DATA.goals)DATA.goals=[];
-var page='dashboard',monthIndex=0,invYear=DATA.currentYear,dashCatScope='year',charts={},toastTimer=null;
-function save(showToast){localStorage.setItem(KEY,JSON.stringify(DATA));if(showToast!==false)notify('Salvato')}
-function notify(msg){var t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(function(){t.classList.remove('show')},1600)}
-function getMonths(){return DATA.years[DATA.currentYear].months}
-function money(n){return(Number(n)||0).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2})+' €'}
-function calc(m){var income=(+m.stipendio||0)+(+m.extra||0),planned=income*(+m.percent||0)/100,fixed=(+m.fisse.auto||0)+(+m.fisse.telefono||0)+(+m.fisse.abbonamenti||0),spent=m.expenses.reduce(function(s,e){return s+(+e.amount||0)},0),travel=+m.viaggi||0,extra=+m.speseExtra||0;return{income:income,planned:planned,fixed:fixed,spent:spent,budget:income-planned-fixed,real:income-fixed-spent-travel-extra}}
-function sortExpenses(m){m.expenses.sort(function(a,b){if(a.date>b.date)return -1;if(a.date<b.date)return 1;return 0})}
-function fmtDayMonth(d){return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')}
-function getMonthWeeks(year,mIdx){var first=new Date(year,mIdx,1),last=new Date(year,mIdx+1,0);var weeks=[],cur=new Date(first);while(cur<=last){var day=cur.getDay(),offset=day===0?6:day-1;var wStart=new Date(cur);wStart.setDate(cur.getDate()-offset);var wEnd=new Date(wStart);wEnd.setDate(wStart.getDate()+6);var clipStart=wStart<first?first:wStart,clipEnd=wEnd>last?last:wEnd;var days=Math.round((clipEnd-clipStart)/86400000)+1;weeks.push({start:clipStart,end:clipEnd,days:days});cur=new Date(clipEnd);cur.setDate(cur.getDate()+1)}return weeks}
-function toISO(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
-function weeklyBudgetData(m,c,year,mIdx){var totalDays=new Date(year,mIdx+1,0).getDate(),weeks=getMonthWeeks(year,mIdx),totalBudget=c.budget;return weeks.map(function(w){var budget=totalBudget>0?totalBudget*(w.days/totalDays):0;var sISO=toISO(w.start),eISO=toISO(w.end);var spent=m.expenses.reduce(function(s,e){return(e.date>=sISO&&e.date<=eISO)?s+(+e.amount||0):s},0);var remaining=budget-spent;var pct=budget>0?Math.max(0,Math.min(100,remaining/budget*100)):(spent>0?0:100);var color=pct>=50?'green':(pct>=20?'yellow':'red');return{start:w.start,end:w.end,budget:budget,spent:spent,remaining:remaining,pct:pct,color:color}})}
-function categoryTotals(scope){var totals={};function add(list){list.forEach(function(e){var k=e.cat||'Altro';totals[k]=(totals[k]||0)+(+e.amount||0)})}if(scope==='month'){add(getMonths()[monthIndex].expenses)}else{getMonths().forEach(function(m){add(m.expenses)})}var arr=Object.keys(totals).map(function(k){return{cat:k,amount:totals[k]}}).filter(function(x){return x.amount>0}).sort(function(a,b){return b.amount-a.amount});return arr}
-function subcategoryTotals(scope){var totals={};function add(list){list.forEach(function(e){var k=(e.cat||'Altro')+' > '+((e.subcat&&e.subcat!=='Nessuna')?e.subcat:'Generale');totals[k]=(totals[k]||0)+(+e.amount||0)})}if(scope==='month'){add(getMonths()[monthIndex].expenses)}else{getMonths().forEach(function(m){add(m.expenses)})}var arr=Object.keys(totals).map(function(k){return{name:k,amount:totals[k]}}).filter(function(x){return x.amount>0}).sort(function(a,b){return b.amount-a.amount});return arr}
-function catColor(i){return CATCOLORS[i%CATCOLORS.length]}
-function activate(name){page=name;['dashboard','months','goals','trends','settings'].forEach(function(x){document.getElementById(x).classList.toggle('hidden',x!==name)});document.querySelectorAll('#nav button').forEach(function(b){b.classList.toggle('active',b.dataset.page===name)});render()}
-function render(){if(page==='dashboard')renderDashboard();if(page==='months')renderMonths();if(page==='goals')renderGoals();if(page==='trends')renderTrends();if(page==='settings')renderSettings()}
-function renderDashboard(){var total={income:0,planned:0,spent:0,real:0},rows='';getMonths().forEach(function(m){var c=calc(m);Object.keys(total).forEach(function(k){total[k]+=c[k]});rows+='<tr><td>'+m.name+'</td><td>'+money(c.income)+'</td><td>'+money(c.spent)+'</td><td class="'+(c.real>=0?'pos':'neg')+'">'+money(c.real)+'</td></tr>'});var old=Object.keys(DATA.historical).reduce(function(s,y){return s+(+DATA.historical[y]||0)},0);
-var catData=categoryTotals(dashCatScope),catTotal=catData.reduce(function(s,c){return s+c.amount},0);
-var catListHtml=catData.length?catData.map(function(c,i){var pct=catTotal>0?(c.amount/catTotal*100):0;return'<div class="catrow"><span class="catdot" style="background:'+catColor(i)+'"></span><span class="catname">'+c.cat+'</span><span class="catval">'+money(c.amount)+' <span class="muted">('+pct.toFixed(0)+'%)</span></span></div>'}).join(''):'<p class="muted">Nessuna spesa registrata.</p>';
-document.getElementById('dashboard').innerHTML='<div class="stats"><div class="stat"><small>Entrate</small><div class="value">'+money(total.income)+'</div></div><div class="stat"><small>Risparmi pianificati</small><div class="value">'+money(total.planned)+'</div></div><div class="stat"><small>Spese variabili</small><div class="value">'+money(total.spent)+'</div></div><div class="stat"><small>Risparmio reale</small><div class="value '+(total.real>=0?'pos':'neg')+'">'+money(total.real)+'</div></div></div><div class="card"><h2>Entrate, spese e risparmio</h2><div class="chart"><canvas id="chartMain"></canvas></div></div><div class="card"><h2>Risparmio cumulato</h2><div class="chart"><canvas id="chartCum"></canvas></div></div><div class="card"><h2>Spese per categoria</h2><div class="pill-tabs"><button data-catscope="month" class="'+(dashCatScope==='month'?'active':'')+'">'+getMonths()[monthIndex].name+'</button><button data-catscope="year" class="'+(dashCatScope==='year'?'active':'')+'">Tutto '+DATA.currentYear+'</button></div><div class="chart donut"><canvas id="chartCat"></canvas></div><div class="catlist">'+catListHtml+'</div></div><div class="card"><h2>Riepilogo '+DATA.currentYear+'</h2><div class="table"><table><thead><tr><th>Mese</th><th>Entrate</th><th>Spese</th><th>Risparmio reale</th></tr></thead><tbody>'+rows+'</tbody></table></div></div><div class="card"><h2>Risparmi degli anni precedenti</h2><p class="muted">Totale storico: '+money(old)+'</p><div id="historyRows"></div><div class="actions"><button class="btn secondary" id="addHistory">Aggiungi anno</button></div></div>';
-var labels=getMonths().map(function(m){return m.name.slice(0,3)}),cs=getMonths().map(calc),running=0;var gridColor=getComputedStyle(document.documentElement).getPropertyValue('--line');var textColor=getComputedStyle(document.documentElement).getPropertyValue('--muted');var cardBg=getComputedStyle(document.documentElement).getPropertyValue('--card');destroyCharts();
-charts.main=new Chart(document.getElementById('chartMain'),{type:'bar',data:{labels:labels,datasets:[{label:'Entrate',data:cs.map(function(c){return c.income}),backgroundColor:'#4f6df5'},{label:'Spese',data:cs.map(function(c){return c.fixed+c.spent}),backgroundColor:'#d63d47'},{label:'Risparmio reale',data:cs.map(function(c){return c.real}),backgroundColor:'#168447'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:textColor}}},scales:{x:{ticks:{color:textColor},grid:{color:gridColor}},y:{ticks:{color:textColor},grid:{color:gridColor}}}}});
-charts.cum=new Chart(document.getElementById('chartCum'),{type:'line',data:{labels:labels,datasets:[{label:'Cumulato',data:cs.map(function(c){return running+=c.real}),borderColor:'#8d5cf6',backgroundColor:'#8d5cf633',fill:true,tension:.25}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:textColor}}},scales:{x:{ticks:{color:textColor},grid:{color:gridColor}},y:{ticks:{color:textColor},grid:{color:gridColor}}}}});
-if(catData.length){charts.cat=new Chart(document.getElementById('chartCat'),{type:'doughnut',data:{labels:catData.map(function(c){return c.cat}),datasets:[{data:catData.map(function(c){return c.amount}),backgroundColor:catData.map(function(c,i){return catColor(i)}),borderColor:cardBg,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){return ctx.label+': '+money(ctx.raw)}}}}}})}
-renderHistory();
-document.getElementById('addHistory').onclick=function(){var y=prompt('Anno precedente');if(y&&!Object.prototype.hasOwnProperty.call(DATA.historical,y)){DATA.historical[y]=0;save();render()}};
-document.querySelectorAll('[data-catscope]').forEach(function(b){b.onclick=function(){dashCatScope=b.dataset.catscope;render()}})}
-function destroyCharts(){Object.keys(charts).forEach(function(k){if(charts[k])charts[k].destroy()});charts={}}
-function renderHistory(){var box=document.getElementById('historyRows');if(!box)return;box.innerHTML=Object.keys(DATA.historical).sort().map(function(y){return'<div class="history"><b>'+y+'</b><input data-hist="'+y+'" type="number" step=".01" value="'+DATA.historical[y]+'"><button class="btn danger" data-delhist="'+y+'">Elimina</button></div>'}).join('')||'<p class="muted">Nessun anno inserito.</p>';box.querySelectorAll('[data-hist]').forEach(function(i){i.onchange=function(){DATA.historical[i.dataset.hist]=+i.value||0;save();render()}});box.querySelectorAll('[data-delhist]').forEach(function(b){b.onclick=function(){delete DATA.historical[b.dataset.delhist];save();render()}})}
-function renderMonths(){var m=getMonths()[monthIndex];sortExpenses(m);var c=calc(m);var tabs=getMonths().map(function(x,i){return'<button class="'+(i===monthIndex?'active':'')+'" data-mi="'+i+'">'+x.name.slice(0,3)+'</button>'}).join('');
-var weeks=weeklyBudgetData(m,c,DATA.currentYear,monthIndex);
-var weekHtml=c.budget<=0?'<p class="muted">Nessun budget variabile disponibile per le spese di questo mese.</p>':weeks.map(function(w,i){return'<div class="week-row"><div class="week-head"><b>Settimana '+(i+1)+'</b><span class="muted">'+fmtDayMonth(w.start)+' - '+fmtDayMonth(w.end)+'</span><span class="week-badge" style="color:var(--'+w.color+')">'+Math.round(w.pct)+'%</span></div><div class="week-bar-bg"><div class="week-bar-fill" style="width:'+Math.round(w.pct)+'%;background:var(--'+w.color+')"></div></div><div class="week-foot"><span>Speso: '+money(w.spent)+'</span><span>Budget: '+money(w.budget)+'</span><span>Rimanente: '+money(Math.max(0,w.remaining))+'</span></div></div>'}).join('')+'<div class="legend"><span><i class="dot" style="background:var(--green)"></i>≥50% rimanente</span><span><i class="dot" style="background:var(--yellow)"></i>20-49% rimanente</span><span><i class="dot" style="background:var(--red)"></i>&lt;20% rimanente</span></div>';
-var ex=m.expenses.map(function(e,i){var subcats=DATA.categories[e.cat]||[];var subOpts=subcats.length?subcats.map(function(s){return'<option '+(e.subcat===s?'selected':'')+'>'+s+'</option>'}).join(''):'<option '+(e.subcat==='Nessuna'?'selected':'')+'>-</option>';return'<div class="expense" data-ei="'+i+'"><input data-f="date" type="date" value="'+e.date+'"><input class="wide" data-f="desc" value="'+String(e.desc||'').replace(/"/g,'&quot;')+'" placeholder="Descrizione"><input data-f="amount" type="number" step=".01" value="'+(e.amount||0)+'"><button class="btn danger" data-delexp="'+i+'">✕</button></div><div class="expense" style="border-bottom:1px solid var(--line);padding-top:0"><select data-f2="cat" data-ei2="'+i+'" style="grid-column:1/-1;font-size:11.5px;padding:4px 5px;min-height:26px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--muted)">'+Object.keys(DATA.categories).map(function(x){return'<option '+(x===e.cat?'selected':'')+'>'+x+'</option>'}).join('')+'</select><select data-f2="subcat" data-ei2="'+i+'" class="subcat-select" style="grid-column:1/-1;margin-top:4px">'+subOpts+'</select></div>'}).join('')||'<p class="muted">Nessuna spesa.</p>';
-document.getElementById('months').innerHTML='<div class="tabs">'+tabs+'</div><div class="card"><h2>'+m.name+' '+DATA.currentYear+'</h2><div class="form"><div class="field"><label>Stipendio</label><input id="salary" type="number" value="'+m.stipendio+'"></div><div class="field"><label>Entrate extra</label><input id="extra" type="number" value="'+m.extra+'"></div><div class="field"><label>Risparmio %</label><input id="percent" type="number" value="'+m.percent+'"></div><div class="field"><label>'+DATA.fixedLabels.auto+'</label><input id="auto" type="number" value="'+m.fisse.auto+'"></div><div class="field"><label>'+DATA.fixedLabels.telefono+'</label><input id="phone" type="number" value="'+m.fisse.telefono+'"></div><div class="field"><label>'+DATA.fixedLabels.abbonamenti+'</label><input id="subs" type="number" value="'+m.fisse.abbonamenti+'"></div><div class="field"><label>'+DATA.fixedLabels.viaggi+'</label><input id="travel" type="number" value="'+(m.viaggi||0)+'"></div><div class="field"><label>'+DATA.fixedLabels.extra+'</label><input id="other" type="number" value="'+(m.speseExtra||0)+'"></div></div><button class="btn primary" id="saveConfig">Salva configurazione</button></div><div class="stats"><div class="stat"><small>Entrate</small><div class="value">'+money(c.income)+'</div></div><div class="stat"><small>Budget variabili</small><div class="value">'+money(c.budget)+'</div></div><div class="stat"><small>Spese</small><div class="value">'+money(c.spent)+'</div></div><div class="stat"><small>Reale</small><div class="value '+(c.real>=0?'pos':'neg')+'">'+money(c.real)+'</div></div></div><div class="card"><h2>Budget settimanale</h2>'+weekHtml+'</div><div class="card"><h2>Registro spese</h2><div class="expense-list">'+ex+'</div></div>';
-document.querySelectorAll('[data-mi]').forEach(function(b){b.onclick=function(){monthIndex=+b.dataset.mi;render()}});
-document.getElementById('saveConfig').onclick=function(){m.stipendio=+salary.value||0;m.extra=+extra.value||0;m.percent=+percent.value||0;m.fisse.auto=+auto.value||0;m.fisse.telefono=+phone.value||0;m.fisse.abbonamenti=+subs.value||0;m.viaggi=+travel.value||0;m.speseExtra=+other.value||0;save();render()};
-document.querySelectorAll('[data-ei]').forEach(function(row){var i=+row.dataset.ei;row.querySelectorAll('[data-f]').forEach(function(input){input.onchange=function(){var f=input.dataset.f;if(f==='date')m.expenses[i].date=input.value;if(f==='desc')m.expenses[i].desc=input.value;if(f==='amount')m.expenses[i].amount=+input.value||0;save();if(f==='date'){sortExpenses(m)}render()}})});
-document.querySelectorAll('[data-f2="cat"]').forEach(function(sel){sel.onchange=function(){var i=+sel.dataset.ei2;m.expenses[i].cat=sel.value;var subcats=DATA.categories[sel.value]||[];var subSel=row.querySelector('[data-f2="subcat"]');if(subcats.length){subSel.innerHTML=subcats.map(function(s){return'<option>'+s+'</option>'}).join('')}else{subSel.innerHTML='<option>-</option>'}m.expenses[i].subcat=subcats.length?subcats[0]:null;save();render()}});
-document.querySelectorAll('[data-f2="subcat"]').forEach(function(sel){sel.onchange=function(){var i=+sel.dataset.ei2;m.expenses[i].subcat=sel.value==='-'?null:sel.value;save()}});
-document.querySelectorAll('[data-delexp]').forEach(function(b){b.onclick=function(){m.expenses.splice(+b.dataset.delexp,1);save();render();notify('Spesa eliminata')}})}
-function renderGoals(){var totalSaved=Object.keys(DATA.years).reduce(function(s,y){return s+DATA.years[y].months.reduce(function(sum,m){return sum+(+m.viaggi||0)+(+m.speseExtra||0)},0)},0)+Object.keys(DATA.historical).reduce(function(s,y){return s+(+DATA.historical[y]||0)},0);
-var goalsHtml=DATA.goals.length?DATA.goals.map(function(g,i){var pct=Math.min(100,(g.saved/g.target)*100);return'<div class="goal-card"><div class="goal-header"><span class="goal-name">'+g.name+'</span><span class="goal-amount">'+money(g.saved)+' / '+money(g.target)+'</span></div><div class="goal-bar-bg"><div class="goal-bar-fill" style="width:'+pct+'%"></div></div><div class="goal-footer"><span>'+pct.toFixed(0)+'% completato</span><button class="btn danger" data-delgoal="'+i+'" style="min-height:24px;height:24px;padding:0 10px">Elimina</button></div></div>'}.join(''):'<p class="muted">Nessun obiettivo impostato.</p>';
-document.getElementById('goals').innerHTML='<div class="card"><h2>Obiettivi di risparmio</h2><p class="muted">Traccia i tuoi obiettivi (viaggi, acquisti, emergenze). I soldi messi da parte in "Spese viaggi" e "Spese extra" contribuiscono automaticamente al totale risparmiato.</p><div class="form"><div class="field"><label>Nome obiettivo</label><input id="goalName" placeholder="Es. Vacanza Giappone"></div><div class="field"><label>Target (€)</label><input id="goalTarget" type="number" step=".01" placeholder="3000"></div></div><button class="btn primary" id="addGoal">Aggiungi obiettivo</button></div><div class="card"><h2>Totale risparmiato</h2><p class="value" style="font-size:24px;color:var(--a)">'+money(totalSaved)+'</p><p class="muted">Da viaggi, spese extra e anni precedenti</p></div><div class="card"><h2>I tuoi obiettivi</h2>'+goalsHtml+'</div>';
-document.getElementById('addGoal').onclick=function(){var name=document.getElementById('goalName').value.trim();var target=+document.getElementById('goalTarget').value||0;if(name&&target>0){DATA.goals.push({name:name,target:target,saved:0});save();render();notify('Obiettivo aggiunto')}else{notify('Inserisci nome e target')}};
-document.querySelectorAll('[data-delgoal]').forEach(function(b){b.onclick=function(){DATA.goals.splice(+b.dataset.delgoal,1);save();render();notify('Obiettivo eliminato')}})}
-function renderTrends(){var subData=subcategoryTotals('year');var last3MonthsData=[];for(var i=2;i>=0;i--){var mi=monthIndex-i;if(mi<0)mi=12+mi;var m=getMonths()[mi];var spent=m.expenses.reduce(function(s,e){return s+(+e.amount||0)},0);last3MonthsData.push({name:MONTHS[mi],spent:spent})}
-var avgByCat={};Object.keys(DATA.categories).forEach(function(cat){var total=0,count=0;getMonths().forEach(function(m){m.expenses.forEach(function(e){if(e.cat===cat){total+=(+e.amount||0);count++}})});if(count>0)avgByCat[cat]=total/count});
-var trendsHtml=Object.keys(avgByCat).map(function(cat){var avg=avgByCat[cat];var lastMonth=getMonths()[monthIndex].expenses.filter(function(e){return e.cat===cat}).reduce(function(s,e){return s+(+e.amount||0)},0);var diff=lastMonth-avg;var arrow=diff>0?'↑':(diff<0?'↓':'→');var cls=diff>0?'up':(diff<0?'down':'flat');return'<div class="trend-row"><span class="trend-name">'+cat+'</span><span class="trend-val">'+money(avg)+' <span class="trend-arrow '+cls+'">'+arrow+'</span></span></div>'}.join('')||'<p class="muted">Nessun dato.</p>';
-var top5Html=subData.slice(0,5).map(function(s,i){return'<div class="trend-row"><span class="trend-name">'+s.name+'</span><span class="trend-val">'+money(s.amount)+'</span></div>'}.join('');
-document.getElementById('trends').innerHTML='<div class="card"><h2>Medie mensili per categoria</h2><p class="muted">Quanto spendi in media ogni categoria. La freccia indica se l\'ultimo mese è sopra (↑) o sotto (↓) la media.</p>'+trendsHtml+'</div><div class="card"><h2>Top 5 sotto-categorie</h2><p class="muted">Le sotto-categorie con più spese nell\'anno.</p>'+top5Html+'</div><div class="card"><h2>Trend ultimi 3 mesi</h2><div class="chart"><canvas id="chartTrend"></canvas></div></div>';
-var gridColor=getComputedStyle(document.documentElement).getPropertyValue('--line');var textColor=getComputedStyle(document.documentElement).getPropertyValue('--muted');if(window.__trendChart)window.__trendChart.destroy();window.__trendChart=new Chart(document.getElementById('chartTrend'),{type:'bar',data:{labels:last3MonthsData.map(function(d){return d.name}),datasets:[{label:'Spese totali',data:last3MonthsData.map(function(d){return d.spent}),backgroundColor:'#4f6df5'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:textColor}}},scales:{x:{ticks:{color:textColor},grid:{color:gridColor}},y:{ticks:{color:textColor},grid:{color:gridColor}}}}})}
-function renderSettings(){var mode=DATA.theme.mode;document.getElementById('settings').innerHTML='<div class="settings-grid"><div class="card settings-card"><h2>Importazione iniziale</h2><p class="muted">Importa i fogli Configurazione, Spese, Investimenti (tutti gli anni) e StoricoRisparmi.</p><label class="btn primary">Importa Excel iniziale<input id="excelFile" type="file" accept=".xlsx,.xls" hidden></label></div><div class="card settings-card"><h2>Intestazioni spese mensili</h2><p class="muted">Modifica i titoli delle cinque voci fisse. I calcoli restano invariati.</p><div class="form"><div class="field"><label>Prima voce</label><input id="labelAuto" value="'+DATA.fixedLabels.auto+'"></div><div class="field"><label>Seconda voce</label><input id="labelTelefono" value="'+DATA.fixedLabels.telefono+'"></div><div class="field"><label>Terza voce</label><input id="labelAbbonamenti" value="'+DATA.fixedLabels.abbonamenti+'"></div><div class="field"><label>Quarta voce</label><input id="labelViaggi" value="'+DATA.fixedLabels.viaggi+'"></div><div class="field"><label>Quinta voce</label><input id="labelExtra" value="'+DATA.fixedLabels.extra+'"></div></div><button class="btn primary" id="saveFixedLabels">Salva intestazioni</button></div><div class="card settings-card"><h2>Gestione categorie</h2><p class="muted">Aggiungi o rimuovi sotto-categorie. Formato: "Categoria: Sotto1, Sotto2, Sotto3"</p><textarea id="catEditor" style="width:100%;min-height:180px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--card);color:var(--text);font:inherit;font-size:13px;resize:vertical"></textarea><button class="btn primary" id="saveCats" style="margin-top:10px">Salva categorie</button></div><div class="card settings-card"><h2>Aspetto</h2><p class="muted">Modalità»§p><div class="mode-toggle"><button data-mode="light" class="'+(mode==='light'?'active':'')+'">☀️ Chiaro</button><button data-mode="dark" class="'+(mode==='dark'?'active':'')+'">🌙 Scuro</button><button data-mode="auto" class="'+(mode==='auto'?'active':'')+'">🔄 Auto</button></div><p class="muted" style="margin-top:14px">Colore principale</p><div class="themes">'+ACCENTS.map(function(c){return'<button class="theme'+(DATA.theme.accent===c?' active':'')+'" data-accent="'+c+'" style="background:'+c+'"></button>'}).join('')+'</div></div><div class="card settings-card"><h2>Backup manuale</h2><p class="muted">L\'esportazione Excel include configurazione mensile, spese, investimenti mensili di tutti gli anni, totale anni precedenti e risparmi storici.</p><div class="actions"><button class="btn primary" id="exportJson">Esporta JSON</button><button class="btn secondary" id="exportExcel">Esporta Excel</button><button class="btn secondary" id="importJson">Importa JSON</button><input id="fileJson" type="file" accept=".json" hidden></div></div></div>';document.getElementById('excelFile').onchange=importExcel;document.getElementById('saveFixedLabels').onclick=function(){DATA.fixedLabels={auto:document.getElementById('labelAuto').value.trim()||DEFAULT_LABELS.auto,telefono:document.getElementById('labelTelefono').value.trim()||DEFAULT_LABELS.telefono,abbonamenti:document.getElementById('labelAbbonamenti').value.trim()||DEFAULT_LABELS.abbonamenti,viaggi:document.getElementById('labelViaggi').value.trim()||DEFAULT_LABELS.viaggi,extra:document.getElementById('labelExtra').value.trim()||DEFAULT_LABELS.extra};save('Intestazioni salvate');render()};document.getElementById('catEditor').value=Object.keys(DATA.categories).map(function(cat){return cat+': '+(DATA.categories[cat]||[]).join(', ')}).join('\n');document.getElementById('saveCats').onclick=function(){try{var lines=document.getElementById('catEditor').value.split('\n');var newCats={};lines.forEach(function(line){var parts=line.split(':');if(parts.length>=2){var cat=parts[0].trim();var subs=parts.slice(1).join(':').split(',').map(function(s){return s.trim()}).filter(function(s){return s});newCats[cat]=subs}});if(Object.keys(newCats).length){DATA.categories=newCats;save('Categorie salvate');render()}else{notify('Formato non valido')}}catch(e){notify('Errore: '+e.message)}};document.querySelectorAll('[data-mode]').forEach(function(b){b.onclick=function(){DATA.theme.mode=b.dataset.mode;applyTheme();save();render()}});document.querySelectorAll('[data-accent]').forEach(function(b){b.onclick=function(){DATA.theme.accent=b.dataset.accent;applyTheme();save();render()}});document.getElementById('exportJson').onclick=function(){download('gestione-risparmi.json',JSON.stringify(DATA,null,2),'application/json');notify('JSON esportato')};document.getElementById('exportExcel').onclick=function(){exportCompatibleXlsx();notify('Excel esportato')};document.getElementById('importJson').onclick=function(){document.getElementById('fileJson').click()};document.getElementById('fileJson').onchange=function(e){var r=new FileReader();r.onload=function(){DATA=JSON.parse(r.result);if(!DATA.theme)DATA.theme=seed.theme;if(!DATA.theme.mode)DATA.theme.mode='light';if(!DATA.historical)DATA.historical={};if(!DATA.investments.years)DATA.investments.years={};if(!DATA.fixedLabels)DATA.fixedLabels=DEFAULT_LABELS;if(!DATA.categories)DATA.categories=JSON.parse(JSON.stringify(DEFAULT_CATS));if(!DATA.goals)DATA.goals=[];save();applyTheme();fillYears();invYear=DATA.currentYear;render();notify('Importazione completata')};r.readAsText(e.target.files[0])}}
-function normalizeDate(v){if(v instanceof Date&&!isNaN(v))return v.toISOString().slice(0,10);if(typeof v==='number'){var d=XLSX.SSF.parse_date_code(v);return d.y+'-'+String(d.m).padStart(2,'0')+'-'+String(d.d).padStart(2,'0')}var s=String(v||'').trim();if(/^\d{4}-\d{2}-\d{2}$/.test(s))return s;var p=s.split(/[\/.-]/);if(p.length===3)return(p[2].length===2?'20'+p[2]:p[2])+'-'+String(p[1]).padStart(2,'0')+'-'+String(p[0]).padStart(2,'0');return null}
-function importExcel(e){var file=e.target.files[0];if(!file)return;if(DATA.excelImportato&&!confirm('Sostituire i dati attuali?'))return;var r=new FileReader();r.onload=function(ev){try{var wb=XLSX.read(ev.target.result,{type:'array',cellDates:true}),cfg=wb.Sheets.Configurazione,sp=wb.Sheets.Spese,inv=wb.Sheets.Investimenti,sto=wb.Sheets.StoricoRisparmi;if(!cfg||!sp)throw Error('Fogli mancanti');var next={currentYear:2026,years:{},investments:{previous:0,years:{}},historical:{},categories:DATA.categories||JSON.parse(JSON.stringify(DEFAULT_CATS)),theme:DATA.theme,fixedLabels:DATA.fixedLabels||DEFAULT_LABELS,goals:DATA.goals||[],excelImportato:true};XLSX.utils.sheet_to_json(cfg,{defval:''}).forEach(function(row){var y=+row.Anno,mn=String(row.Mese||'').trim(),ix=MONTHS.indexOf(mn);if(!y||ix<0)return;if(!next.years[y])next.years[y]={months:blank()};var m=next.years[y].months[ix];m.stipendio=+row.Stipendio||0;m.extra=+row['Entrate extra']||0;m.percent=+row['Risparmio %']||0;m.fisse.auto=+row.Auto||0;m.fisse.telefono=+row.Telefono||0;m.fisse.abbonamenti=+row.Abbonamenti||0;m.viaggi=+row['Spese viaggi']||0;m.speseExtra=+row['Spese extra']||0});XLSX.utils.sheet_to_json(sp,{defval:''}).forEach(function(row){var d=normalizeDate(row.Data),cat=String(row.Categoria||'').trim(),subcat=row['Sotto-categoria']?String(row['Sotto-categoria']).trim():null,amount=+row.Importo||0;if(!d||!cat||amount<=0)return;var dt=new Date(d+'T00:00:00'),y=dt.getFullYear(),ix=dt.getMonth();if(!next.years[y])next.years[y]={months:blank()};if(!next.categories[cat])next.categories[cat]=[];next.years[y].months[ix].expenses.push({date:d,cat:cat,subcat:subcat,desc:String(row.Descrizione||''),amount:amount})});Object.keys(next.years).forEach(function(y){next.years[y].months.forEach(sortExpenses)});if(inv)XLSX.utils.sheet_to_json(inv,{defval:''}).forEach(function(row){var y=+row.Anno,mn=String(row.Mese||'').trim(),v=+row.Importo||0;if(mn==='Anni precedenti'){next.investments.previous=v;return}if(y&&MONTHS.indexOf(mn)>=0){if(!next.investments.years[y])next.investments.years[y]={};next.investments.years[y][mn]=v}});if(sto)XLSX.utils.sheet_to_json(sto,{defval:''}).forEach(function(row){var y=String(row.Anno||'').trim(),v=+row.Importo||0;if(y)next.historical[y]=v});if(!Object.keys(next.years).length)next.years[2026]={months:blank()};next.currentYear=+Object.keys(next.years).sort()[0];DATA=next;save();fillYears();applyTheme();invYear=DATA.currentYear;activate('dashboard');notify('Importazione completata')}catch(err){alert('Errore importazione: '+err.message)}};r.readAsArrayBuffer(file)}
-function download(name,text,type){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:type}));a.download=name;a.click()}
-function exportCompatibleXlsx(){var wb=XLSX.utils.book_new(),cfg=[['Anno','Mese','Stipendio','Entrate extra','Risparmio %','Auto','Telefono','Abbonamenti','Spese viaggi','Spese extra']];Object.keys(DATA.years).sort().forEach(function(y){DATA.years[y].months.forEach(function(m){cfg.push([+y,m.name,m.stipendio,m.extra,m.percent,m.fisse.auto,m.fisse.telefono,m.fisse.abbonamenti,m.viaggi||0,m.speseExtra||0])})});XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(cfg),'Configurazione');var sp=[['Data','Categoria','Sotto-categoria','Descrizione','Importo']];Object.values(DATA.years).forEach(function(y){y.months.forEach(function(m){m.expenses.forEach(function(e){sp.push([e.date,e.cat,e.subcat||'',e.desc,e.amount])})})});XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(sp),'Spese');var inv=[['Anno','Mese','Importo'],['','Anni precedenti',DATA.investments.previous||0]];Object.keys(DATA.investments.years).map(Number).sort(function(a,b){return a-b}).forEach(function(y){MONTHS.forEach(function(m){inv.push([y,m,(DATA.investments.years[y]||{})[m]||0])})});XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(inv),'Investimenti');var sto=[['Anno','Importo']];Object.keys(DATA.historical).sort().forEach(function(y){sto.push([y,DATA.historical[y]||0])});XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(sto),'StoricoRisparmi');XLSX.writeFile(wb,'gestione-risparmi-esportazione.xlsx')}
-function applyTheme(){var mode=DATA.theme.mode||'light';var isDark=mode==='dark'||(mode==='auto'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.setAttribute('data-theme',isDark?'dark':'light');document.documentElement.style.setProperty('--a',DATA.theme.accent||'#4f6df5')}
-function fillYears(){document.getElementById('yearSelect').innerHTML=Object.keys(DATA.years).sort().map(function(y){return'<option value="'+y+'" '+(+y===DATA.currentYear?'selected':'')+'>'+y+'</option>'}).join('')}
-function updateSubCatSelect(){var cat=document.getElementById('nCat').value;var subcats=DATA.categories[cat]||[];var subSel=document.getElementById('nSubCat');if(subcats.length){subSel.innerHTML=subcats.map(function(s){return'<option>'+s+'</option>'}).join('');subSel.disabled=false}else{subSel.innerHTML='<option>-</option>';subSel.disabled=true}}
-document.getElementById('nav').onclick=function(e){var b=e.target.closest('button[data-page]');if(b)activate(b.dataset.page)};
-document.getElementById('yearSelect').onchange=function(e){DATA.currentYear=+e.target.value;monthIndex=0;save();render()};
-document.getElementById('addYear').onclick=function(){var y=Math.max.apply(null,Object.keys(DATA.years).map(Number))+1;DATA.years[y]={months:blank()};if(!DATA.investments.years[y])DATA.investments.years[y]={};DATA.currentYear=y;save();fillYears();render()};
-document.getElementById('fab').onclick=function(){document.getElementById('nDate').value=new Date().toISOString().slice(0,10);document.getElementById('nCat').innerHTML=Object.keys(DATA.categories).map(function(c){return'<option>'+c+'</option>'}).join('');updateSubCatSelect();document.getElementById('modal').classList.add('open')};
-document.getElementById('closeModal').onclick=function(){document.getElementById('modal').classList.remove('open')};
-document.getElementById('nCat').onchange=updateSubCatSelect;
-document.getElementById('saveNew').onclick=function(){var d=document.getElementById('nDate').value,ix=new Date(d+'T00:00:00').getMonth();var subSel=document.getElementById('nSubCat');var subcat=subSel.disabled||subSel.value==='-'?null:subSel.value;getMonths()[ix].expenses.push({date:d,cat:document.getElementById('nCat').value,subcat:subcat,desc:document.getElementById('nDesc').value,amount:+document.getElementById('nAmount').value||0});sortExpenses(getMonths()[ix]);save();document.getElementById('modal').classList.remove('open');monthIndex=ix;activate('months')};
-if(window.matchMedia){window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){if(DATA.theme.mode==='auto')applyTheme()})}
-applyTheme();fillYears();activate('dashboard')
-})();
-</script>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">💰 Gestione Risparmi</div>
+      <div class="year-controls">
+        <select id="yearSelect" aria-label="Anno"></select>
+        <button id="addYearButton" class="btn-primary">+ Anno</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- La navigazione ha cinque voci: la griglia diventa responsive via CSS. -->
+    <nav id="navigation" class="navigation">
+      <button data-page="dashboard" class="active">📊<br>Dashboard</button>
+      <button data-page="months">🗓️<br>Mesi</button>
+      <button data-page="goals">🎯<br>Obiettivi</button>
+      <button data-page="trends">📈<br>Trend</button>
+      <button data-page="settings">⚙️<br>Impostazioni</button>
+    </nav>
+
+    <section id="dashboardPage"></section>
+    <section id="monthsPage" class="hidden"></section>
+    <section id="goalsPage" class="hidden"></section>
+    <section id="trendsPage" class="hidden"></section>
+    <section id="settingsPage" class="hidden"></section>
+  </main>
+
+  <button id="addExpenseButton" class="fab" aria-label="Aggiungi spesa">+</button>
+
+  <!-- Finestra per l'inserimento rapido di una spesa. -->
+  <div id="expenseModal" class="modal">
+    <div class="modal-sheet">
+      <h2>Aggiungi spesa</h2>
+      <div class="field"><label for="newExpenseDate">Data</label><input id="newExpenseDate" type="date"></div>
+      <div class="field"><label for="newExpenseCategory">Categoria</label><select id="newExpenseCategory"></select></div>
+      <div class="field"><label for="newExpenseSubcategory">Sotto-categoria</label><select id="newExpenseSubcategory"></select></div>
+      <div class="field"><label for="newExpenseDescription">Descrizione</label><input id="newExpenseDescription"></div>
+      <div class="field"><label for="newExpenseAmount">Importo</label><input id="newExpenseAmount" type="number" step="0.01"></div>
+      <div class="actions">
+        <button id="closeExpenseModal" class="btn btn-secondary">Annulla</button>
+        <button id="saveNewExpense" class="btn btn-primary">Salva</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" style="position:fixed;left:0;right:0;bottom:18px;z-index:200;display:none;justify-content:center;pointer-events:none">
+    <span id="toastMessage" style="padding:10px 18px;border-radius:999px;background:var(--text);color:var(--background);font-weight:700"></span>
+  </div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      /* =========================
+         Costanti e stato applicazione
+         ========================= */
+      const MONTHS = [
+        'Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno',
+        'Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'
+      ];
+
+      const DEFAULT_CATEGORIES = {
+        'Spesa': ['Supermercato', 'Mercato', 'Online'],
+        'Trasporti': ['Benzina', 'Mezzi pubblici', 'Taxi', 'Manutenzione'],
+        'Ristoranti': ['Pranzi', 'Cene', 'Delivery'],
+        'Shopping': ['Vestiti', 'Casa', 'Tech', 'Regali'],
+        'Salute': ['Farmacia', 'Medico', 'Palestra'],
+        'Intrattenimento': ['Film', 'Libri', 'Giochi', 'Concerti'],
+        'Uscite serali': ['Bar', 'Aperitivi', 'Discoteca'],
+        'Viaggi': ['Voli', 'Hotel', 'Attività', 'Ristoranti viaggio'],
+        'Altro': ['Varie', 'Fai-da-te']
+      };
+
+      const DEFAULT_LABELS = {
+        auto: 'Auto',
+        telefono: 'Telefono',
+        abbonamenti: 'Abbonamenti',
+        viaggi: 'Spese viaggi',
+        extra: 'Spese extra'
+      };
+
+      const CATEGORY_COLORS = [
+        '#4f6df5','#d63d47','#168447','#d78619','#8d5cf6',
+        '#e0578f','#16a3b8','#9aa3b8','#c98a12','#39d17f'
+      ];
+
+      const STORAGE_KEY = 'gestione-risparmi-stabile-v1';
+      const state = {
+        page: 'dashboard',
+        monthIndex: 0,
+        categoryScope: 'year',
+        charts: {},
+        toastTimer: null,
+        data: null
+      };
+
+      /* =========================
+         Creazione e migrazione dati
+         ========================= */
+      function createBlankMonth(name) {
+        return {
+          name,
+          stipendio: 0,
+          extra: 0,
+          percent: 20,
+          fisse: { auto: 0, telefono: 0, abbonamenti: 0 },
+          viaggi: 0,
+          speseExtra: 0,
+          expenses: []
+        };
+      }
+
+      function createBlankYear() {
+        return { months: MONTHS.map(createBlankMonth) };
+      }
+
+      function createInitialData() {
+        return {
+          currentYear: new Date().getFullYear(),
+          years: { [new Date().getFullYear()]: createBlankYear() },
+          historical: {},
+          investments: { previous: 0, years: {} },
+          categories: structuredCloneSafe(DEFAULT_CATEGORIES),
+          fixedLabels: { ...DEFAULT_LABELS },
+          goals: [],
+          theme: { accent: '#4f6df5', mode: 'light' },
+          excelImported: false
+        };
+      }
+
+      function structuredCloneSafe(value) {
+        return JSON.parse(JSON.stringify(value));
+      }
+
+      function normalizeData(raw) {
+        const fallback = createInitialData();
+        const data = raw && typeof raw === 'object' ? raw : fallback;
+
+        if (!data.years || typeof data.years !== 'object') data.years = fallback.years;
+        if (!data.currentYear || !data.years[data.currentYear]) {
+          const years = Object.keys(data.years).map(Number).filter(Number.isFinite);
+          data.currentYear = years.length ? years.sort((a,b) => a-b)[0] : fallback.currentYear;
+        }
+
+        Object.keys(data.years).forEach(year => {
+          if (!data.years[year] || !Array.isArray(data.years[year].months)) {
+            data.years[year] = createBlankYear();
+          }
+          while (data.years[year].months.length < 12) {
+            data.years[year].months.push(createBlankMonth(MONTHS[data.years[year].months.length]));
+          }
+          data.years[year].months = data.years[year].months.slice(0, 12).map((month, index) => ({
+            ...createBlankMonth(MONTHS[index]),
+            ...month,
+            name: MONTHS[index],
+            fisse: { ...createBlankMonth(MONTHS[index]).fisse, ...(month.fisse || {}) },
+            expenses: Array.isArray(month.expenses) ? month.expenses : []
+          }));
+        });
+
+        if (!data.categories || Array.isArray(data.categories)) data.categories = structuredCloneSafe(DEFAULT_CATEGORIES);
+        if (!data.fixedLabels) data.fixedLabels = { ...DEFAULT_LABELS };
+        if (!data.historical) data.historical = {};
+        if (!data.investments) data.investments = { previous: 0, years: {} };
+        if (!data.investments.years) data.investments.years = {};
+        if (!data.goals) data.goals = [];
+        if (!data.theme) data.theme = { accent: '#4f6df5', mode: 'light' };
+        if (!data.theme.accent) data.theme.accent = '#4f6df5';
+        if (!data.theme.mode) data.theme.mode = 'light';
+
+        // Le spese delle versioni precedenti possono non avere una sotto-categoria.
+        Object.values(data.years).forEach(year => {
+          year.months.forEach(month => {
+            month.expenses.forEach(expense => {
+              if (!('subcat' in expense)) expense.subcat = null;
+              if (!expense.cat) expense.cat = 'Altro';
+              if (!expense.date) expense.date = todayISO();
+            });
+          });
+        });
+
+        return data;
+      }
+
+      function loadData() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          return normalizeData(saved ? JSON.parse(saved) : createInitialData());
+        } catch (error) {
+          console.error('Errore caricamento dati:', error);
+          return createInitialData();
+        }
+      }
+
+      function saveData(message = null) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state.data));
+        if (message) showToast(message);
+      }
+
+      /* =========================
+         Funzioni di calcolo
+         ========================= */
+      function currentMonths() {
+        return state.data.years[state.data.currentYear].months;
+      }
+
+      function calculateMonth(month) {
+        const income = number(month.stipendio) + number(month.extra);
+        const plannedSaving = income * number(month.percent) / 100;
+        const fixed = number(month.fisse.auto) + number(month.fisse.telefono) + number(month.fisse.abbonamenti);
+        const variableExpenses = month.expenses.reduce((sum, expense) => sum + number(expense.amount), 0);
+        const travel = number(month.viaggi);
+        const extra = number(month.speseExtra);
+
+        return {
+          income,
+          plannedSaving,
+          fixed,
+          variableExpenses,
+          travel,
+          extra,
+          // Viaggi ed extra restano fuori dal budget settimanale,
+          // perché rappresentano somme accantonate per obiettivi.
+          weeklyBudget: income - plannedSaving - fixed,
+          // Nel risparmio reale vengono invece conteggiati come uscite.
+          realSaving: income - fixed - variableExpenses - travel - extra
+        };
+      }
+
+      function number(value) {
+        const result = Number(value);
+        return Number.isFinite(result) ? result : 0;
+      }
+
+      function money(value) {
+        return number(value).toLocaleString('it-IT', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }) + ' €';
+      }
+
+      function todayISO() {
+        return new Date().toISOString().slice(0, 10);
+      }
+
+      function formatDate(date) {
+        const d = new Date(date + 'T00:00:00');
+        return Number.isNaN(d.getTime()) ? date : d.toLocaleDateString('it-IT');
+      }
+
+      function calculateWeeks(month, monthIndex) {
+        const calculation = calculateMonth(month);
+        const totalDays = new Date(state.data.currentYear, monthIndex + 1, 0).getDate();
+        const daysPerWeek = [7, 7, 7, 7, totalDays - 28].filter(days => days > 0);
+        const totalBudget = Math.max(0, calculation.weeklyBudget);
+
+        return daysPerWeek.map((days, index) => {
+          const budget = totalBudget * days / totalDays;
+          const spent = month.expenses.reduce((sum, expense) => {
+            const date = new Date(expense.date + 'T00:00:00');
+            const day = date.getDate();
+            const start = index * 7 + 1;
+            const end = index === daysPerWeek.length - 1 ? totalDays : start + days - 1;
+            return day >= start && day <= end ? sum + number(expense.amount) : sum;
+          }, 0);
+          const remaining = budget - spent;
+          const percentage = budget > 0 ? Math.max(0, Math.min(100, remaining / budget * 100)) : 100;
+          const color = percentage >= 50 ? 'var(--positive)' : percentage >= 20 ? 'var(--warning)' : 'var(--negative)';
+          return { index: index + 1, budget, spent, remaining, percentage, color };
+        });
+      }
+
+      function categoryTotals(scope) {
+        const totals = {};
+        const months = scope === 'month' ? [currentMonths()[state.monthIndex]] : currentMonths();
+        months.forEach(month => month.expenses.forEach(expense => {
+          const category = expense.cat || 'Altro';
+          totals[category] = (totals[category] || 0) + number(expense.amount);
+        }));
+        return Object.entries(totals)
+          .map(([name, amount]) => ({ name, amount }))
+          .filter(item => item.amount > 0)
+          .sort((a,b) => b.amount - a.amount);
+      }
+
+      function subcategoryTotals() {
+        const totals = {};
+        currentMonths().forEach(month => month.expenses.forEach(expense => {
+          const key = (expense.cat || 'Altro') + ' › ' + (expense.subcat || 'Generale');
+          totals[key] = (totals[key] || 0) + number(expense.amount);
+        }));
+        return Object.entries(totals)
+          .map(([name, amount]) => ({ name, amount }))
+          .sort((a,b) => b.amount - a.amount);
+      }
+
+      function accumulatedTargetSavings() {
+        let total = 0;
+        Object.values(state.data.years).forEach(year => year.months.forEach(month => {
+          total += number(month.viaggi) + number(month.speseExtra);
+        }));
+        Object.values(state.data.historical).forEach(value => total += number(value));
+        return total;
+      }
+
+      /* =========================
+         Utility DOM e grafici
+         ========================= */
+      function escapeHTML(value) {
+        return String(value ?? '').replace(/[&<>'"]/g, char => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+        }[char]));
+      }
+
+      function showToast(message) {
+        const toast = document.getElementById('toast');
+        const text = document.getElementById('toastMessage');
+        text.textContent = message;
+        toast.style.display = 'flex';
+        clearTimeout(state.toastTimer);
+        state.toastTimer = setTimeout(() => { toast.style.display = 'none'; }, 1600);
+      }
+
+      function destroyCharts() {
+        Object.values(state.charts).forEach(chart => chart?.destroy());
+        state.charts = {};
+      }
+
+      function chartColors() {
+        const styles = getComputedStyle(document.documentElement);
+        return {
+          line: styles.getPropertyValue('--line'),
+          muted: styles.getPropertyValue('--muted'),
+          surface: styles.getPropertyValue('--surface')
+        };
+      }
+
+      /* =========================
+         Rendering pagine
+         ========================= */
+      function render() {
+        ['dashboard','months','goals','trends','settings'].forEach(page => {
+          document.getElementById(page + 'Page').classList.toggle('hidden', state.page !== page);
+        });
+        document.querySelectorAll('#navigation button').forEach(button => {
+          button.classList.toggle('active', button.dataset.page === state.page);
+        });
+        destroyCharts();
+        if (state.page === 'dashboard') renderDashboard();
+        if (state.page === 'months') renderMonths();
+        if (state.page === 'goals') renderGoals();
+        if (state.page === 'trends') renderTrends();
+        if (state.page === 'settings') renderSettings();
+      }
+
+      function renderDashboard() {
+        const months = currentMonths();
+        const calculations = months.map(calculateMonth);
+        const total = calculations.reduce((sum, item) => ({
+          income: sum.income + item.income,
+          plannedSaving: sum.plannedSaving + item.plannedSaving,
+          variableExpenses: sum.variableExpenses + item.variableExpenses,
+          realSaving: sum.realSaving + item.realSaving
+        }), { income: 0, plannedSaving: 0, variableExpenses: 0, realSaving: 0 });
+        const categories = categoryTotals(state.categoryScope);
+        const categoryTotal = categories.reduce((sum, item) => sum + item.amount, 0);
+
+        const rows = months.map((month, index) => {
+          const item = calculations[index];
+          return `<tr><td>${month.name}</td><td>${money(item.income)}</td><td>${money(item.variableExpenses)}</td><td class="${item.realSaving >= 0 ? 'positive' : 'negative'}">${money(item.realSaving)}</td></tr>`;
+        }).join('');
+
+        const categoryRows = categories.length
+          ? categories.map((item, index) => `<div class="category-row"><span class="category-dot" style="background:${CATEGORY_COLORS[index % CATEGORY_COLORS.length]}"></span><span class="category-name">${escapeHTML(item.name)}</span><span class="category-value">${money(item.amount)} <span class="muted">(${categoryTotal ? (item.amount / categoryTotal * 100).toFixed(0) : 0}%)</span></span></div>`).join('')
+          : '<p class="muted">Nessuna spesa registrata.</p>';
+
+        document.getElementById('dashboardPage').innerHTML = `
+          <div class="stats">
+            <div class="stat"><small>Entrate</small><div class="stat-value">${money(total.income)}</div></div>
+            <div class="stat"><small>Risparmi pianificati</small><div class="stat-value">${money(total.plannedSaving)}</div></div>
+            <div class="stat"><small>Spese variabili</small><div class="stat-value">${money(total.variableExpenses)}</div></div>
+            <div class="stat"><small>Risparmio reale</small><div class="stat-value ${total.realSaving >= 0 ? 'positive' : 'negative'}">${money(total.realSaving)}</div></div>
+          </div>
+          <div class="card"><h2>Entrate, spese e risparmio</h2><div class="chart"><canvas id="mainChart"></canvas></div></div>
+          <div class="card"><h2>Risparmio cumulato</h2><div class="chart"><canvas id="cumulativeChart"></canvas></div></div>
+          <div class="card">
+            <h2>Spese per categoria</h2>
+            <div class="scope-tabs"><button data-scope="month" class="${state.categoryScope === 'month' ? 'active' : ''}">${MONTHS[state.monthIndex]}</button><button data-scope="year" class="${state.categoryScope === 'year' ? 'active' : ''}">Tutto ${state.data.currentYear}</button></div>
+            <div class="chart"><canvas id="categoryChart"></canvas></div>
+            <div>${categoryRows}</div>
+          </div>
+          <div class="card"><h2>Riepilogo ${state.data.currentYear}</h2><div class="table-wrap"><table><thead><tr><th>Mese</th><th>Entrate</th><th>Spese</th><th>Risparmio reale</th></tr></thead><tbody>${rows}</tbody></table></div></div>
+        `;
+
+        document.querySelectorAll('[data-scope]').forEach(button => button.addEventListener('click', () => {
+          state.categoryScope = button.dataset.scope;
+          render();
+        }));
+
+        const colors = chartColors();
+        state.charts.main = new Chart(document.getElementById('mainChart'), {
+          type: 'bar',
+          data: {
+            labels: MONTHS.map(month => month.slice(0,3)),
+            datasets: [
+              { label: 'Entrate', data: calculations.map(item => item.income), backgroundColor: '#4f6df5' },
+              { label: 'Spese variabili', data: calculations.map(item => item.fixed + item.variableExpenses), backgroundColor: '#d63d47' },
+              { label: 'Risparmio reale', data: calculations.map(item => item.realSaving), backgroundColor: '#168447' }
+            ]
+          },
+          options: chartOptions(colors)
+        });
+
+        let running = 0;
+        state.charts.cumulative = new Chart(document.getElementById('cumulativeChart'), {
+          type: 'line',
+          data: { labels: MONTHS.map(month => month.slice(0,3)), datasets: [{ label: 'Cumulato', data: calculations.map(item => running += item.realSaving), borderColor: '#8d5cf6', backgroundColor: '#8d5cf633', fill: true, tension: .25 }] },
+          options: chartOptions(colors)
+        });
+
+        if (categories.length) {
+          state.charts.category = new Chart(document.getElementById('categoryChart'), {
+            type: 'doughnut',
+            data: { labels: categories.map(item => item.name), datasets: [{ data: categories.map(item => item.amount), backgroundColor: categories.map((_, index) => CATEGORY_COLORS[index % CATEGORY_COLORS.length]), borderColor: colors.surface, borderWidth: 2 }] },
+            options: { responsive: true, maintainAspectRatio: false, cutout: '62%', plugins: { legend: { display: false } } }
+          });
+        }
+      }
+
+      function chartOptions(colors) {
+        return {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { labels: { color: colors.muted } } },
+          scales: { x: { ticks: { color: colors.muted }, grid: { color: colors.line } }, y: { ticks: { color: colors.muted }, grid: { color: colors.line } } }
+        };
+      }
+
+      function renderMonths() {
+        const months = currentMonths();
+        const month = months[state.monthIndex];
+        const calculation = calculateMonth(month);
+        const weeks = calculateWeeks(month, state.monthIndex);
+        const weekRows = weeks.map(week => `<div class="week-row"><div class="week-head"><b>Settimana ${week.index}</b><span>${money(week.remaining)} rimanenti</span></div><div class="week-bar"><div class="week-fill" style="width:${week.percentage}%;background:${week.color}"></div></div><div class="week-foot"><span>Speso: ${money(week.spent)}</span><span>Budget: ${money(week.budget)}</span><span>${week.percentage.toFixed(0)}%</span></div></div>`).join('');
+
+        const monthTabs = months.map((item, index) => `<button data-month-index="${index}" class="${index === state.monthIndex ? 'active' : ''}">${item.name.slice(0,3)}</button>`).join('');
+        const expenses = month.expenses.length ? month.expenses.map((expense, index) => expenseRowHTML(expense, index)).join('') : '<p class="muted">Nessuna spesa registrata.</p>';
+
+        document.getElementById('monthsPage').innerHTML = `
+          <div class="month-tabs">${monthTabs}</div>
+          <div class="card"><h2>${month.name} ${state.data.currentYear}</h2><div class="form-grid">
+            <div class="field"><label>Stipendio</label><input id="salary" type="number" value="${number(month.stipendio)}"></div>
+            <div class="field"><label>Entrate extra</label><input id="incomeExtra" type="number" value="${number(month.extra)}"></div>
+            <div class="field"><label>Risparmio %</label><input id="savingPercent" type="number" value="${number(month.percent)}"></div>
+            <div class="field"><label>${escapeHTML(state.data.fixedLabels.auto)}</label><input id="fixedAuto" type="number" value="${number(month.fisse.auto)}"></div>
+            <div class="field"><label>${escapeHTML(state.data.fixedLabels.telefono)}</label><input id="fixedPhone" type="number" value="${number(month.fisse.telefono)}"></div>
+            <div class="field"><label>${escapeHTML(state.data.fixedLabels.abbonamenti)}</label><input id="fixedSubscriptions" type="number" value="${number(month.fisse.abbonamenti)}"></div>
+            <div class="field"><label>${escapeHTML(state.data.fixedLabels.viaggi)}</label><input id="travelSaving" type="number" value="${number(month.viaggi)}"></div>
+            <div class="field"><label>${escapeHTML(state.data.fixedLabels.extra)}</label><input id="extraSaving" type="number" value="${number(month.speseExtra)}"></div>
+          </div><button id="saveMonth" class="btn btn-primary" style="margin-top:12px">Salva configurazione</button></div>
+          <div class="stats"><div class="stat"><small>Entrate</small><div class="stat-value">${money(calculation.income)}</div></div><div class="stat"><small>Budget settimanale</small><div class="stat-value">${money(calculation.weeklyBudget)}</div></div><div class="stat"><small>Spese variabili</small><div class="stat-value">${money(calculation.variableExpenses)}</div></div><div class="stat"><small>Risparmio reale</small><div class="stat-value ${calculation.realSaving >= 0 ? 'positive' : 'negative'}">${money(calculation.realSaving)}</div></div></div>
+          <div class="card"><h2>Budget settimanale</h2><p class="muted">Viaggi ed extra non riducono questo budget: sono somme accantonate per obiettivi.</p>${weekRows}</div>
+          <div class="card"><h2>Registro spese</h2><div class="expense-list">${expenses}</div></div>
+        `;
+
+        document.querySelectorAll('[data-month-index]').forEach(button => button.addEventListener('click', () => { state.monthIndex = Number(button.dataset.monthIndex); render(); }));
+        document.getElementById('saveMonth').addEventListener('click', () => {
+          month.stipendio = number(document.getElementById('salary').value);
+          month.extra = number(document.getElementById('incomeExtra').value);
+          month.percent = number(document.getElementById('savingPercent').value);
+          month.fisse.auto = number(document.getElementById('fixedAuto').value);
+          month.fisse.telefono = number(document.getElementById('fixedPhone').value);
+          month.fisse.abbonamenti = number(document.getElementById('fixedSubscriptions').value);
+          month.viaggi = number(document.getElementById('travelSaving').value);
+          month.speseExtra = number(document.getElementById('extraSaving').value);
+          saveData('Configurazione salvata');
+          render();
+        });
+
+        bindExpenseEvents(month);
+      }
+
+      function expenseRowHTML(expense, index) {
+        const categories = Object.keys(state.data.categories);
+        const subcategories = state.data.categories[expense.cat] || [];
+        const categoryOptions = categories.map(category => `<option value="${escapeHTML(category)}" ${category === expense.cat ? 'selected' : ''}>${escapeHTML(category)}</option>`).join('');
+        const subcategoryOptions = subcategories.length ? subcategories.map(sub => `<option value="${escapeHTML(sub)}" ${sub === expense.subcat ? 'selected' : ''}>${escapeHTML(sub)}</option>`).join('') : '<option value="">Generale</option>';
+        return `<div class="expense-row" data-expense-index="${index}">
+          <input data-expense-field="date" type="date" value="${escapeHTML(expense.date)}">
+          <input data-expense-field="desc" class="description" value="${escapeHTML(expense.desc || '')}" placeholder="Descrizione">
+          <input data-expense-field="amount" type="number" step="0.01" value="${number(expense.amount)}">
+          <button data-delete-expense class="expense-delete" aria-label="Elimina spesa">✕</button>
+          <select data-expense-field="cat" class="expense-subcategory">${categoryOptions}</select>
+          <select data-expense-field="subcat" class="expense-subcategory">${subcategoryOptions}</select>
+        </div>`;
+      }
+
+      function bindExpenseEvents(month) {
+        document.querySelectorAll('[data-expense-index]').forEach(row => {
+          const index = Number(row.dataset.expenseIndex);
+          row.querySelectorAll('[data-expense-field]').forEach(input => input.addEventListener('change', () => {
+            const field = input.dataset.expenseField;
+            if (field === 'amount') month.expenses[index].amount = number(input.value);
+            else if (field === 'cat') {
+              month.expenses[index].cat = input.value;
+              month.expenses[index].subcat = null;
+            } else if (field === 'subcat') month.expenses[index].subcat = input.value || null;
+            else month.expenses[index][field] = input.value;
+            saveData();
+            render();
+          }));
+          row.querySelector('[data-delete-expense]').addEventListener('click', () => {
+            month.expenses.splice(index, 1);
+            saveData('Spesa eliminata');
+            render();
+          });
+        });
+      }
+
+      function renderGoals() {
+        const saved = accumulatedTargetSavings();
+        const goalsHTML = state.data.goals.length ? state.data.goals.map((goal, index) => {
+          const percentage = Math.min(100, goal.target > 0 ? number(goal.saved) / number(goal.target) * 100 : 0);
+          return `<div class="goal-card"><div class="goal-head"><span class="goal-name">${escapeHTML(goal.name)}</span><span class="goal-amount">${money(goal.saved)} / ${money(goal.target)}</span></div><div class="goal-bar"><div class="goal-fill" style="width:${percentage}%"></div></div><div class="goal-foot"><span>${percentage.toFixed(0)}% completato</span><button data-delete-goal="${index}" class="btn btn-danger" style="min-height:28px;padding:3px 9px">Elimina</button></div></div>`;
+        }).join('') : '<p class="muted">Nessun obiettivo impostato.</p>';
+
+        document.getElementById('goalsPage').innerHTML = `<div class="card"><h2>Obiettivi di risparmio</h2><p class="muted">Gli obiettivi sono modificabili manualmente: in questo modo puoi assegnare a ciascun obiettivo la quota di risparmio che desideri.</p><div class="form-grid"><div class="field"><label>Nome</label><input id="goalName" placeholder="Es. Vacanza"></div><div class="field"><label>Target (€)</label><input id="goalTarget" type="number" step="0.01"></div><div class="field"><label>Già accantonato (€)</label><input id="goalSaved" type="number" step="0.01" value="0"></div></div><button id="addGoal" class="btn btn-primary" style="margin-top:12px">Aggiungi obiettivo</button></div><div class="card"><h2>Totale somme accantonate</h2><div class="stat-value" style="font-size:24px;color:var(--accent)">${money(saved)}</div><p class="muted">Somma di Spese viaggi, Spese extra e storico.</p></div><div class="card"><h2>I tuoi obiettivi</h2>${goalsHTML}</div>`;
+
+        document.getElementById('addGoal').addEventListener('click', () => {
+          const name = document.getElementById('goalName').value.trim();
+          const target = number(document.getElementById('goalTarget').value);
+          const savedValue = number(document.getElementById('goalSaved').value);
+          if (!name || target <= 0) return showToast('Inserisci nome e target');
+          state.data.goals.push({ name, target, saved: savedValue });
+          saveData('Obiettivo aggiunto');
+          render();
+        });
+        document.querySelectorAll('[data-delete-goal]').forEach(button => button.addEventListener('click', () => {
+          state.data.goals.splice(Number(button.dataset.deleteGoal), 1);
+          saveData('Obiettivo eliminato');
+          render();
+        }));
+      }
+
+      function renderTrends() {
+        const categoryAverages = {};
+        currentMonths().forEach(month => month.expenses.forEach(expense => {
+          const category = expense.cat || 'Altro';
+          if (!categoryAverages[category]) categoryAverages[category] = { total: 0, months: 0 };
+          categoryAverages[category].total += number(expense.amount);
+        }));
+        Object.keys(categoryAverages).forEach(category => { categoryAverages[category].months = 12; });
+        const trendRows = Object.entries(categoryAverages).map(([category, data]) => {
+          const average = data.total / data.months;
+          const current = currentMonths()[state.monthIndex].expenses.filter(expense => expense.cat === category).reduce((sum, expense) => sum + number(expense.amount), 0);
+          const arrow = current > average ? '↑' : current < average ? '↓' : '→';
+          const className = current > average ? 'negative' : current < average ? 'positive' : 'muted';
+          return `<div class="trend-row"><span>${escapeHTML(category)}</span><span>${money(average)} <span class="${className}">${arrow}</span></span></div>`;
+        }).join('') || '<p class="muted">Nessun dato sufficiente.</p>';
+        const topSubcategories = subcategoryTotals().slice(0, 5).map(item => `<div class="trend-row"><span>${escapeHTML(item.name)}</span><span>${money(item.amount)}</span></div>`).join('') || '<p class="muted">Nessuna sotto-categoria registrata.</p>';
+
+        document.getElementById('trendsPage').innerHTML = `<div class="card"><h2>Medie mensili per categoria</h2><p class="muted">La freccia confronta l’ultimo mese selezionato con la media annua.</p>${trendRows}</div><div class="card"><h2>Top 5 sotto-categorie</h2>${topSubcategories}</div><div class="card"><h2>Spese degli ultimi 3 mesi</h2><div class="chart"><canvas id="trendChart"></canvas></div></div>`;
+
+        const labels = [0,1,2].map(offset => MONTHS[(state.monthIndex - offset + 12) % 12]);
+        const values = [0,1,2].map(offset => {
+          const month = currentMonths()[(state.monthIndex - offset + 12) % 12];
+          return month.expenses.reduce((sum, expense) => sum + number(expense.amount), 0);
+        }).reverse();
+        state.charts.trend = new Chart(document.getElementById('trendChart'), { type: 'bar', data: { labels, datasets: [{ label: 'Spese', data: values, backgroundColor: '#4f6df5' }] }, options: chartOptions(chartColors()) });
+      }
+
+      function renderSettings() {
+        const categoryText = Object.entries(state.data.categories).map(([category, subcategories]) => `${category}: ${subcategories.join(', ')}`).join('\n');
+        document.getElementById('settingsPage').innerHTML = `<div class="card"><h2>Intestazioni spese mensili</h2><div class="form-grid"><div class="field"><label>Prima voce</label><input id="labelAuto" value="${escapeHTML(state.data.fixedLabels.auto)}"></div><div class="field"><label>Seconda voce</label><input id="labelPhone" value="${escapeHTML(state.data.fixedLabels.telefono)}"></div><div class="field"><label>Terza voce</label><input id="labelSubscriptions" value="${escapeHTML(state.data.fixedLabels.abbonamenti)}"></div><div class="field"><label>Quarta voce</label><input id="labelTravel" value="${escapeHTML(state.data.fixedLabels.viaggi)}"></div><div class="field"><label>Quinta voce</label><input id="labelExtra" value="${escapeHTML(state.data.fixedLabels.extra)}"></div></div><button id="saveLabels" class="btn btn-primary" style="margin-top:12px">Salva intestazioni</button></div><div class="card"><h2>Categorie e sotto-categorie</h2><p class="muted">Una riga per categoria, nel formato: Categoria: Sotto1, Sotto2</p><textarea id="categoryEditor">${escapeHTML(categoryText)}</textarea><button id="saveCategories" class="btn btn-primary" style="margin-top:12px">Salva categorie</button></div><div class="card"><h2>Aspetto</h2><p class="muted">Modalità</p><div class="actions"><button data-mode="light" class="btn ${state.data.theme.mode === 'light' ? 'btn-primary' : 'btn-secondary'}">☀️ Chiaro</button><button data-mode="dark" class="btn ${state.data.theme.mode === 'dark' ? 'btn-primary' : 'btn-secondary'}">🌙 Scuro</button><button data-mode="auto" class="btn ${state.data.theme.mode === 'auto' ? 'btn-primary' : 'btn-secondary'}">🔄 Auto</button></div><p class="muted" style="margin-top:14px">Colore principale</p><div class="actions">${['#4f6df5','#8da2ff','#168447','#d78619','#8d5cf6','#e0578f'].map(color => `<button data-accent="${color}" style="width:42px;height:42px;border:3px solid ${state.data.theme.accent === color ? 'var(--text)' : 'transparent'};border-radius:50%;background:${color}"></button>`).join('')}</div></div><div class="card"><h2>Backup</h2><div class="actions"><button id="exportJSON" class="btn btn-primary">Esporta JSON</button><button id="importJSON" class="btn btn-secondary">Importa JSON</button><input id="jsonFile" type="file" accept=".json" hidden></div></div>`;
+
+        document.getElementById('saveLabels').addEventListener('click', () => {
+          state.data.fixedLabels = { auto: valueOrDefault('labelAuto', DEFAULT_LABELS.auto), telefono: valueOrDefault('labelPhone', DEFAULT_LABELS.telefono), abbonamenti: valueOrDefault('labelSubscriptions', DEFAULT_LABELS.abbonamenti), viaggi: valueOrDefault('labelTravel', DEFAULT_LABELS.viaggi), extra: valueOrDefault('labelExtra', DEFAULT_LABELS.extra) };
+          saveData('Intestazioni salvate'); render();
+        });
+        document.getElementById('saveCategories').addEventListener('click', () => {
+          const categories = {};
+          document.getElementById('categoryEditor').value.split('\n').forEach(line => {
+            const separator = line.indexOf(':');
+            if (separator < 0) return;
+            const category = line.slice(0, separator).trim();
+            const subs = line.slice(separator + 1).split(',').map(item => item.trim()).filter(Boolean);
+            if (category) categories[category] = subs;
+          });
+          if (!Object.keys(categories).length) return showToast('Formato categorie non valido');
+          state.data.categories = categories; saveData('Categorie salvate'); render();
+        });
+        document.querySelectorAll('[data-mode]').forEach(button => button.addEventListener('click', () => { state.data.theme.mode = button.dataset.mode; applyTheme(); saveData(); render(); }));
+        document.querySelectorAll('[data-accent]').forEach(button => button.addEventListener('click', () => { state.data.theme.accent = button.dataset.accent; applyTheme(); saveData(); render(); }));
+        document.getElementById('exportJSON').addEventListener('click', () => download('gestione-risparmi.json', JSON.stringify(state.data, null, 2), 'application/json'));
+        document.getElementById('importJSON').addEventListener('click', () => document.getElementById('jsonFile').click());
+        document.getElementById('jsonFile').addEventListener('change', importJSONFile);
+      }
+
+      function valueOrDefault(id, fallback) {
+        const value = document.getElementById(id).value.trim();
+        return value || fallback;
+      }
+
+      /* =========================
+         Import/export e tema
+         ========================= */
+      function download(filename, content, type) {
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(new Blob([content], { type }));
+        link.download = filename;
+        link.click();
+        URL.revokeObjectURL(link.href);
+        showToast('File esportato');
+      }
+
+      function importJSONFile(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            state.data = normalizeData(JSON.parse(reader.result));
+            applyTheme(); fillYearSelect(); render(); showToast('Importazione completata');
+          } catch (error) { showToast('JSON non valido'); console.error(error); }
+        };
+        reader.readAsText(file);
+      }
+
+      function applyTheme() {
+        const mode = state.data.theme.mode;
+        const dark = mode === 'dark' || (mode === 'auto' && window.matchMedia?.('(prefers-color-scheme: dark)').matches);
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+        document.documentElement.style.setProperty('--accent', state.data.theme.accent || '#4f6df5');
+      }
+
+      function fillYearSelect() {
+        const years = Object.keys(state.data.years).map(Number).sort((a,b) => a-b);
+        document.getElementById('yearSelect').innerHTML = years.map(year => `<option value="${year}" ${year === state.data.currentYear ? 'selected' : ''}>${year}</option>`).join('');
+      }
+
+      /* =========================
+         Eventi globali
+         ========================= */
+      document.getElementById('navigation').addEventListener('click', event => {
+        const button = event.target.closest('[data-page]');
+        if (!button) return;
+        state.page = button.dataset.page;
+        render();
+      });
+
+      document.getElementById('yearSelect').addEventListener('change', event => {
+        state.data.currentYear = Number(event.target.value);
+        state.monthIndex = 0;
+        saveData(); render();
+      });
+
+      document.getElementById('addYearButton').addEventListener('click', () => {
+        const years = Object.keys(state.data.years).map(Number);
+        const newYear = Math.max(...years) + 1;
+        state.data.years[newYear] = createBlankYear();
+        state.data.currentYear = newYear;
+        saveData('Anno aggiunto'); fillYearSelect(); render();
+      });
+
+      document.getElementById('addExpenseButton').addEventListener('click', () => {
+        const categorySelect = document.getElementById('newExpenseCategory');
+        categorySelect.innerHTML = Object.keys(state.data.categories).map(category => `<option value="${escapeHTML(category)}">${escapeHTML(category)}</option>`).join('');
+        updateNewExpenseSubcategories();
+        document.getElementById('newExpenseDate').value = todayISO();
+        document.getElementById('newExpenseDescription').value = '';
+        document.getElementById('newExpenseAmount').value = '';
+        document.getElementById('expenseModal').classList.add('open');
+      });
+
+      document.getElementById('closeExpenseModal').addEventListener('click', () => document.getElementById('expenseModal').classList.remove('open'));
+      document.getElementById('newExpenseCategory').addEventListener('change', updateNewExpenseSubcategories);
+
+      function updateNewExpenseSubcategories() {
+        const category = document.getElementById('newExpenseCategory').value;
+        const subcategories = state.data.categories[category] || [];
+        document.getElementById('newExpenseSubcategory').innerHTML = subcategories.length ? subcategories.map(sub => `<option value="${escapeHTML(sub)}">${escapeHTML(sub)}</option>`).join('') : '<option value="">Generale</option>';
+      }
+
+      document.getElementById('saveNewExpense').addEventListener('click', () => {
+        const date = document.getElementById('newExpenseDate').value;
+        if (!date) return showToast('Inserisci una data');
+        const dateObject = new Date(date + 'T00:00:00');
+        const year = dateObject.getFullYear();
+        const monthIndex = dateObject.getMonth();
+        if (!state.data.years[year]) state.data.years[year] = createBlankYear();
+        state.data.years[year].months[monthIndex].expenses.push({
+          date,
+          cat: document.getElementById('newExpenseCategory').value || 'Altro',
+          subcat: document.getElementById('newExpenseSubcategory').value || null,
+          desc: document.getElementById('newExpenseDescription').value.trim(),
+          amount: number(document.getElementById('newExpenseAmount').value)
+        });
+        state.data.currentYear = year;
+        state.monthIndex = monthIndex;
+        document.getElementById('expenseModal').classList.remove('open');
+        saveData('Spesa aggiunta'); fillYearSelect(); state.page = 'months'; render();
+      });
+
+      window.matchMedia?.('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        if (state.data.theme.mode === 'auto') applyTheme();
+      });
+
+      /* =========================
+         Avvio sicuro dell'app
+         ========================= */
+      state.data = loadData();
+      applyTheme();
+      fillYearSelect();
+      render();
+    })();
+  </script>
 </body>
 </html>
